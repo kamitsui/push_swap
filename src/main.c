@@ -6,12 +6,14 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/01 16:05:58 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/01 17:30:56 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include "push_swap.h"
+#include <stdio.h>// for printf
 
 // Function to initialize the stack
 void init_stack(t_Stack *stack)
@@ -79,17 +81,17 @@ int main(int argc, char* argv[]) {
 	}
 
 	init_stack(&Stack_a);
-	init_stack(&Stack_a);
+	init_stack(&Stack_b);
 
-	Stack_a.data = init_data(argc, argv);
+//	*Stack_a.data = *allocate_array(argc - 1);
+	set_data(&Stack_a, argc, argv);
 
 	debug_data(&Stack_a, &Stack_b);
 	// At this point, the input is valid, and you can proceed with further processing
 	// For example, you can call the push_swap function here
 	
 	// Don't forget to free the dynamically allocated memory
-	free(numbers);
+//	free(Stack_a.data[0]);
 
-	return 0;
 	return (0);
 }

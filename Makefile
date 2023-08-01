@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/01 16:13:12 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/01 16:57:27 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,8 +52,9 @@ DEPS = $(addprefix $(DEP_DIR)/, $(SRCS:.c=.d))
 
 # Compile
 CC = clang
-CF = -Wall -Wextra -Werror
-#CF = -Wall -Wextra -Werror -fsanitize=address -g#error ld: symbol not found
+#CF = -Wall -Wextra -Werror
+CF = -Wall -Wextra -Werror -g -fsanitize=address#error ld: symbol not found
+LDF = -g -fsanitize=address
 INC_CF = -I$(INC_DIR)
 DEP_CF = -MMD -MP -MF $(@:$(OBJ_DIR)/%.o=$(DEP_DIR)/%.d)
 
@@ -72,7 +73,7 @@ all: $(NAME)
 
 # Target
 $(NAME): $(DEPS) $(OBJS)
-	$(CC) -o $(NAME) $(OBJS)
+	$(CC) $(CF) -o $(NAME) $(OBJS)
 #$(NAME): $(LIB_PRINTF) $(DEPS) $(OBJS)
 #	$(CC) -o $(NAME) $(OBJS) $(LIB_PRINTF)
 

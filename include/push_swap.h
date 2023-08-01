@@ -6,12 +6,14 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:04:22 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/01 16:06:54 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/01 17:22:28 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
-# define FPUSH_SWAP_H
+# define PUSH_SWAP_H
+
+# include <stdlib.h>
 
 #define MAX_SIZE 100
 
@@ -23,7 +25,8 @@ typedef struct s_Stack
     int top; // Index of the top element in the stack
 }	t_Stack;
 
-int	*init_data(int argc, char *argv[])
+int	*allocate_array(size_t size);
+void	set_data(t_Stack *Stack, int argc, char *argv[]);
 void	debug_data(t_Stack *a, t_Stack *b);
 
 #endif
