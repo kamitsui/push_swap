@@ -6,13 +6,14 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/01 17:30:56 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/05 11:12:03 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 #include <stdlib.h>
 #include "push_swap.h"
+#include "ft_printf.h"
 #include <stdio.h>// for printf
 
 // Function to initialize the stack
