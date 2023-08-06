@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:04:22 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/01 17:22:28 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/06 17:27:03 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ typedef struct s_Stack
 int	*allocate_array(size_t size);
 void	set_data(t_Stack *Stack, int argc, char *argv[]);
 void	debug_data(t_Stack *a, t_Stack *b);
+
+void insert_sort(int arr[], int size);
 
 #endif

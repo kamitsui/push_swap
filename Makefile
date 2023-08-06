@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/05 11:32:41 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/06 17:27:21 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC_DIR = src
 SRCS = \
 	   main.c \
 	   init.c \
+	   insert_sort.c \
 	   debug.c
 
 # vpath for serching source files in multiple directories
@@ -49,7 +50,8 @@ DEP_CF = -MMD -MP -MF $(@:$(OBJ_DIR)/%.o=$(DEP_DIR)/%.d)
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(DEP_DIR)
-	$(CC) $(CF) $(INC_CF) $(DEP_CF) -c $< -o $@ $(LDF)
+	$(CC) $(CF) $(INC_CF) $(DEP_CF) -c $< -o $@
+#	$(CC) $(CF) $(INC_CF) $(DEP_CF) -c $< -o $@ $(LDF)
 
 # Rules for building dependency files
 $(DEP_DIR)/%.d: %.c
@@ -60,7 +62,8 @@ all: $(NAME)
 
 # Target
 $(NAME): $(LIB_PRINTF) $(DEPS) $(OBJS)
-	$(CC) $(CF) -o $(NAME) $(OBJS) $(LDF)
+	$(CC) $(CF) -o $(NAME) $(OBJS)
+#	$(CC) $(CF) -o $(NAME) $(OBJS) $(LDF)
 
 # Library target
 $(LIB_PRINTF): $(LIBFT)

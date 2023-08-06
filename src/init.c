@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:40:00 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/01 17:26:37 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/06 17:11:53 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,13 @@ void	set_data(t_Stack *Stack, int argc, char *argv[])
 	for (int i = 1; i < argc; i++) {
 	    Stack->data[i - 1] = atoi(argv[i]);
 		Stack->top++;
-		printf("data[%d]:%d\n", i-1,Stack->data[i-1]);
+//		printf("data[%d]:%d\n", i-1,Stack->data[i-1]);
 	}
 
 	// Check for duplicates
 	if (hasDuplicates(&Stack->data[0], argc - 1))
 	{
 		printf("Error: Duplicate integers are not allowed.\n");
-//		free(numbers);
 		exit (1);
 	}
 }
