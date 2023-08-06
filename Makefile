@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/06 17:27:21 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/06 21:03:59 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,9 @@ SRCS = \
 	   main.c \
 	   init.c \
 	   insert_sort.c \
+	   instructions.c \
+	   operation.c \
+	   stack_utils.c \
 	   debug.c
 
 # vpath for serching source files in multiple directories
