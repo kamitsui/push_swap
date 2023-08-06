@@ -6,33 +6,59 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:49:42 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/06 17:54:13 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/06 22:26:26 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>//for printf
 
-void	debug_data(t_Stack *a, t_Stack *b)
+void	debug_data(t_Stack *left, t_Stack *right)
 {
-	int	a_top = a->top;
-	int	b_top = b->top;
+	int	left_top = left->top;
+	int	right_top = right->top;
 
-	printf("a->top:%d b->top:%d\n", a_top, b_top);
+	printf("%s->top:%d %s->top:%d\n",
+			left->name, left_top, right->name, right_top);
 	printf("----------\n");
-	while ((a_top >= 0) || (b_top >= 0))
+	while ((left_top >= 0) || (right_top >= 0))
 	{
-		if (a_top < 0)
+		if (left_top < 0)
 			printf("  ");
 		else
-			printf("%d ", a->data[a_top]);
-		if (b_top < 0)
+			printf("%d ", left->data[left_top]);
+		if (right_top < 0)
 			printf("\n");
 		else
-			printf("%d\n", b->data[b_top]);
-		a_top -= 1;
-		b_top -= 1;
+			printf("%d\n", right->data[right_top]);
+		left_top -= 1;
+		right_top -= 1;
 	}
 	printf("----------\n");
-	printf("a b\n");
+	printf("%s %s\n", left->name, right->name);
+}
+
+void	debug_push_data(t_Stack *dst, t_Stack *src)
+{
+	printf("---- before ----\n");
+	debug_data(src, dst);
+	printf("\nInstruction\n");
+	for (int i = 0; i < 3; i++)
+		push_data(dst, src);
+	printf("\n");
+	printf("---- after ----\n");
+	debug_data(src, dst);
+	printf("\n");
+}
+
+void	debug_swap(t_Stack *target, t_Stack *non_target)
+{
+	printf("---- before ----\n");
+	debug_data(target, non_target);
+	printf("\nInstruction\n");
+	swap(target);
+	printf("\n");
+	printf("---- after ----\n");
+	debug_data(target, non_target);
+	printf("\n");
 }

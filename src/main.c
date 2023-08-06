@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/06 21:50:43 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/06 22:27:20 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,16 @@ int main(int argc, char* argv[])
 //	*Stack_a.data = *allocate_array(argc - 1);
 	set_data(&Stack_a, argc, argv);
 
-	debug_data(&Stack_a, &Stack_b);
+// Test Instruction : sa
+	debug_swap(&Stack_a, &Stack_b);
+// Test Instruction : pb pb pb
+	debug_push_data(&Stack_b, &Stack_a);
 
-	push_data(&Stack_b, &Stack_a);
-	push_data(&Stack_b, &Stack_a);
-	push_data(&Stack_b, &Stack_a);
 	// At this point, the input is valid, and you can proceed with further processing
 	// For example, you can call the push_swap function here
 //	insert_sort(Stack_a.data, Stack_a.top + 1);// for array
 	//insert_sort(&Stack_a, &Stack_b);
 
-	debug_data(&Stack_a, &Stack_b);
 	
 	// Don't forget to free the dynamically allocated memory
 	system("leaks push_swap");

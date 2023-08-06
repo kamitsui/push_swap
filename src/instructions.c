@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:50:30 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/06 21:41:36 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/06 22:22:39 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	push_data(t_Stack *dst, t_Stack *src)
  *
  * @param stack type(t_Stack *) スタック構造体のポインタ
  */
-void swap(t_Stack* stack)
+void	swap(t_Stack *stack)
 {
 	int temp;
 
@@ -53,7 +53,7 @@ void swap(t_Stack* stack)
  *
  * @param stack type(t_Stack *) スタックの構造体ポインタ
  */
-void rotate(t_Stack* stack)
+void	rotate(t_Stack *stack)
 {
 	int temp;
 
