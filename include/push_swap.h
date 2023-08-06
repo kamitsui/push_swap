@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:04:22 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/06 22:59:51 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/06 23:36:13 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ bool	isFull(t_Stack *stack);
  * @brief 命令の関数 ( instructions.c )
  */
 void	push_data(t_Stack *dst, t_Stack *src);
-void	swap(t_Stack *stack);
-void	rotate(t_Stack *stack);
+void	swap_one(t_Stack *target);
+void	swap_two(t_Stack *target1, t_Stack *target2);
+void	rotate_one(t_Stack *target);
+void	rotate_two(t_Stack *target1, t_Stack *target2);
 
 /**
  * @brief スタック操作に関する関数（ operation.c ）
@@ -62,8 +64,9 @@ void	insert_sort(int arr[], int size);
  */
 void	debug_data(t_Stack *a, t_Stack *b);
 void	debug_push_data(t_Stack *dst, t_Stack *src);
-void	debug_swap(t_Stack *target, t_Stack *non_target);
-void	debug_rotate(t_Stack *target1, t_Stack *target2);
-void	rotate_two(t_Stack *target1, t_Stack *target2);
+void	debug_swap_one(t_Stack *target, t_Stack *non_target);
+void	debug_swap_two(t_Stack *target1, t_Stack *target2);
+void	debug_rotate_one(t_Stack *target1, t_Stack *target2);
+void	debug_rotate_two(t_Stack *target1, t_Stack *target2);
 
 #endif

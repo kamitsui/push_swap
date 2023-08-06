@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:49:42 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/06 23:00:09 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/06 23:34:42 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,26 +51,49 @@ void	debug_push_data(t_Stack *dst, t_Stack *src)
 	printf("\n");
 }
 
-void	debug_swap(t_Stack *target, t_Stack *non_target)
+void	debug_swap_one(t_Stack *target, t_Stack *non_target)
 {
 	printf("---- before ----\n");
 	debug_data(target, non_target);
 	printf("\nInstruction\n");
-	swap(target);
+	swap_one(target);
 	printf("\n");
 	printf("---- after ----\n");
 	debug_data(target, non_target);
 	printf("\n");
 }
 
-void	debug_rotate(t_Stack *target1, t_Stack *target2)
+void	debug_swap_two(t_Stack *target1, t_Stack *target2)
+{
+	printf("---- before ----\n");
+	debug_data(target1, target2);
+	printf("\nInstruction\n");
+	swap_two(target1, target2);
+	printf("\n");
+	printf("---- after ----\n");
+	debug_data(target1, target2);
+	printf("\n");
+}
+
+void	debug_rotate_one(t_Stack *target1, t_Stack *target2)
+{
+	printf("---- before ----\n");
+	debug_data(target1, target2);
+	printf("\nInstruction\n");
+	rotate_one(target1);
+	rotate_one(target2);
+	printf("\n");
+	printf("---- after ----\n");
+	debug_data(target1, target2);
+	printf("\n");
+}
+
+void	debug_rotate_two(t_Stack *target1, t_Stack *target2)
 {
 	printf("---- before ----\n");
 	debug_data(target1, target2);
 	printf("\nInstruction\n");
 	rotate_two(target1, target2);
-//	rotate(target1);
-//	rotate(target2);
 	printf("\n");
 	printf("---- after ----\n");
 	debug_data(target1, target2);
