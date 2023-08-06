@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/06 22:27:20 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/06 22:45:09 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int main(int argc, char* argv[])
 	debug_swap(&Stack_a, &Stack_b);
 // Test Instruction : pb pb pb
 	debug_push_data(&Stack_b, &Stack_a);
+// Test Instruction : ra
+	debug_rotate(&Stack_a, &Stack_b);
 
 	// At this point, the input is valid, and you can proceed with further processing
 	// For example, you can call the push_swap function here

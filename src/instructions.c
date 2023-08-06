@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:50:30 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/06 22:22:39 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/06 22:58:43 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,17 @@ void	rotate(t_Stack *stack)
 		printf("Error: Stack is empty, cannot rotate\n");
 		return;
 	}
-	temp = stack->data[0];
+	temp = stack->data[stack->top];
 	for (int i = 0; i < stack->top; i++)
 	{
-		stack->data[i] = stack->data[i + 1];
+		stack->data[stack->top - i] = stack->data[stack->top - 1 - i];
 	}
-	stack->data[stack->top] = temp;
+	stack->data[0] = temp;
 	printf("r%s\n", stack->name);
+}
+
+void	rotate_two(t_Stack *target1, t_Stack *target2)
+{
+	rotate(target1);
+	rotate(target2);
 }

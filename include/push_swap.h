@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:04:22 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/06 22:25:26 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/06 22:59:51 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,7 @@ void	insert_sort(int arr[], int size);
 void	debug_data(t_Stack *a, t_Stack *b);
 void	debug_push_data(t_Stack *dst, t_Stack *src);
 void	debug_swap(t_Stack *target, t_Stack *non_target);
+void	debug_rotate(t_Stack *target1, t_Stack *target2);
+void	rotate_two(t_Stack *target1, t_Stack *target2);
 
 #endif

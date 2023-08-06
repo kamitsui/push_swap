@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:49:42 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/06 22:26:26 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/06 23:00:09 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,19 @@ void	debug_swap(t_Stack *target, t_Stack *non_target)
 	printf("\n");
 	printf("---- after ----\n");
 	debug_data(target, non_target);
+	printf("\n");
+}
+
+void	debug_rotate(t_Stack *target1, t_Stack *target2)
+{
+	printf("---- before ----\n");
+	debug_data(target1, target2);
+	printf("\nInstruction\n");
+	rotate_two(target1, target2);
+//	rotate(target1);
+//	rotate(target2);
+	printf("\n");
+	printf("---- after ----\n");
+	debug_data(target1, target2);
 	printf("\n");
 }
