@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:40:00 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/06 17:11:53 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/06 22:00:58 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,17 @@
 #include <stdbool.h>
 #include <stdio.h>//for printf
 
-bool hasDuplicates(int arr[], int size) {
-    for (int i = 0; i < size - 1; i++) {
-        for (int j = i + 1; j < size; j++) {
-            if (arr[i] == arr[j]) {
-                return true;
-            }
-        }
-    }
-    return false;
+bool hasDuplicates(int arr[], int size)
+{
+	for (int i = 0; i < size - 1; i++)
+	{
+		for (int j = i + 1; j < size; j++)
+		{
+			if (arr[i] == arr[j])
+				return (true);
+		}
+	}
+	return false;
 }
 
 int	*allocate_array(size_t size)
@@ -41,8 +43,9 @@ int	*allocate_array(size_t size)
 void	set_data(t_Stack *Stack, int argc, char *argv[])
 {
 	// Convert command-line arguments to integers and store them in the array
-	for (int i = 1; i < argc; i++) {
-	    Stack->data[i - 1] = atoi(argv[i]);
+	for (int i = 1; i < argc; i++)
+	{
+		Stack->data[i - 1] = atoi(argv[argc - i]);
 		Stack->top++;
 //		printf("data[%d]:%d\n", i-1,Stack->data[i-1]);
 	}
