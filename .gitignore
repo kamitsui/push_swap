@@ -1,9 +1,11 @@
 *
 !*/
 !Makefile
+!checker_Mac
 !*.c
 !*.h
 !*.sh
+!*.txt
 !*.md
 !.gitignore
 !*.html
