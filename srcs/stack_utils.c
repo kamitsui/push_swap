@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 20:38:13 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/06 21:07:03 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/23 09:05:13 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 /**
  * @brief スタックの容量が空かどうか調べる。
  *
- * @param stack type(t_Stack *) スタック構造体のポインタ
+ * @param stack type(t_stack *) スタック構造体のポインタ
  *
  * @return true:空, false:何か入っている
  */
-bool isEmpty(t_Stack *stack)
+bool isEmpty(t_stack *stack)
 {
 	return (stack->top == -1);
 }
@@ -28,11 +28,11 @@ bool isEmpty(t_Stack *stack)
 /**
  * @brief スタックの容量がMAXかどうか調べる。
  *
- * @param stack type(t_Stack *) スタック構造体のポインタ
+ * @param stack type(t_stack *) スタック構造体のポインタ
  *
  * @return true:容量MAX, false:空き容量あり
  */
-bool isFull(t_Stack *stack)
+bool isFull(t_stack *stack)
 {
 	return (stack->top == MAX_SIZE - 1);
 }

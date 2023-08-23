@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/06 21:03:59 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/23 10:48:25 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,15 +18,22 @@ LIB_PRINTF_DIR = ft_printf
 LIB_PRINTF = $(LIB_PRINTF_DIR)/libftprintf.a
 
 # Include Header
-INC_DIR = include
+INC_DIR = includes
 
 # Sources
-SRC_DIR = src
+SRC_DIR = srcs \
+		  srcs/instruct
 SRCS = \
 	   main.c \
+	   \
 	   init.c \
+	   \
 	   insert_sort.c \
-	   instructions.c \
+	   \
+	   push.c \
+	   swap.c \
+	   rotate.c \
+	   \
 	   operation.c \
 	   stack_utils.c \
 	   debug.c
@@ -35,11 +42,11 @@ SRCS = \
 vpath %.c $(SRC_DIR)
 
 # Objects
-OBJ_DIR = obj
+OBJ_DIR = objs
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 # Dependency files
-DEP_DIR = .dep
+DEP_DIR = .deps
 DEPS = $(addprefix $(DEP_DIR)/, $(SRCS:.c=.d))
 
 # Compile
@@ -65,8 +72,8 @@ all: $(NAME)
 
 # Target
 $(NAME): $(LIB_PRINTF) $(DEPS) $(OBJS)
-	$(CC) $(CF) -o $(NAME) $(OBJS)
-#	$(CC) $(CF) -o $(NAME) $(OBJS) $(LDF)
+	$(CC) $(CF) $(OBJS) $(LIB_PRINTF) -o $(NAME)
+#	$(CC) $(CF) $(OBJS) $(LIB_PRINTF) -o $(NAME) $(LDF)
 
 # Library target
 $(LIB_PRINTF): $(LIBFT)

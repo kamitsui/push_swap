@@ -1,0 +1,11 @@
+*
+!*/
+!Makefile
+!*.c
+!*.h
+!*.sh
+!*.md
+!.gitignore
+!*.html
+!*.js
+!doxyfile

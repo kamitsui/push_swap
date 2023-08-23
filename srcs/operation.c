@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 20:46:57 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/06 21:02:00 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/23 09:04:51 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@
  *
  * @return value type(int) ポップされた値
  */
-int	pop(t_Stack *stack)
+int	pop(t_stack *stack)
 {
 	int value;
 
 	if (isEmpty(stack))
 	{
-		printf("Error: Stack is empty, cannot pop\n");
+		printf("Error: stack is empty, cannot pop\n");
 		exit (1);
 	}
 	value = stack->data[stack->top];
@@ -37,15 +37,15 @@ int	pop(t_Stack *stack)
 /**
  * @brief スタックに値をプッシュする（先頭要素に値を入れる）
  *
- * @param stack type(t_Stack *) スタック構造体のポインタ
+ * @param stack type(t_stack *) スタック構造体のポインタ
  * @param value type(int) スタックに追加する値
  */
 // Function to push an element onto the stack
-void	push(t_Stack *stack, int value)
+void	push(t_stack *stack, int value)
 {
 	if (isFull(stack))
 	{
-		printf("Error: Stack is full, cannot push %d\n", value);
+		printf("Error: stack is full, cannot push %d\n", value);
 		exit (1);
 	}
 	stack->top++;
@@ -55,15 +55,15 @@ void	push(t_Stack *stack, int value)
 /**
  * @brief スタックから先頭要素(data[top])を削除せずに値を取り出す。
  *
- * @param stack type(t_Stack *) スタック構造体のポインタ
+ * @param stack type(t_stack *) スタック構造体のポインタ
  *
  * @return 取り出した値
  */
-int	peek(t_Stack *stack)
+int	peek(t_stack *stack)
 {
 	if (isEmpty(stack))
 	{
-		printf("Error: Stack is empty, cannot peek\n");
+		printf("Error: stack is empty, cannot peek\n");
 		exit (1);
 	}
 	return (stack->data[stack->top]);

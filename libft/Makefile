@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/11 20:51:49 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/05 12:35:39 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/23 08:33:51 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ DEP_DIR = .dep
 
 # Source files
 SRCS = \
+	   ft_atoi.c \
 	   ft_bzero.c \
 	   ft_isdigit.c \
 	   ft_isxdigit.c \
@@ -40,6 +41,7 @@ SRCS = \
 	   ft_strnew.c \
 	   ft_strnlen.c \
 	   ft_strtok.c \
+	   ft_strtol.c \
 	   \
 	   get_next_line.c
 
