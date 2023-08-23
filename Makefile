@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/23 10:48:25 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/23 13:59:36 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,21 +22,26 @@ INC_DIR = includes
 
 # Sources
 SRC_DIR = srcs \
-		  srcs/instruct
+		  srcs/instruct \
+		  srcs/debug
 SRCS = \
 	   main.c \
 	   \
 	   init.c \
 	   \
-	   insert_sort.c \
-	   \
 	   push.c \
 	   swap.c \
 	   rotate.c \
+	   reverse_rotate.c \
 	   \
 	   operation.c \
 	   stack_utils.c \
-	   debug.c
+	   \
+	   debug_data.c \
+	   repeat_push.c \
+	   repeat_swap.c \
+	   repeat_rotate.c \
+	   repeat_reverse_rotate.c
 
 # vpath for serching source files in multiple directories
 vpath %.c $(SRC_DIR)

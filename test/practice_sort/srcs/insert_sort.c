@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 17:22:16 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/06 17:26:55 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/23 14:16:52 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,23 @@ void insert_sort(int arr[], int size) {
 }
 
 
-// int main() {
-//     int numbers[] = {10, 5, 2, 8, 3};
-//     int size = sizeof(numbers) / sizeof(numbers[0]);
-// 
-//     printf("Before sorting:\n");
-//     for (int i = 0; i < size; i++) {
-//         printf("%d ", numbers[i]);
-//     }
-//     printf("\n");
-// 
-//     insertion_sort(numbers, size);
-// 
-//     printf("After sorting:\n");
-//     for (int i = 0; i < size; i++) {
-//         printf("%d ", numbers[i]);
-//     }
-//     printf("\n");
-// 
-//     return 0;
-// }
+int main() {
+    int numbers[] = {10, 5, 2, 8, 3};
+    int size = sizeof(numbers) / sizeof(numbers[0]);
+
+    printf("Before sorting:\n");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", numbers[i]);
+    }
+    printf("\n");
+
+    insert_sort(numbers, size);
+
+    printf("After sorting:\n");
+    for (int i = 0; i < size; i++) {
+        printf("%d ", numbers[i]);
+    }
+    printf("\n");
+
+    return 0;
+}

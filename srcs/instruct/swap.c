@@ -6,11 +6,13 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:50:30 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/23 09:24:09 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/23 14:31:27 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "instruct.h"
+#include "error.h"
 #include "ft_printf.h"
 
 /**
@@ -21,12 +23,12 @@
  */
 static void	swap(t_stack *stack)
 {
-	int temp;
+	int	temp;
 
 	if (stack->top < 1)
 	{
-		ft_printf("Error: stack does not have enough elements to perform swap\n");
-		return;
+		ft_printf(MSG_ERR_SWAP);
+		return ;
 	}
 	temp = stack->data[stack->top];
 	stack->data[stack->top] = stack->data[stack->top - 1];

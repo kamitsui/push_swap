@@ -6,42 +6,25 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 13:40:27 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/23 12:35:49 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/23 14:13:11 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Target name
-NAME = push_swap
+NAME1 = 1_insert_sort
 
 # Sources files
-SRCS = example_of_subject.c \
-	  init.c \
-	  \
-	  push.c \
-	  swap.c \
-	  rotate.c \
-	  reverse_rotate.c \
-	  \
-	  operation.c \
-	  stack_utils.c \
-	  \
-	  debug_data.c \
-	  repeat_push.c \
-	  repeat_swap.c \
-	  repeat_rotate.c \
-	  repeat_reverse_rotate.c
+SRCS1 = insert_sort.c
+SRCS2 = 
 
 # Directories
-PROJ_DIR = ../../..
-SRCS_DIR = $(PROJ_DIR)/srcs \
-		   $(PROJ_DIR)/srcs/instruct \
-		   $(PROJ_DIR)/srcs/debug \
+SRCS_DIR = \
 		   srcs
 OBJS_DIR = obj
 DEPS_DIR = .dep
 
 # vpath for serching source files in multiple directories
-vpath %.c $(SRCS_DIR) $(SRCS_B_DIR)
+vpath %.c $(SRCS_DIR)
 
 # Libraries
 LIBFT_DIR = $(PROJ_DIR)/libft
@@ -59,8 +42,10 @@ LD_CF = -g -fsanitize=address
 INC = -I$(PROJ_DIR)/includes
 
 # Object files and dependency files
-OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
-DEPS = $(addprefix $(DEPS_DIR)/, $(SRCS:.c=.d))
+OBJS1 = $(addprefix $(OBJS_DIR)/, $(SRCS1:.c=.o))
+DEPS = $(addprefix $(DEPS_DIR)/, $(SRCS1:.c=.d))
+OBJS2 = $(addprefix $(OBJS_DIR)/, $(SRCS2:.c=.o))
+DEPS = $(addprefix $(DEPS_DIR)/, $(SRCS2:.c=.d))
 
 # Rules for building object files
 $(OBJS_DIR)/%.o: %.c
@@ -73,18 +58,14 @@ $(DEPS_DIR)/%.d: %.c
 	@mkdir -p $(DEPS_DIR)
 
 # Default target
-all: $(NAME)
+all: $(NAME1)
 
 # Mandatory Target
-$(NAME): $(LIBFT) $(LIB_PRINTF) $(OBJS)
-	$(CC) $(CFLAGS) $(LFLAGS) $(OBJS) $(LIB_PRINTF) -o $(NAME)
-#	$(CC) $(CFLAGS) $(LFLAGS) $(LD_CF) $(OBJS) $(LIB_PRINTF) -o $(NAME)
-
-# Library target
-$(LIB_PRINTF): $(LIBFT)
-	make -C $(LIB_PRINTF_DIR)
-$(LIBFT):
-	make -C $(LIBFT_DIR)
+1:
+	make
+$(NAME1): $(OBJS1)
+	$(CC) $(CFLAGS) $(LFLAGS) $(OBJS1) -o $(NAME1)
+#	$(CC) $(CFLAGS) $(LFLAGS) $(LD_CF) $(OBJS1) -o $(NAME1)
 
 # Clean target
 clean:
@@ -92,16 +73,16 @@ clean:
 
 # Clean and remove target
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME1)
 
 # Rebuild target
 re: fclean all
 
 # Run test
-run:
-	./run.sh
+run1:
+	./$(NAME1)
 
 # Enable dependency file
 -include $(DEPS)
 
-.PHONY: debug all clean fclean re run
+.PHONY: debug all clean fclean re 1 run run1

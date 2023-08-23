@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/23 09:10:47 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/23 13:01:52 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,34 @@
 #include "push_swap.h"
 #include "debug.h"
 #include "ft_printf.h"
+
+void	go_example(t_stack *stack_a, t_stack *stack_b)
+{
+	repeat_swap(stack_a, 1);
+	debug_data(stack_a, stack_b);
+	repeat_push(stack_b, stack_a, 3);
+	debug_data(stack_a, stack_b);
+	repeat_rotate_same(stack_a, stack_b, 1);
+	debug_data(stack_a, stack_b);
+	repeat_reverse_rotate_same(stack_a, stack_b, 1);
+	debug_data(stack_a, stack_b);
+}
+//// Test Instruction : ss
+//	repeat_swap_same(stack_a, stack_b, 1);
+//	debug_data(stack_a, stack_b);
+//
+//// Test Instruction : ra + rb
+//	repeat_rotate(stack_a, 1);
+//	repeat_rotate(stack_b, 1);
+//	debug_data(stack_a, stack_b);
+//// Test Instruction : sa + sb
+//	repeat_swap(stack_a, 1);
+//	repeat_swap(stack_b, 1);
+//	debug_data(stack_a, stack_b);
+//
+//// Test Instruction : rrr ( rra + rrb )
+//	repeat_reverse_rotate(stack_a, 1);
+//	repeat_reverse_rotate(stack_b, 1);
 
 int	main(int argc, char *argv[])
 {
@@ -34,29 +62,7 @@ int	main(int argc, char *argv[])
 	}
 	set_data(&stack_a, argc, argv);
 	debug_data(&stack_a, &stack_b);
-// Test Instruction : sa
-	repeat_swap(&stack_a, 1);
-	debug_data(&stack_a, &stack_b);
-// Test Instruction : pb pb pb
-	repeat_push(&stack_b, &stack_a, 3);
-	debug_data(&stack_a, &stack_b);
-
-//// Test Instruction : ra + rb
-//	repeat_rotate(&stack_a, 1);
-//	repeat_rotate(&stack_b, 1);
-//	debug_data(&stack_a, &stack_b);
-//// Test Instruction : sa + sb
-//	repeat_swap(&stack_a, 1);
-//	repeat_swap(&stack_b, 1);
-//	debug_data(&stack_a, &stack_b);
-
-// Test Instruction : rr ( ra + rb )
-	repeat_rotate_same(&stack_a, &stack_b, 1);
-	debug_data(&stack_a, &stack_b);
-// Test Instruction : ss
-	repeat_swap_same(&stack_a, &stack_b, 1);
-	debug_data(&stack_a, &stack_b);
-
+	go_example(&stack_a, &stack_b);
 	if (argc > MAX_SIZE)
 	{
 		free(stack_a.data);

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 20:38:13 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/23 09:05:13 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/23 14:31:07 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  *
  * @return true:空, false:何か入っている
  */
-bool isEmpty(t_stack *stack)
+bool	is_empty(t_stack *stack)
 {
 	return (stack->top == -1);
 }
@@ -32,8 +32,7 @@ bool isEmpty(t_stack *stack)
  *
  * @return true:容量MAX, false:空き容量あり
  */
-bool isFull(t_stack *stack)
+bool	is_full(t_stack *stack)
 {
 	return (stack->top == MAX_SIZE - 1);
 }
-

@@ -6,11 +6,12 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:40:00 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/23 09:03:22 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/23 13:58:21 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "error.h"
 #include "ft_printf.h"
 #include "libft.h"
 #include <stdlib.h>
@@ -22,7 +23,7 @@
  *
  * @param stack type(t_stack *) スタック構造体のポインタ
  */
-void init_stack(t_stack *stack, char *name)
+void	init_stack(t_stack *stack, char *name)
 {
 	stack->top = -1;
 	stack->name = name;
@@ -36,17 +37,24 @@ void init_stack(t_stack *stack, char *name)
  *
  * @return true(0) or false(1)
  */
-static bool hasDuplicates(int arr[], int size)
+static bool	has_duplicates(int arr[], int size)
 {
-	for (int i = 0; i < size - 1; i++)
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < size - 1)
 	{
-		for (int j = i + 1; j < size; j++)
+		j = i + 1;
+		while (j < size)
 		{
 			if (arr[i] == arr[j])
 				return (true);
+			j++;
 		}
+		i++;
 	}
-	return false;
+	return (false);
 }
 
 /**
@@ -58,21 +66,23 @@ static bool hasDuplicates(int arr[], int size)
  */
 void	set_data(t_stack *stack, int argc, char *argv[])
 {
-	// Convert command-line arguments to integers and store them in the array
-	for (int i = 1; i < argc; i++)
+	int	i;
+
+	i = 1;
+	while (i < argc)
 	{
 		stack->data[i - 1] = ft_atoi(argv[argc - i]);
 		stack->top++;
-//		ft_printf("data[%d]:%d\n", i-1,stack->data[i-1]);
+		i++;
 	}
-
-	// Check for duplicates
-	if (hasDuplicates(&stack->data[0], argc - 1))
+	if (has_duplicates(&stack->data[0], argc - 1))
 	{
-		ft_printf("Error: Duplicate integers are not allowed.\n");
+		ft_printf(MSG_ERR_SETDATA);
 		exit (1);
 	}
 }
+//debug code
+//		ft_printf("data[%d]:%d\n", i-1,stack->data[i-1]);
 
 /**
  * @brief 不足分のスタックデータをヒープ領域に確保する関数
@@ -83,11 +93,12 @@ void	set_data(t_stack *stack, int argc, char *argv[])
  */
 int	*allocate_array(size_t size)
 {
-	// Allocate memory for an array to store the integers
-	int* numbers = (int*)malloc(size * sizeof(int));
+	int	*numbers;
+
+	numbers = (int *)malloc(size * sizeof(int));
 	if (!numbers)
 	{
-		ft_printf("Error: Memory allocation failed.\n");
+		ft_printf(MSG_ERR_MALLOC);
 		exit (1);
 	}
 	return (numbers);

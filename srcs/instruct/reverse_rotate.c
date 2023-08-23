@@ -1,64 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 09:19:42 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/23 14:21:37 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/08/23 11:50:46 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/08/23 14:21:20 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "instruct.h"
 #include "error.h"
 #include "ft_printf.h"
 
-/**
- * @brief スタックのローテーション ( 先頭 -> 末尾 )
- *
- * @param stack type(t_stack *) スタックの構造体ポインタ
- */
-static void	rotate(t_stack *stack)
+void	reverse_rotate(t_stack *stack)
 {
 	int	temp;
 	int	i;
 
 	if (is_empty(stack))
 	{
-		ft_printf(MSG_ERR_ROTATE);
+		ft_printf(MSG_ERR_REVERSE_ROTATE);
 		return ;
 	}
-	temp = stack->data[stack->top];
+	temp = stack->data[0];
 	i = 0;
 	while (i < stack->top)
 	{
-		stack->data[stack->top - i] = stack->data[stack->top - 1 - i];
+		stack->data[i] = stack->data[i + 1];
 		i++;
 	}
-	stack->data[0] = temp;
+	stack->data[i] = temp;
 }
 
 /**
- * @brief 命令 ra, rb : スタックのローテーション ( 先頭 -> 末尾 )
+ * @brief 命令 ra, rb : スタックのローテーション 逆ver ( 末尾 -> 先頭 )
  *
  * @param target ローテーションさせる対象のスタック
  */
-void	rotate_one(t_stack *target)
+void	reverse_rotate_one(t_stack *target)
 {
-	rotate(target);
-	ft_printf("r%s\n", target->name);
+	reverse_rotate(target);
+	ft_printf("rr%s\n", target->name);
 }
 
 /**
- * @brief 命令 rr : ２つのスタックをローテーション ( 先頭 -> 末尾 )
+ * @brief 命令 rrr : ２つのスタックをローテーション　逆ver ( 末尾 -> 先頭 )
  *
  * @param target1 ローテーションさせる対象のスタック
  * @param target2 ローテーションさせる対象のスタック
  */
-void	rotate_two(t_stack *target1, t_stack *target2)
+void	reverse_rotate_two(t_stack *target1, t_stack *target2)
 {
-	rotate(target1);
-	rotate(target2);
-	ft_printf("rr\n");
+	reverse_rotate(target1);
+	reverse_rotate(target2);
+	ft_printf("rrr\n");
 }

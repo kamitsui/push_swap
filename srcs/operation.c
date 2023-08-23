@@ -6,12 +6,13 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 20:46:57 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/23 09:04:51 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/23 14:22:11 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>// for printf
+#include "error.h"
+#include "ft_printf.h"
 
 /**
  * @brief スタックからdata[top]の値をポップする（取り出す＋削除）
@@ -22,11 +23,11 @@
  */
 int	pop(t_stack *stack)
 {
-	int value;
+	int	value;
 
-	if (isEmpty(stack))
+	if (is_empty(stack))
 	{
-		printf("Error: stack is empty, cannot pop\n");
+		ft_printf(MSG_ERR_POP);
 		exit (1);
 	}
 	value = stack->data[stack->top];
@@ -43,9 +44,9 @@ int	pop(t_stack *stack)
 // Function to push an element onto the stack
 void	push(t_stack *stack, int value)
 {
-	if (isFull(stack))
+	if (is_full(stack))
 	{
-		printf("Error: stack is full, cannot push %d\n", value);
+		ft_printf("%s %d\n", MSG_ERR_PUSH, value);
 		exit (1);
 	}
 	stack->top++;
@@ -61,9 +62,9 @@ void	push(t_stack *stack, int value)
  */
 int	peek(t_stack *stack)
 {
-	if (isEmpty(stack))
+	if (is_empty(stack))
 	{
-		printf("Error: stack is empty, cannot peek\n");
+		ft_printf(MSG_ERR_PEEK);
 		exit (1);
 	}
 	return (stack->data[stack->top]);
