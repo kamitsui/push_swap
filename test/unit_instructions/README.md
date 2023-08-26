@@ -7,8 +7,8 @@
 >
 > chose N from the below
 > * ```1``` : the example of subject
-> * ```2``` : swap_a + swap_b
-> * ```3``` : 
+> * ```2``` : 
+> * ```3``` :
 >
 
 #### Run check
@@ -18,5 +18,5 @@
 >
 > chose N from the below
 > * ```1``` : the example of subject
-> * ```2``` : swap_a + swap_b
-> * ```3``` : 
+> * ```2``` :
+> * ```3``` :

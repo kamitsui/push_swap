@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:04:22 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/23 14:20:30 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/23 15:33:30 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	set_data(t_stack *stack, int argc, char *argv[]);
  */
 bool	is_empty(t_stack *stack);
 bool	is_full(t_stack *stack);
+bool	is_sorted(t_stack *stack);
 
 /**
  * @brief スタック操作に関する関数（ operation.c ）

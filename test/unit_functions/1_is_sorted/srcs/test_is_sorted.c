@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   test_is_sorted.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/26 15:41:28 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/23 15:49:37 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "push_swap.h"
-#include "error.h"
+#include "debug.h"
 #include "ft_printf.h"
-#include "debug.h"// debug
+#include <stdbool.h>
 
-int main(int argc, char* argv[])
+int	main(int argc, char *argv[])
 {
 	t_stack	stack_a;
 	t_stack	stack_b;
+	bool		r;
 
 	if (argc < 2)
 	{
@@ -35,23 +36,15 @@ int main(int argc, char* argv[])
 	}
 	set_data(&stack_a, argc, argv);
 	debug_data(&stack_a, &stack_b);
-
-	if (is_sorted(&stack_a))
-	{
-		ft_printf(MSG_IS_SORTED);
-		return (0);
-	}
-
-	// At this point, the input is valid, and you can proceed with further processing
-	// For example, you can call the push_swap function here
-	// insert_sort(stack_a.data, stack_a.top + 1);// for array
-	// insert_sort(&stack_a, &stack_b);
+	r = is_sorted(&stack_a);
+	ft_printf("\x1B[100m\x1B[37m");
+	ft_printf("is_sorted [%d]", (int)r);
+	ft_printf("\x1B[0m\n");
 	if (argc > MAX_SIZE)
 	{
 		free(stack_a.data);
 		free(stack_b.data);
 	}
-	// Don't forget to free the dynamically allocated memory
 	system("leaks push_swap");
 	return (0);
 }

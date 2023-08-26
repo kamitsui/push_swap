@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 20:38:13 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/23 14:31:07 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/26 17:31:35 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,22 @@ bool	is_empty(t_stack *stack)
 bool	is_full(t_stack *stack)
 {
 	return (stack->top == MAX_SIZE - 1);
+}
+
+bool	is_sorted(t_stack *stack)
+{
+	int	i;
+	int	size;
+
+	size = stack->top + 1;
+	if (size <= 1)
+		return (true);
+	i = 0;
+	while (i < size - 1)
+	{
+		if (stack->data[i] < stack->data[i + 1])
+			return (false);
+		i++;
+	}
+	return (true);
 }
