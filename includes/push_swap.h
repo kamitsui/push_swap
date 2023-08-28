@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:04:22 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/23 15:33:30 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/28 16:21:11 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	push(t_stack *stack, int value);
 int		pop(t_stack *stack);
 int		peek(t_stack *stack);
 
-// learning sort function
-void	insert_sort(int arr[], int size);
+bool	is_less_than(int a, int b);
 
 #endif

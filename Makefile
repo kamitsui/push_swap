@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/23 13:59:36 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/28 16:03:21 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ INC_DIR = includes
 # Sources
 SRC_DIR = srcs \
 		  srcs/instruct \
+		  srcs/sort \
 		  srcs/debug
 SRCS = \
 	   main.c \
@@ -36,6 +37,10 @@ SRCS = \
 	   \
 	   operation.c \
 	   stack_utils.c \
+	   \
+	   insert_sort.c \
+	   \
+	   is_less_than.c \
 	   \
 	   debug_data.c \
 	   repeat_push.c \
@@ -55,7 +60,7 @@ DEP_DIR = .deps
 DEPS = $(addprefix $(DEP_DIR)/, $(SRCS:.c=.d))
 
 # Compile
-CC = clang
+CC = cc
 CF = -Wall -Wextra -Werror
 LDF = -g -fsanitize=address
 INC_CF = -I$(INC_DIR)

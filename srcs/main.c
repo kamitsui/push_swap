@@ -6,16 +6,30 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/26 15:41:28 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/28 16:28:06 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file main.c
+ * @brief main function of push swap (this program to sort integer values)
+ */
 #include <stdlib.h>
+#include <unistd.h>
 #include "push_swap.h"
+#include "sort.h"
 #include "error.h"
 #include "ft_printf.h"
 #include "debug.h"// debug
 
+/**
+ * @brief main function of push swap (this program to sort integer values)
+ *
+ * @param argc is number of integer values - 1
+ * @param argv[] is array of integer-valued strings to sort
+ *
+ * @return 
+ */
 int main(int argc, char* argv[])
 {
 	t_stack	stack_a;
@@ -23,7 +37,7 @@ int main(int argc, char* argv[])
 
 	if (argc < 2)
 	{
-		ft_printf("Error: Not enough arguments.\n");
+		ft_printf(MSG_ERR);
 		return (1);
 	}
 	init_stack(&stack_a, (char *)"a");
@@ -35,7 +49,6 @@ int main(int argc, char* argv[])
 	}
 	set_data(&stack_a, argc, argv);
 	debug_data(&stack_a, &stack_b);
-
 	if (is_sorted(&stack_a))
 	{
 		ft_printf(MSG_IS_SORTED);
@@ -45,7 +58,8 @@ int main(int argc, char* argv[])
 	// At this point, the input is valid, and you can proceed with further processing
 	// For example, you can call the push_swap function here
 	// insert_sort(stack_a.data, stack_a.top + 1);// for array
-	// insert_sort(&stack_a, &stack_b);
+	insert_sort(&stack_a, &stack_b);
+	debug_data(&stack_a, &stack_b);
 	if (argc > MAX_SIZE)
 	{
 		free(stack_a.data);

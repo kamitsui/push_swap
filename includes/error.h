@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 13:26:56 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/26 17:25:41 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/28 16:24:40 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,8 @@
 
 # define MSG_IS_SORTED\
 	"Note: Stack is already sorted\n"
+
+# define MSG_ERR\
+	"Error\n"
 
 #endif
