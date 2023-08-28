@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_hh.c                                             :+:      :+:    :+:   */
+/*   unsign_h.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 17:23:17 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/03/20 18:25:18 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/03/09 18:01:46 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/06/21 15:29:43 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include "ft_printf.h"
 
-long long	s_hh(t_sm *machine)
+unsigned long long	unsign_h(t_sm *machine)
 {
-	signed char	num;
+	unsigned short	num;
 
-	num = (signed char)va_arg(*(machine->ap), int);
-	return ((long long)num);
+	num = (unsigned short)va_arg(*(machine->ap), int);
+	return ((unsigned long long)num);
 }
-//note
-//num = (short char)va_arg(*(machine->ap), short char);
-//complie error:	this va_arg has undefined behavior
-//					because type short will be promoted to int.

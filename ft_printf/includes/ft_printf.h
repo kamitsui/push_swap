@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:10:46 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/07/04 18:31:03 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/28 16:58:35 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <stdarg.h>
 # include <stdlib.h>
-# include <stdio.h>
 
 enum e_state
 {
@@ -41,13 +40,7 @@ typedef struct s_sm
 }	t_sm;
 
 int		ft_printf(const char *input, ...);
-int		ft_fprintf(FILE *stream, const char *input, ...);
-void	process(const char *input, t_sm *machine);
+int		ft_fprintf(int fd, const char *input, ...);
 char	*join_to_out(const char *s1, const char *s2, int len2);
 
 #endif
-//void this code
-//	size_t			len;
-//	size_t			out_size;
-//	int				width;
-//	int				prec;

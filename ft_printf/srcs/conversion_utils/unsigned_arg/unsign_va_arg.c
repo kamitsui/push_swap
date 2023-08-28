@@ -1,33 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   u_decimal.c                                        :+:      :+:    :+:   */
+/*   unsign_va_arg.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/09 14:44:02 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/03/29 18:13:25 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/03/09 14:44:14 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/06/21 15:31:07 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include <stdarg.h>
 #include "ft_printf.h"
 #include "process.h"
 #include "conversion.h"
 #include "va_arg.h"
-#include "formalize.h"
-#include "libft.h"
 
-void	u_decimal(t_sm *machine)
+unsigned long long	unsign_va_arg(t_sm *machine)
 {
-	char				str[42];
 	unsigned long long	num;
-	int					base;
+	int					i;
+	static t_f_u_va_arg	f_u_va_arg[5] = {unsign_hh, unsign_ll,
+					unsign_h, unsign_l, unsign_int};
 
-	ft_bzero(str, 42);
-	base = 10;
-	num = u_va_arg(machine);
-	if (!((machine->flag & BIT_PREC) && (machine->prec == 0) && (num == 0)))
-		itoa_buff(num, str, base, machine);
-	formalize(str, machine);
+	i = 0;
+	while (i < NB_PREFIX)
+	{
+		if ((machine->flag & (1 << i << 8)) != FALSE)
+		{
+			num = f_u_va_arg[i](machine);
+			return (num);
+		}
+		i++;
+	}
+	num = (unsigned long long)f_u_va_arg[i](machine);
+	return (num);
 }
+//debug code
+//#include <stdio.h>//for debug
+//#include "libft.h"//for debug
+//	printf("%d:flag\n", machine->flag);

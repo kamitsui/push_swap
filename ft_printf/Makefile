@@ -6,19 +6,19 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 14:39:52 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/05 12:35:53 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/28 16:51:15 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Directories
-SRC_DIR = src \
-		  src/process_utils \
-		  src/conversion_utils \
-		  src/conversion_utils/unsigned_arg \
-		  src/conversion_utils/signed_arg \
-		  src/formalize_utils
+SRCS_DIR = srcs \
+		  srcs/process_utils \
+		  srcs/conversion_utils \
+		  srcs/conversion_utils/unsigned_arg \
+		  srcs/conversion_utils/signed_arg \
+		  srcs/formalize_utils
 OBJ_DIR = obj
-INC_DIR = include
+INC_DIR = includes
 DEP_DIR = .dep
 LIBFT_DIR = ../libft
 
@@ -41,7 +41,7 @@ SRCS = \
 	   add_to_buff.c \
 	   \
 	   decimal.c \
-	   u_decimal.c \
+	   unsign_decimal.c \
 	   octal.c \
 	   hexadecimal.c \
 	   pointer.c \
@@ -50,19 +50,19 @@ SRCS = \
 	   percent.c \
 	   itoa_buff.c \
 	   \
-	   u_va_arg.c \
-	   u_hh.c \
-	   u_ll.c \
-	   u_h.c \
-	   u_l.c \
-	   u_int.c \
+	   unsign_va_arg.c \
+	   unsign_hh.c \
+	   unsign_ll.c \
+	   unsign_h.c \
+	   unsign_l.c \
+	   unsign_int.c \
 	   \
-	   s_va_arg.c \
-	   s_hh.c \
-	   s_ll.c \
-	   s_h.c \
-	   s_l.c \
-	   s_int.c \
+	   sign_va_arg.c \
+	   sign_hh.c \
+	   sign_ll.c \
+	   sign_h.c \
+	   sign_l.c \
+	   sign_int.c \
 	   \
 	   formalize.c \
 	   adjust.c \
@@ -88,10 +88,10 @@ NAME = libftprintf.a
 LIBFT = $(LIBFT_DIR)/libft.a
 
 # vpath for serching source files in multiple directories
-vpath %.c $(SRC_DIR)
+vpath %.c $(SRCS_DIR)
 
 # Compiler
-CC = clang
+CC = cc
 CFLAGS = -Wall -Wextra -Werror -g -MMD -MP -MF $(@:$(OBJ_DIR)/%.o=$(DEP_DIR)/%.d)
 INC = -I$(INC_DIR)
 
