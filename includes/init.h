@@ -1,0 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/28 22:57:10 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/08/28 23:07:54 by kamitsui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef INIT_H
+# define INIT_H
+
+/**
+ * @brief スタックの初期化
+ */
+void	init_stack(t_stack *stack, char *name);
+
+/**
+ * @brief 不足分のスタックデータをヒープ領域に確保する関数
+ */
+void	allocate_data(t_stack *stack_a, t_stack *stack_b, size_t size);
+
+/**
+ * @brief コマンドライン引数のデータをスタック構造体に格納する関数
+ */
+void	set_data(t_stack *stack, int argc, char *argv[]);
+
+#endif

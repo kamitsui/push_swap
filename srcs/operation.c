@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 20:46:57 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/23 14:22:11 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/28 22:08:10 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@ int	pop(t_stack *stack)
 	int	value;
 
 	if (is_empty(stack))
-	{
-		ft_printf(MSG_ERR_POP);
-		exit (1);
-	}
+		handle_error(ERR_POP);
 	value = stack->data[stack->top];
 	stack->top--;
 	return (value);
@@ -45,10 +42,7 @@ int	pop(t_stack *stack)
 void	push(t_stack *stack, int value)
 {
 	if (is_full(stack))
-	{
-		ft_printf("%s %d\n", MSG_ERR_PUSH, value);
-		exit (1);
-	}
+		handle_error(ERR_PUSH);
 	stack->top++;
 	stack->data[stack->top] = value;
 }
@@ -63,9 +57,6 @@ void	push(t_stack *stack, int value)
 int	peek(t_stack *stack)
 {
 	if (is_empty(stack))
-	{
-		ft_printf(MSG_ERR_PEEK);
-		exit (1);
-	}
+		handle_error(ERR_PEEK);
 	return (stack->data[stack->top]);
 }

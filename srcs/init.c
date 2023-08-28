@@ -6,18 +6,16 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:40:00 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/23 13:58:21 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/28 23:07:13 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "error.h"
-#include "ft_printf.h"
 #include "libft.h"
 #include <stdlib.h>
 #include <stdbool.h>
 
-// Function to initialize the stack
 /**
  * @brief スタックの初期化
  *
@@ -75,14 +73,9 @@ void	set_data(t_stack *stack, int argc, char *argv[])
 		stack->top++;
 		i++;
 	}
-	if (has_duplicates(&stack->data[0], argc - 1))
-	{
-		ft_printf(MSG_ERR_SETDATA);
-		exit (1);
-	}
+	if (has_duplicates(&stack->data[0], argc - 1) == true)
+		handle_error(ERR_NUM);
 }
-//debug code
-//		ft_printf("data[%d]:%d\n", i-1,stack->data[i-1]);
 
 /**
  * @brief 不足分のスタックデータをヒープ領域に確保する関数
@@ -91,15 +84,12 @@ void	set_data(t_stack *stack, int argc, char *argv[])
  *
  * @return ヒープ領域に確保したデータのアドレス
  */
-int	*allocate_array(size_t size)
+void	allocate_data(t_stack *stack_a, t_stack *stack_b, size_t size)
 {
-	int	*numbers;
-
-	numbers = (int *)malloc(size * sizeof(int));
-	if (!numbers)
-	{
-		ft_printf(MSG_ERR_MALLOC);
-		exit (1);
-	}
-	return (numbers);
+	stack_a->data = (int *)malloc(size * sizeof(int));
+	if (stack_a->data == NULL)
+		handle_error(ERR_MALLOC);
+	stack_b->data = (int *)malloc(size * sizeof(int));
+	if (stack_b->data == NULL)
+		handle_error(ERR_MALLOC);
 }

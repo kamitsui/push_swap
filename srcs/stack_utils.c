@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 20:38:13 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/26 17:31:35 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/28 22:53:38 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,24 @@ bool	is_empty(t_stack *stack)
 }
 
 /**
- * @brief スタックの容量がMAXかどうか調べる。
+ * @brief スタックの容量がBUFF_SIZEかどうか調べる。
  *
  * @param stack type(t_stack *) スタック構造体のポインタ
  *
- * @return true:容量MAX, false:空き容量あり
+ * @return true:容量BUFF_SIZE, false:空き容量あり
  */
 bool	is_full(t_stack *stack)
 {
-	return (stack->top == MAX_SIZE - 1);
+	return (stack->top == BUFF_SIZE - 1);
 }
 
+/**
+ * @brief スタックの整数がすでに昇順か否か調べる関数
+ *
+ * @param stack 調べる対象データが入っているスタック構造体
+ *
+ * @return true:ソート済み false:ソートされていない
+ */
 bool	is_sorted(t_stack *stack)
 {
 	int	i;

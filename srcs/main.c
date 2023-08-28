@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/28 16:28:06 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/28 23:09:02 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "push_swap.h"
+#include "init.h"
 #include "sort.h"
 #include "error.h"
 #include "ft_printf.h"
@@ -34,38 +35,31 @@ int main(int argc, char* argv[])
 {
 	t_stack	stack_a;
 	t_stack	stack_b;
+	int		data_a[BUFF_SIZE];
+	int		data_b[BUFF_SIZE];
 
 	if (argc < 2)
-	{
-		ft_printf(MSG_ERR);
 		return (1);
-	}
 	init_stack(&stack_a, (char *)"a");
 	init_stack(&stack_b, (char *)"b");
-	if (argc > MAX_SIZE)
+	if (argc > BUFF_SIZE)
+		allocate_data(&stack_a, &stack_b, argc - 1);
+	else
 	{
-		*stack_a.data = *allocate_array(argc - 1);
-		*stack_b.data = *allocate_array(argc - 1);
+		stack_a.data = &data_a[0];
+		stack_b.data = &data_b[0];
 	}
 	set_data(&stack_a, argc, argv);
 	debug_data(&stack_a, &stack_b);
 	if (is_sorted(&stack_a))
-	{
-		ft_printf(MSG_IS_SORTED);
-		return (0);
-	}
-
-	// At this point, the input is valid, and you can proceed with further processing
-	// For example, you can call the push_swap function here
-	// insert_sort(stack_a.data, stack_a.top + 1);// for array
+		handle_error(ERR_NUM);
 	insert_sort(&stack_a, &stack_b);
 	debug_data(&stack_a, &stack_b);
-	if (argc > MAX_SIZE)
+	if (argc > BUFF_SIZE)
 	{
 		free(stack_a.data);
 		free(stack_b.data);
 	}
-	// Don't forget to free the dynamically allocated memory
-	system("leaks push_swap");
+	system("leaks push_swap");// for debug
 	return (0);
 }

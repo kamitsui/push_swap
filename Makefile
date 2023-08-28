@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/28 16:03:21 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/28 21:50:38 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,8 @@ SRCS = \
 	   insert_sort.c \
 	   \
 	   is_less_than.c \
+	   \
+	   error.c \
 	   \
 	   debug_data.c \
 	   repeat_push.c \
