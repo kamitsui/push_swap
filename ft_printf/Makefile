@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 14:39:52 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/28 16:51:15 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/29 20:28:18 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,9 @@ SRCS_DIR = srcs \
 		  srcs/conversion_utils/unsigned_arg \
 		  srcs/conversion_utils/signed_arg \
 		  srcs/formalize_utils
-OBJ_DIR = obj
+OBJ_DIR = objs
 INC_DIR = includes
-DEP_DIR = .dep
+DEP_DIR = .deps
 LIBFT_DIR = ../libft
 
 # Source files
@@ -92,14 +92,16 @@ vpath %.c $(SRCS_DIR)
 
 # Compiler
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -MMD -MP -MF $(@:$(OBJ_DIR)/%.o=$(DEP_DIR)/%.d)
-INC = -I$(INC_DIR)
+CF = -Wall -Wextra -Werror
+LDF = -g -fsanitize=address
+INC_CF = -I$(INC_DIR)
+DEP_CF = -MMD -MP -MF $(@:$(OBJ_DIR)/%.o=$(DEP_DIR)/%.d)
 
 # Rules for building object files
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(DEP_DIR)
-	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	$(CC) $(CF) $(INC_CF) $(DEP_CF) -c $< -o $@
 
 $(DEP_DIR)/%.d: %.c
 	@mkdir -p $(DEP_DIR)

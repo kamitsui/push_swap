@@ -6,15 +6,15 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/11 20:51:49 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/29 19:24:09 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/29 20:23:52 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Directories
-SRC_DIR = src
-OBJ_DIR = obj
-INC_DIR = include
-DEP_DIR = .dep
+SRC_DIR = srcs
+OBJ_DIR = objs
+INC_DIR = includes
+DEP_DIR = .deps
 
 # Source files
 SRCS = \
@@ -66,7 +66,7 @@ DEP_CF = -MMD -MP -MF $(@:$(OBJ_DIR)/%.o=$(DEP_DIR)/%.d)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(DEP_DIR)/%.d
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(DEP_DIR)
-	$(CC) $(CF) $(DEP_CF) $(INC_CF) -c $< -o $@
+	$(CC) $(CF) $(INC_CF) $(DEP_CF) -c $< -o $@
 
 $(DEP_DIR)/%.d: $(SRC_DIR)/%.c
 	@mkdir -p $(DEP_DIR)
