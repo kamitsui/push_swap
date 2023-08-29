@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   set_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/01 15:40:00 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/28 23:07:13 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/08/29 10:59:31 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/08/29 11:04:35 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file set_data.c
+ * @brief コマンドライン引数のデータをスタック構造体に格納する関数
+ */
 #include "push_swap.h"
 #include "error.h"
 #include "libft.h"
-#include <stdlib.h>
 #include <stdbool.h>
-
-/**
- * @brief スタックの初期化
- *
- * @param stack type(t_stack *) スタック構造体のポインタ
- */
-void	init_stack(t_stack *stack, char *name)
-{
-	stack->top = -1;
-	stack->name = name;
-}
 
 /**
  * @brief 入力されたデータに重複している値がないかチェックする関数
@@ -75,21 +67,4 @@ void	set_data(t_stack *stack, int argc, char *argv[])
 	}
 	if (has_duplicates(&stack->data[0], argc - 1) == true)
 		handle_error(ERR_NUM);
-}
-
-/**
- * @brief 不足分のスタックデータをヒープ領域に確保する関数
- *
- * @param size 不足分のデータ数
- *
- * @return ヒープ領域に確保したデータのアドレス
- */
-void	allocate_data(t_stack *stack_a, t_stack *stack_b, size_t size)
-{
-	stack_a->data = (int *)malloc(size * sizeof(int));
-	if (stack_a->data == NULL)
-		handle_error(ERR_MALLOC);
-	stack_b->data = (int *)malloc(size * sizeof(int));
-	if (stack_b->data == NULL)
-		handle_error(ERR_MALLOC);
 }

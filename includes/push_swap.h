@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:04:22 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/28 22:57:41 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/29 11:40:43 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,14 @@
 # include <stdbool.h>
 
 /**
- * @brief スタックのバッファサイズ
+ * @brief スタック領域のデータ配列サイズ
  */
-# define BUFF_SIZE	100
+# define MAX_SIZE	100
+
+/**
+ * @brief 文字列のバッファサイズ（count_number_data.cで使用）
+ */
+# define BUFF_SIZE	1024
 
 /**
  * @brief スタックのデータ構造 { int型の配列, 配列要素の先頭, スタック名前 }

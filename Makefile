@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/28 21:50:38 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/29 11:41:42 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,13 +22,17 @@ INC_DIR = includes
 
 # Sources
 SRC_DIR = srcs \
+		  srcs/init_utils \
 		  srcs/instruct \
 		  srcs/sort \
 		  srcs/debug
 SRCS = \
 	   main.c \
 	   \
-	   init.c \
+	   init_stack.c \
+	   count_number_data.c \
+	   allocate_data.c \
+	   set_data.c \
 	   \
 	   push.c \
 	   swap.c \

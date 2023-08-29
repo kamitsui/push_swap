@@ -6,12 +6,17 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 22:57:10 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/28 23:07:54 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/29 12:10:50 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INIT_H
 # define INIT_H
+
+#include <stdlib.h>
+#include "push_swap.h"
+
+size_t	count_number_data(char *input);
 
 /**
  * @brief スタックの初期化
