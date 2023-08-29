@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 22:57:10 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/29 12:10:50 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/29 14:34:04 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@
 #include <stdlib.h>
 #include "push_swap.h"
 
-size_t	count_number_data(char *input);
+/**
+ * @brief count number of elements data
+ */
+size_t	count_elements(char *input[]);
 
 /**
  * @brief スタックの初期化

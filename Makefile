@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/29 11:41:42 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/29 14:33:19 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRCS = \
 	   main.c \
 	   \
 	   init_stack.c \
-	   count_number_data.c \
+	   count_elements.c \
 	   allocate_data.c \
 	   set_data.c \
 	   \

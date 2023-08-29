@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 13:40:27 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/29 12:06:58 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/29 14:42:53 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@
 NAME = a.out
 
 # Sources files
-SRCS = count_number_data.c\
-	   test_count_number_data.c
+SRCS = count_elements.c\
+	   test_count_elements.c
 
 # Directories
 PROJ_DIR = ../../..
