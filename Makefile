@@ -6,12 +6,13 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/29 14:33:19 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/29 22:02:19 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Target name
 NAME = push_swap
+NAME_B = checker
 
 # Libraries
 LIB_PRINTF_DIR = ft_printf
@@ -25,7 +26,8 @@ SRC_DIR = srcs \
 		  srcs/init_utils \
 		  srcs/instruct \
 		  srcs/sort \
-		  srcs/debug
+		  srcs/debug \
+		  srcs/checker
 SRCS = \
 	   main.c \
 	   \
@@ -53,6 +55,7 @@ SRCS = \
 	   repeat_swap.c \
 	   repeat_rotate.c \
 	   repeat_reverse_rotate.c
+SRCS_B = main_bonus.c
 
 # vpath for serching source files in multiple directories
 vpath %.c $(SRC_DIR)
@@ -60,10 +63,12 @@ vpath %.c $(SRC_DIR)
 # Objects
 OBJ_DIR = objs
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+OBJS_B = $(addprefix $(OBJ_DIR)/, $(SRCS_B:.c=.o))
 
 # Dependency files
 DEP_DIR = .deps
 DEPS = $(addprefix $(DEP_DIR)/, $(SRCS:.c=.d))
+DEPS_B = $(addprefix $(DEP_DIR)/, $(SRCS_B:.c=.d))
 
 # Compile
 CC = cc
@@ -97,6 +102,14 @@ $(LIB_PRINTF): $(LIBFT)
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
+# Bonus target
+bonus: all $(NAME_B)
+
+# Checker
+$(NAME_B): $(LIB_PRINTF) $(DEPS) $(OBJS_B)
+	$(CC) $(CF) $(OBJS_B) $(LIB_PRINTF) -o $@
+#	$(CC) $(CF) $(OBJS_B) $(LIB_PRINTF) -o $@ $(LDF)
+
 # Clean target
 clean:
 	rm -rf $(OBJ_DIR) $(DEP_DIR)
@@ -111,4 +124,4 @@ re: fclean all
 # Enable dependency file
 -include $(DEPS)
 
-.PHONY: all clean fclean re# bonus
+.PHONY: all clean fclean re bonus
