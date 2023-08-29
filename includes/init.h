@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 22:57:10 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/29 14:34:04 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/29 17:54:47 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ void	allocate_data(t_stack *stack_a, t_stack *stack_b, size_t size);
 /**
  * @brief コマンドライン引数のデータをスタック構造体に格納する関数
  */
-void	set_data(t_stack *stack, int argc, char *argv[]);
+void	set_data(t_stack *stack, char *input[], size_t size);
 
 #endif

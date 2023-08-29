@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 10:59:31 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/29 11:04:35 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/29 19:22:39 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  * @brief 入力されたデータに重複している値がないかチェックする関数
  *
  * @param arr[] 入力されたデータ　（コマンドライン引数）
- * @param size データの個数　（コマンドライン引数の数ー１）
+ * @param size データの個数
  *
  * @return true(0) or false(1)
  */
@@ -51,20 +51,30 @@ static bool	has_duplicates(int arr[], int size)
  * @brief コマンドライン引数のデータをスタック構造体に格納する関数
  *
  * @param stack 格納先のスタック構造体
- * @param argc データの数＋１　（コマンドライン引数の数）
- * @param argv[] データ　（コマンドライン引数）
+ * @param input[] データ　（データを含む二次元配列）
+ * @param size データの数
  */
-void	set_data(t_stack *stack, int argc, char *argv[])
+void	set_data(t_stack *stack, char *input[], size_t size)
 {
-	int	i;
+	int		i;
+	char	*token_head;
+	char	*token;
 
-	i = 1;
-	while (i < argc)
+	i = 0;
+	while (input[i] != NULL)
 	{
-		stack->data[i - 1] = ft_atoi(argv[argc - i]);
-		stack->top++;
+		token_head = ft_strdup(input[i]);
+		token = token_head;
+		token = ft_strtok(token, " ");
+		while (token != NULL)
+		{
+			stack->top++;
+			stack->data[size - stack->top - 1] = ft_atoi(token);
+			token = ft_strtok(NULL, " ");
+		}
+		free(token_head);
 		i++;
 	}
-	if (has_duplicates(&stack->data[0], argc - 1) == true)
+	if (has_duplicates(&stack->data[0], size) == true)
 		handle_error(ERR_NUM);
 }

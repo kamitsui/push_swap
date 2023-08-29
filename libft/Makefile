@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/11 20:51:49 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/23 08:33:51 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/29 19:24:09 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ vpath $(SRCS) $(SRC_DIR)
 LIB = libft.a
 
 # Compiler
-CC = clang
+CC = cc
 CF = -Wall -Werror -Wextra
 LDF = -g -fsanitize=address
 INC_CF = -I$(INC_DIR)

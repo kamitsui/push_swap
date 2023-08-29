@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/29 13:10:16 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/29 14:54:52 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@ int main(int argc, char* argv[])
 		return (1);
 	init_stack(&stack_a, (char *)"a");
 	init_stack(&stack_b, (char *)"b");
-	size = count_number_data(&argv[1]);
-	size += argc - 1;
+	size = count_elements(&argv[1]);
 	if (size > BUFF_SIZE)
 		allocate_data(&stack_a, &stack_b, size);
 	else
@@ -52,7 +51,7 @@ int main(int argc, char* argv[])
 		stack_a.data = &data_a[0];
 		stack_b.data = &data_b[0];
 	}
-	set_data(&stack_a, argc, argv);
+	set_data(&stack_a, &argv[1], size);
 	debug_data(&stack_a, &stack_b);
 	if (is_sorted(&stack_a))
 		handle_error(ERR_NUM);
