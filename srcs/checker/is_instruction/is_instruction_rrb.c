@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 10:58:50 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/30 11:06:08 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/30 12:32:44 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
  * @file is_instruction_rrb.c
  * @brief check if rrb
  */
-#include "checker.h"
+#include "checker_instruction.h"
 #include "libft.h"
 #include <stdbool.h>
 

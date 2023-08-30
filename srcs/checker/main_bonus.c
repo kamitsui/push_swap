@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/30 10:16:58 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/30 13:03:56 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,17 @@
  */
 #include <stdlib.h>
 #include <stdbool.h>
-#include <unistd.h>
+//#include <unistd.h>
 #include "push_swap.h"
 #include "init.h"
-#include "sort.h"
+//#include "sort.h"
 #include "error.h"
 #include "checker.h"
-#include "ft_printf.h"
-#include "get_next_line.h"
 #include "debug.h"// debug
 
 /**
  * @brief main function of checker
- * @detail
+ * @details
  * checker read instructions on the standard input,\n
  * and execute those instructions.\n
  * stack a is sorted and stack b is empty,\n
@@ -42,31 +40,27 @@
  */
 int	main(int argc, char *argv[])
 {
-	size_t				i;
-	char				*instruction;
-	enum e_instruction	type;
+	t_stack	stack_a;
+	t_stack	stack_b;
+	int		data_a[BUFF_SIZE];
+	int		data_b[BUFF_SIZE];
+	size_t	size;
 
-	// Initialize stacks and other variables here
-	//char	instruction[MAX_INSTRUCTION_LENGTH + 1]; // +1 for null terminator
-
-	i = 0;
-	while (true)
+	if (argc < 2)
+		return (1);
+	init_stack(&stack_a, (char *)"a");
+	init_stack(&stack_b, (char *)"b");
+	size = count_elements(&argv[1]);
+	if (size > BUFF_SIZE)
+		allocate_data(&stack_a, &stack_b, size);
+	else
 	{
-		instruction = get_next_line(STDIN_FILENO);
-		if (instruction == NULL)
-			break ;
-		type = search_type_instruction(instruction);
-		// Execute the instruction on the stacks here
-		// Check if the stacks are sorted and empty
-		//if (is_sorted(stack_a) && is_empty(stack_b))
-		//	ft_printf("OK\n");
-		//else
-		//	ft_printf("KO\n");
-		// Optional: Add a condition to break the loop if you're done reading instructions
-		ft_printf("%s %d", instruction, (int)type);
-		free(instruction);
-		i++;
+		stack_a.data = &data_a[0];
+		stack_b.data = &data_b[0];
 	}
-	(void)argv[argc];
-	return (0);
+	set_data(&stack_a, &argv[1], size);
+	debug_data(&stack_a, &stack_b);
+	if (is_sorted(&stack_a))
+		handle_error(ERR_NUM);
+	return (checker(&stack_a, &stack_b, size));
 }

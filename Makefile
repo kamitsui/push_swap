@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/30 11:59:37 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/30 16:56:45 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ LIB_PRINTF = $(LIB_PRINTF_DIR)/libftprintf.a
 INC_DIR = includes
 
 # Sources
-SRC_DIR = srcs \
+SRC_DIR = \
+		  srcs \
 		  srcs/init_utils \
 		  srcs/is_utils \
 		  srcs/instruct \
@@ -38,10 +39,13 @@ SRCS = \
 	   allocate_data.c \
 	   set_data.c \
 	   \
-	   push.c \
-	   swap.c \
-	   rotate.c \
-	   reverse_rotate.c \
+	   instruct_rrr.c \
+	   instruct_rrx.c \
+	   instruct_rr.c \
+	   instruct_rx.c \
+	   instruct_px.c \
+	   instruct_sx.c \
+	   instruct_ss.c \
 	   \
 	   operation.c \
 	   \
@@ -57,9 +61,11 @@ SRCS = \
 	   debug_data.c \
 	   repeat_push.c \
 	   repeat_swap.c \
-	   repeat_rotate.c \
-	   repeat_reverse_rotate.c
-SRCS_B = main_bonus.c \
+	   instruct_rrx.c \
+	   instruct_rrr.c
+SRCS_B = \
+		 main_bonus.c \
+		 \
 		 search_type_instruction.c \
 		 is_instruction_rrr.c \
 		 is_instruction_rra.c \
@@ -72,7 +78,9 @@ SRCS_B = main_bonus.c \
 		 is_instruction_sa.c \
 		 is_instruction_sb.c \
 		 is_instruction_ss.c \
-		 is_instruction_error.c
+		 is_instruction_error.c \
+		 \
+		 execute_instruction.c
 
 # vpath for serching source files in multiple directories
 vpath %.c $(SRC_DIR)

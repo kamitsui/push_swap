@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 10:47:07 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/30 10:48:03 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/30 12:31:18 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
  * @file is_instruction_error.c
  * @brief non existent instruction
  */
-#include "checker.h"
+#include "checker_instruction.h"
 
 /**
  * @brief non existent instruction

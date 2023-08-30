@@ -6,11 +6,15 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 09:33:04 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/30 12:01:07 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/30 12:30:29 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+/**
+ * @file search_type_instruction.c
+ * @brief search type from instruction string
+ */
+#include "checker_instruction.h"
 #include "libft.h"
 #include <stdbool.h>
 

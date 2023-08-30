@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 10:53:13 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/30 11:07:09 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/30 12:31:51 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
  * @file is_instruction_pb.c
  * @brief check if pb
  */
-#include "checker.h"
+#include "checker_instruction.h"
 #include "libft.h"
 #include <stdbool.h>
 

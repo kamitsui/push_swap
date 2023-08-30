@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 10:51:51 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/30 11:05:54 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/30 12:33:04 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
  * @file is_instruction_sa.c
  * @brief check if sa
  */
-#include "checker.h"
+#include "checker_instruction.h"
 #include "libft.h"
 #include <stdbool.h>
 

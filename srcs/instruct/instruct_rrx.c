@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_rotate.c                                   :+:      :+:    :+:   */
+/*   instruct_rrx.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 11:50:46 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/23 14:21:20 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/30 17:01:33 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file instruct_rrx.c
+ * @brief execute ra & output "rra\n" \| execute rb & output "rrb\n"
+ */
 #include "push_swap.h"
 #include "instruct.h"
 #include "error.h"
 #include "ft_printf.h"
 
-void	reverse_rotate(t_stack *stack)
+/**
+ * @brief execute instruction ( rra | rrb )
+ *
+ * @param stack to reverse rotate
+ * @details
+ * Shift down all elements of stack by 1.\n
+ * The last element becomes the 1st element in stack.\n
+ */
+static void	execute_rrx(t_stack *stack)
 {
 	int	temp;
 	int	i;
@@ -35,26 +47,26 @@ void	reverse_rotate(t_stack *stack)
 	stack->data[i] = temp;
 }
 
-/**
- * @brief 命令 ra, rb : スタックのローテーション 逆ver ( 末尾 -> 先頭 )
- *
- * @param target ローテーションさせる対象のスタック
- */
-void	reverse_rotate_one(t_stack *target)
+void	execute_rra(t_stack *stack_a, t_stack *stack_b)
 {
-	reverse_rotate(target);
-	ft_printf("rr%s\n", target->name);
+	execute_rrx(stack_a);
+	(void)stack_b;
+}
+
+void	execute_rrb(t_stack *stack_a, t_stack *stack_b)
+{
+	execute_rrx(stack_b);
+	(void)stack_a;
 }
 
 /**
- * @brief 命令 rrr : ２つのスタックをローテーション　逆ver ( 末尾 -> 先頭 )
+ * @brief execute ( ra | rb ) & output ( "rra\n" | "rrb\n" )
  *
- * @param target1 ローテーションさせる対象のスタック
- * @param target2 ローテーションさせる対象のスタック
+ * @param target to reverse rotate
  */
-void	reverse_rotate_two(t_stack *target1, t_stack *target2)
+void	instruct_rrx(t_stack *target)
 {
-	reverse_rotate(target1);
-	reverse_rotate(target2);
-	ft_printf("rrr\n");
+	execute_rrx(target);
+	ft_printf("rr%s\n", target->name);
 }
+

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 10:57:42 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/30 11:06:42 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/30 12:32:19 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
  * @file is_instruction_rr.c
  * @brief check if rr
  */
-#include "checker.h"
+#include "checker_instruction.h"
 #include "libft.h"
 #include <stdbool.h>
 
