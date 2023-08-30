@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/29 22:02:19 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/30 11:02:22 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,20 @@ SRCS = \
 	   repeat_swap.c \
 	   repeat_rotate.c \
 	   repeat_reverse_rotate.c
-SRCS_B = main_bonus.c
+SRCS_B = main_bonus.c \
+		 search_type_instruction.c \
+		 is_instruction_rrr.c \
+		 is_instruction_rra.c \
+		 is_instruction_rrb.c \
+		 is_instruction_rr.c \
+		 is_instruction_ra.c \
+		 is_instruction_rb.c \
+		 is_instruction_pa.c \
+		 is_instruction_pb.c \
+		 is_instruction_sa.c \
+		 is_instruction_sb.c \
+		 is_instruction_ss.c \
+		 is_instruction_error.c
 
 # vpath for serching source files in multiple directories
 vpath %.c $(SRC_DIR)

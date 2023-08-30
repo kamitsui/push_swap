@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/29 22:15:43 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/30 10:16:58 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,20 @@
  */
 int	main(int argc, char *argv[])
 {
-	size_t	i;
+	size_t				i;
+	char				*instruction;
+	enum e_instruction	type;
 
 	// Initialize stacks and other variables here
 	//char	instruction[MAX_INSTRUCTION_LENGTH + 1]; // +1 for null terminator
-	char	*instruction[1024];
 
 	i = 0;
 	while (true)
 	{
-		instruction[i] = get_next_line(STDIN_FILENO);
-		if (instruction[i] == NULL)
+		instruction = get_next_line(STDIN_FILENO);
+		if (instruction == NULL)
 			break ;
+		type = search_type_instruction(instruction);
 		// Execute the instruction on the stacks here
 		// Check if the stacks are sorted and empty
 		//if (is_sorted(stack_a) && is_empty(stack_b))
@@ -61,47 +63,10 @@ int	main(int argc, char *argv[])
 		//else
 		//	ft_printf("KO\n");
 		// Optional: Add a condition to break the loop if you're done reading instructions
-		i++;
-	}
-	i = 0;
-	while (instruction[i] != NULL)
-	{
-		ft_printf("instruction[%d] [%s]\n", i, instruction[i]);
+		ft_printf("%s %d", instruction, (int)type);
+		free(instruction);
 		i++;
 	}
 	(void)argv[argc];
 	return (0);
 }
-//
-//int main(int argc, char* argv[])
-//{
-//	t_stack	stack_a;
-//	t_stack	stack_b;
-//	int		data_a[BUFF_SIZE];
-//	int		data_b[BUFF_SIZE];
-//
-//	if (argc < 2)
-//		return (1);
-//	init_stack(&stack_a, (char *)"a");
-//	init_stack(&stack_b, (char *)"b");
-//	if (argc > BUFF_SIZE)
-//		allocate_data(&stack_a, &stack_b, argc - 1);
-//	else
-//	{
-//		stack_a.data = &data_a[0];
-//		stack_b.data = &data_b[0];
-//	}
-//	set_data(&stack_a, argc, argv);
-//	debug_data(&stack_a, &stack_b);
-//	if (is_sorted(&stack_a))
-//		handle_error(ERR_NUM);
-//	insert_sort(&stack_a, &stack_b);
-//	debug_data(&stack_a, &stack_b);
-//	if (argc > BUFF_SIZE)
-//	{
-//		free(stack_a.data);
-//		free(stack_b.data);
-//	}
-//	system("leaks push_swap");// for debug
-//	return (0);
-//}
