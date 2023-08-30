@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 11:11:14 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/29 14:33:33 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/30 12:01:44 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,3 @@ size_t	count_elements(char *input[])
 	}
 	return (size);
 }
-

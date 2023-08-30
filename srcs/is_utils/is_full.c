@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_stack.c                                       :+:      :+:    :+:   */
+/*   is_full.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/01 15:40:00 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/30 12:02:23 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/08/30 11:56:20 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/08/30 11:58:09 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file init_stack.c
- * @brief スタックの初期化
+ * @file is_full.c
+ * @brief スタックの容量がBUFF_SIZEかどうか調べる。
  */
 #include "push_swap.h"
+#include <stdbool.h>
 
 /**
- * @brief スタックの初期化
+ * @brief スタックの容量がBUFF_SIZEかどうか調べる。
  *
  * @param stack type(t_stack *) スタック構造体のポインタ
+ *
+ * @return true:容量BUFF_SIZE, false:空き容量あり
  */
-void	init_stack(t_stack *stack, char *name)
+bool	is_full(t_stack *stack)
 {
-	stack->top = -1;
-	stack->name = name;
+	return (stack->top == BUFF_SIZE - 1);
 }

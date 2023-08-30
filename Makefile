@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/30 11:02:22 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/30 11:59:37 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,12 @@ INC_DIR = includes
 # Sources
 SRC_DIR = srcs \
 		  srcs/init_utils \
+		  srcs/is_utils \
 		  srcs/instruct \
 		  srcs/sort \
 		  srcs/debug \
-		  srcs/checker
+		  srcs/checker \
+		  srcs/checker/is_instruction
 SRCS = \
 	   main.c \
 	   \
@@ -42,11 +44,13 @@ SRCS = \
 	   reverse_rotate.c \
 	   \
 	   operation.c \
-	   stack_utils.c \
 	   \
 	   insert_sort.c \
 	   \
 	   is_less_than.c \
+	   is_sorted.c \
+	   is_empty.c \
+	   is_full.c \
 	   \
 	   error.c \
 	   \
