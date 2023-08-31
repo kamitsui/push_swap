@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 12:07:34 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/23 13:42:41 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/31 12:21:28 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	repeat_push(t_stack *dst, t_stack *src, int num)
 	i = 0;
 	while (i < num)
 	{
-		push_data(dst, src);
+		instruct_px(dst, src);
+		//push_data(dst, src);
 		i++;
 	}
 }

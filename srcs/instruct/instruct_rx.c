@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:19:42 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/30 17:12:45 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/31 11:56:31 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,24 @@ static void	execute_rx(t_stack *stack)
 	stack->data[0] = temp;
 }
 
+/**
+ * @brief execute instruction ra
+ *
+ * @param stack_a is target to rotate
+ * @param stack_b does nothing
+ */
 void	execute_ra(t_stack *stack_a, t_stack *stack_b)
 {
 	execute_rx(stack_a);
 	(void)stack_b;
 }
 
+/**
+ * @brief execute instruction rb
+ *
+ * @param stack_a does nothing
+ * @param stack_b is target to rotate
+ */
 void	execute_rb(t_stack *stack_a, t_stack *stack_b)
 {
 	execute_rx(stack_b);

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 11:50:46 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/30 17:01:33 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/31 12:42:31 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,24 @@ static void	execute_rrx(t_stack *stack)
 	stack->data[i] = temp;
 }
 
+/**
+ * @brief execute instruction rra ( for using checker )
+ *
+ * @param stack_a is target to revert rotate
+ * @param stack_b does nothing
+ */
 void	execute_rra(t_stack *stack_a, t_stack *stack_b)
 {
 	execute_rrx(stack_a);
 	(void)stack_b;
 }
 
+/**
+ * @brief execute instruction rrb ( for using checker )
+ *
+ * @param stack_a does nothing
+ * @param stack_b is target to revert rotate
+ */
 void	execute_rrb(t_stack *stack_a, t_stack *stack_b)
 {
 	execute_rrx(stack_b);

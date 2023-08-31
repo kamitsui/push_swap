@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 17:55:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/28 16:05:32 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/31 12:19:30 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,17 @@ void	insert_sort(t_stack *stack_a, t_stack *stack_b)
 		while (!is_empty(stack_b)
 			&& is_less_than(current_element, stack_b->data[stack_b->top]))
 		{
-			push_data(stack_a, stack_b);
-			swap_one(stack_a);
+			instruct_px(stack_a, stack_b);
+			instruct_sx(stack_a);
+			//push_data(stack_a, stack_b);
+			//swap_one(stack_a);
 		}
-		push_data(stack_b, stack_a);
+		instruct_px(stack_b, stack_a);
+		//push_data(stack_b, stack_a);
 	}
 	while (!is_empty(stack_b))
 	{
-		push_data(stack_a, stack_b);
+		instruct_px(stack_a, stack_b);
+		//push_data(stack_a, stack_b);
 	}
 }

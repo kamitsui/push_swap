@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:30:03 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/30 15:57:36 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/31 12:08:42 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,23 @@
 /**
  * @brief execute instruction ss
  *
- * @param target1 : Swap the first 2 elements at the top of target1 stack
- * @param target2 : Swap the first 2 elements at the top of target2 stack
+ * @param stack_a : Swap the first 2 elements at the top of stack_a
+ * @param stack_b : Swap the first 2 elements at the top of stack_b
  */
-void	execute_ss(t_stack *target1, t_stack *target2)
+void	execute_ss(t_stack *stack_a, t_stack *stack_b)
 {
-	execute_sx(target1);
-	execute_sx(target2);
+	execute_sa(stack_a, stack_b);
+	execute_sb(stack_a, stack_b);
 }
 
 /**
  * @brief execute ss & output "ss\n"
  *
- * @param target1 : Swap the first 2 elements at the top of target1 stack
- * @param target2 : Swap the first 2 elements at the top of target2 stack
+ * @param stack_a : Swap the first 2 elements at the top of stack_a stack
+ * @param stack_b : Swap the first 2 elements at the top of stack_b stack
  */
-void	instruct_ss(t_stack *target1, t_stack *target2)
+void	instruct_ss(t_stack *stack_a, t_stack *stack_b)
 {
-	execute_ss(target1, target2);
+	execute_ss(stack_a, stack_b);
 	ft_printf("ss\n");
 }

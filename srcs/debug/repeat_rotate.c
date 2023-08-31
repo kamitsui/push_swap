@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 12:09:15 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/23 13:43:16 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/31 12:23:11 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	repeat_rotate(t_stack *target, int num)
 	i = 0;
 	while (i < num)
 	{
-		rotate_one(target);
+		instruct_rx(target);
+		//rotate_one(target);
 		i++;
 	}
 }
@@ -51,7 +52,8 @@ void	repeat_rotate_same(t_stack *target1, t_stack *target2, int num)
 	i = 0;
 	while (i < num)
 	{
-		rotate_two(target1, target2);
+		instruct_rr(target, target2);
+		//rotate_two(target1, target2);
 		i++;
 	}
 }

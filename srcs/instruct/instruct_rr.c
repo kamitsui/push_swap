@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:43:45 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/30 17:10:51 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/31 11:35:01 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,23 @@
 /**
  * @brief execute instruction rr
  *
- * @param target1 to rotate
- * @param target2 to rotate
+ * @param stack_a to rotate
+ * @param stack_b to rotate
  */
-static void	execute_rr(t_stack *target1, t_stack *target2)
+void	execute_rr(t_stack *stack_a, t_stack *stack_b)
 {
-	execute_rx(target1);
-	execute_rx(target2);
+	execute_ra(stack_a, stack_b);
+	execute_rb(stack_a, stack_b);
 }
 
 /**
  * @brief execute rr & output "rr\\n"
  *
- * @param target1 to rotate
- * @param target2 to rotate
+ * @param stack_a to rotate
+ * @param stack_b to rotate
  */
-void	instruct_rr(t_stack *target1, t_stack *target2)
+void	instruct_rr(t_stack *stack_a, t_stack *stack_b)
 {
-	execute_rr(target1, target2);
+	execute_rr(stack_a, stack_b);
 	ft_printf("rr\n");
 }

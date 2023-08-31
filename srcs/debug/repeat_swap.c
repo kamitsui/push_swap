@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 12:08:23 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/23 13:43:03 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/31 12:23:51 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	repeat_swap(t_stack *target, int num)
 	i = 0;
 	while (i < num)
 	{
-		swap_one(target);
+		instruct_sx(target);
+		//swap_one(target);
 		i++;
 	}
 }
@@ -51,7 +52,8 @@ void	repeat_swap_same(t_stack *target1, t_stack *target2, int num)
 	i = 0;
 	while (i < num)
 	{
-		swap_two(target1, target2);
+		instruct_ss(target1, target2);
+		//swap_two(target1, target2);
 		i++;
 	}
 }

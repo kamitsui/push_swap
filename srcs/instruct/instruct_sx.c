@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:50:30 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/30 15:52:45 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/31 11:48:27 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
  *
  * @param stack : Swap the first 2 elements at the top of stack
  */
-void	execute_sx(t_stack *stack)
+static void	execute_sx(t_stack *stack)
 {
 	int	temp;
 
@@ -36,6 +36,30 @@ void	execute_sx(t_stack *stack)
 	temp = stack->data[stack->top];
 	stack->data[stack->top] = stack->data[stack->top - 1];
 	stack->data[stack->top - 1] = temp;
+}
+
+/**
+ * @brief execute instruction sa ( for using checker )
+ *
+ * @param stack_a is target to swap
+ * @param stack_b does nothing
+ */
+void	execute_sa(t_stack *stack_a, t_stack *stack_b)
+{
+	execute_sx(stack_a);
+	(void)stack_b;
+}
+
+/**
+ * @brief execute instruction sb ( for using checker )
+ *
+ * @param stack_a does nothing
+ * @param stack_b is target to swap
+ */
+void	execute_sb(t_stack *stack_a, t_stack *stack_b)
+{
+	execute_sx(stack_b);
+	(void)stack_a;
 }
 
 /**

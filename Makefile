@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/30 16:56:45 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/31 12:09:41 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,13 +39,13 @@ SRCS = \
 	   allocate_data.c \
 	   set_data.c \
 	   \
+	   instruct_px.c \
+	   instruct_rr.c \
 	   instruct_rrr.c \
 	   instruct_rrx.c \
-	   instruct_rr.c \
 	   instruct_rx.c \
-	   instruct_px.c \
-	   instruct_sx.c \
 	   instruct_ss.c \
+	   instruct_sx.c \
 	   \
 	   operation.c \
 	   \
