@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 13:30:10 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/30 17:04:00 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:05:23 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,32 @@
  */
 #include "push_swap.h"
 #include "instruct.h"
+#include "error.h"
 #include "ft_printf.h"
+
+/**
+ * @brief execute instruction rra ( for using checker )
+ *
+ * @param stack_a is target to revert rotate
+ * @param stack_b does nothing
+ */
+void	execute_rra(t_stack *stack_a, t_stack *stack_b)
+{
+	execute_rrx(stack_a);
+	(void)stack_b;
+}
+
+/**
+ * @brief execute instruction rrb ( for using checker )
+ *
+ * @param stack_a does nothing
+ * @param stack_b is target to revert rotate
+ */
+void	execute_rrb(t_stack *stack_a, t_stack *stack_b)
+{
+	execute_rrx(stack_b);
+	(void)stack_a;
+}
 
 /**
  * @brief execute instruction rrr
@@ -36,8 +61,8 @@ void	execute_rrr(t_stack *stack_a, t_stack *stack_b)
  * @param stack_a to reverse rotate
  * @param stack_b to reverse rotate
  */
-void	instruct_rrr(t_stack *stack_a, t_stack *stack_b)
-{
-	execute_rrr(stack_a, stack_b);
-	ft_printf("rrr\n");
-}
+//void	instruct_rrr(t_stack *stack_a, t_stack *stack_b)
+//{
+//	execute_rrr(stack_a, stack_b);
+//	ft_printf("rrr\n");
+//}

@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instruct_rrx.c                                     :+:      :+:    :+:   */
+/*   execute_reverse_rotate.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 11:50:46 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/31 12:42:31 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/08/31 14:04:48 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/08/31 18:42:15 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file instruct_rrx.c
- * @brief execute ra & output "rra\n" \| execute rb & output "rrb\n"
+ * @file execute_rrx.c
+ * @brief execute instruction ( rra | rrb )
  */
 #include "push_swap.h"
-#include "instruct.h"
 #include "error.h"
 #include "ft_printf.h"
 
@@ -27,7 +26,7 @@
  * Shift down all elements of stack by 1.\n
  * The last element becomes the 1st element in stack.\n
  */
-static void	execute_rrx(t_stack *stack)
+void	execute_rrx(t_stack *stack)
 {
 	int	temp;
 	int	i;
@@ -72,13 +71,13 @@ void	execute_rrb(t_stack *stack_a, t_stack *stack_b)
 }
 
 /**
- * @brief execute ( ra | rb ) & output ( "rra\n" | "rrb\n" )
+ * @brief execute instruction rrr
  *
- * @param target to reverse rotate
+ * @param stack_a to reverse rotate
+ * @param stack_b to reverse rotate
  */
-void	instruct_rrx(t_stack *target)
+void	execute_rrr(t_stack *stack_a, t_stack *stack_b)
 {
-	execute_rrx(target);
-	ft_printf("rr%s\n", target->name);
+	execute_rra(stack_a, stack_b);
+	execute_rrb(stack_a, stack_b);
 }
-

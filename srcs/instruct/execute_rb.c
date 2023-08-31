@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   repeat_push.c                                      :+:      :+:    :+:   */
+/*   execute_rb.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 12:07:34 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/31 17:17:49 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/08/31 15:04:25 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/08/31 15:05:57 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file execute_rb.c
+ * @brief execute instruction rb
+ */
 #include "push_swap.h"
 #include "instruct.h"
-#include "debug.h"
 #include "ft_printf.h"
 
-void	repeat_push(t_stack *dst, t_stack *src, int num)
+/**
+ * @brief execute instruction rb
+ *
+ * @param stack_a does nothing
+ * @param stack_b is target to rotate
+ */
+void	execute_rb(t_stack *stack_a, t_stack *stack_b)
 {
-	int	i;
-
-	ft_printf("\x1B[100m\x1B[37m");
-	ft_printf(ONE_LINE);
-	ft_printf("Exec");
-	i = 0;
-	while (i < num)
-	{
-		ft_printf(" %s%s", "p", dst->name);
-		i++;
-	}
-	ft_printf("\x1B[0m\n");
-	i = 0;
-	while (i < num)
-	{
-		instruct_px(dst, src);
-		i++;
-	}
+	execute_rx(stack_b);
+	(void)stack_a;
 }

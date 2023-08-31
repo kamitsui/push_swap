@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instruct_sx.c                                      :+:      :+:    :+:   */
+/*   execute_swap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/05 12:50:30 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/31 11:48:27 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/08/30 15:30:03 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/08/31 18:39:05 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file instruct_sx.c
- * @brief execute ( sa | sb ) & output ( "sa\\n" | "sb\\n" )
+ * @file execute_swap.c
+ * @brief execute ( sa | sb | ss )
  */
 #include "push_swap.h"
 #include "instruct.h"
@@ -24,7 +24,7 @@
  *
  * @param stack : Swap the first 2 elements at the top of stack
  */
-static void	execute_sx(t_stack *stack)
+void	execute_sx(t_stack *stack)
 {
 	int	temp;
 
@@ -63,12 +63,13 @@ void	execute_sb(t_stack *stack_a, t_stack *stack_b)
 }
 
 /**
- * @brief execute ( sa | sb ) & output ( "sa\\n" | "sb\\n" )
+ * @brief execute instruction ss
  *
- * @param target : Swap the first 2 elements at the top of stack
+ * @param stack_a : Swap the first 2 elements at the top of stack_a
+ * @param stack_b : Swap the first 2 elements at the top of stack_b
  */
-void	instruct_sx(t_stack *target)
+void	execute_ss(t_stack *stack_a, t_stack *stack_b)
 {
-	execute_sx(target);
-	ft_printf("s%s\n", target->name);
+	execute_sa(stack_a, stack_b);
+	execute_sb(stack_a, stack_b);
 }

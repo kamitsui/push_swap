@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 13:08:40 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/31 12:31:12 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:41:51 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,14 @@ void	instruct_rrx(t_stack *target);
  * @brief execute rrr & output "rrr\\n"
  */
 void	instruct_rrr(t_stack *stack_a, t_stack *stack_b);
+//void	instruct_rr_two(t_stack *stack_a, t_stack *stack_b);
 
 /*
  * ---------------- execute instruction functions ----------------
+ */
+
+/**
+ *                  swap
  */
 
 /**
@@ -80,6 +85,15 @@ void	execute_sb(t_stack *stack_a, t_stack *stack_b);
 void	execute_ss(t_stack *stack_a, t_stack *stack_b);
 
 /**
+ * @brief execute instruction ( sa | sb )
+ */
+void	execute_sx(t_stack *stack);
+
+/**
+ *                  push
+ */
+
+/**
  * @brief execute instruction pa ( only use in checker )
  */
 void	execute_pa(t_stack *stack_a, t_stack *stack_b);
@@ -88,6 +102,20 @@ void	execute_pa(t_stack *stack_a, t_stack *stack_b);
  * @brief execute instruction pb ( only use in checker )
  */
 void	execute_pb(t_stack *stack_a, t_stack *stack_b);
+
+/**
+ * @brief execute instruction ( pa | pb )
+ */
+void	execute_px(t_stack *dst, t_stack *src);
+
+/**
+ *                  rotate
+ */
+
+/**
+ * @brief execute instruction ( ra | rb )
+ */
+void	execute_rx(t_stack *stack);
 
 /**
  * @brief execute instruction ra
@@ -103,6 +131,15 @@ void	execute_rb(t_stack *stack_a, t_stack *stack_b);
  * @brief execute instruction rr
  */
 void	execute_rr(t_stack *stack_a, t_stack *stack_b);
+
+/**
+ *                  reverse rotate
+ */
+
+/**
+ * @brief execute instruction ( rra | rrb )
+ */
+void	execute_rrx(t_stack *stack);
 
 /**
  * @brief execute instruction rra ( for using checker )

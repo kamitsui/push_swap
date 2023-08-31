@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   repeat_push.c                                      :+:      :+:    :+:   */
+/*   execute_rrr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/23 12:07:34 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/31 17:17:49 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/08/31 14:10:52 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/08/31 17:55:46 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file execute_rrr.c
+ * @brief execute instruction rrr
+ */
 #include "push_swap.h"
 #include "instruct.h"
-#include "debug.h"
-#include "ft_printf.h"
 
-void	repeat_push(t_stack *dst, t_stack *src, int num)
-{
-	int	i;
-
-	ft_printf("\x1B[100m\x1B[37m");
-	ft_printf(ONE_LINE);
-	ft_printf("Exec");
-	i = 0;
-	while (i < num)
-	{
-		ft_printf(" %s%s", "p", dst->name);
-		i++;
-	}
-	ft_printf("\x1B[0m\n");
-	i = 0;
-	while (i < num)
-	{
-		instruct_px(dst, src);
-		i++;
-	}
-}
+/**
+ * @brief execute instruction rrr
+ *
+ * @param stack_a to reverse rotate
+ * @param stack_b to reverse rotate
+ */
+//void	execute_rrr(t_stack *stack_a, t_stack *stack_b)
+//{
+//	execute_rra(stack_a, stack_b);
+//	execute_rrb(stack_a, stack_b);
+//}

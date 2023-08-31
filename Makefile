@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/31 12:09:41 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/31 18:31:53 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,13 +39,14 @@ SRCS = \
 	   allocate_data.c \
 	   set_data.c \
 	   \
-	   instruct_px.c \
-	   instruct_rr.c \
-	   instruct_rrr.c \
-	   instruct_rrx.c \
-	   instruct_rx.c \
-	   instruct_ss.c \
-	   instruct_sx.c \
+	   instruct_push.c \
+	   instruct_rotate.c \
+	   instruct_swap.c \
+	   \
+	   execute_reverse_rotate.c \
+	   execute_rotate.c \
+	   execute_swap.c \
+	   execute_push.c \
 	   \
 	   operation.c \
 	   \
@@ -60,9 +61,18 @@ SRCS = \
 	   \
 	   debug_data.c \
 	   repeat_push.c \
-	   repeat_swap.c \
-	   instruct_rrx.c \
-	   instruct_rrr.c
+	   repeat_swap.c
+#	   instruct_rx.c \
+#	   instruct_rr.c \
+#	   instruct_rrr.c \
+#	   execute_rrr.c \
+#	   execute_rra.c \
+#	   execute_rrb.c \
+#	   execute_rr.c \
+#	   execute_rx.c \
+#	   execute_ra.c \
+#	   execute_rb.c \
+#	   
 SRCS_B = \
 		 main_bonus.c \
 		 \
