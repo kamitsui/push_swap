@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 12:15:59 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/31 12:42:15 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/31 21:32:35 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,6 @@
 #include "instruct.h"
 #include "checker.h"
 #include "checker_instruction.h"
-
-//void	test_a(t_stack *stack_a, t_stack *stack_b)
-//{
-//	(void)stack_a;
-//	(void)stack_b;
-//}
-//
-//void	test_b(t_stack *dst, t_stack *src)
-//{
-//	(void)dst;
-//	(void)src;
-//}
-
-//typedef void	(*t_f_execute)(t_stack *target1, t_stack *target2);
 
 void	execute_instruction(enum e_instruction type,
 							t_stack *stack_a, t_stack *stack_b)

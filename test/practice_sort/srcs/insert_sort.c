@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 17:22:16 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/28 21:42:09 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/31 21:19:49 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,37 +23,51 @@ static void	insert_sort_array(int arr[], int size)
 	i = 1;
 	while (i < size)
 	{
-	//for (i = 1; i < size; i++) {
-        key = arr[i];
-        j = i - 1;
-
-        // Move elements of arr[0..i-1] that are greater than key to one position ahead of their current position
-        while (j >= 0 && arr[j] > key) {
-            arr[j + 1] = arr[j];
-            j = j - 1;
-        }
-        arr[j + 1] = key;
-    }
+		key = arr[i];
+		j = i - 1;
+		while (j >= 0 && arr[j] > key)
+		{
+			arr[j + 1] = arr[j];
+			j = j - 1;
+		}
+		arr[j + 1] = key;
+		i++;
+	}
 }
 
+void	set_numbers(int numbers[])
+{
+	numbers[0] = 10;
+	numbers[1] = 5;
+	numbers[2] = 2;
+	numbers[3] = 8;
+	numbers[4] = 3;
+}
 
-int main() {
-    int numbers[] = {10, 5, 2, 8, 3};
-    int size = sizeof(numbers) / sizeof(numbers[0]);
+int	main(void)
+{
+	int	numbers[5];
+	int	size;
+	int	i;
 
-    printf("Before sorting:\n");
-    for (int i = 0; i < size; i++) {
-        printf("%d ", numbers[i]);
-    }
-    printf("\n");
-
-    insert_sort_array(numbers, size);
-
-    printf("After sorting:\n");
-    for (int i = 0; i < size; i++) {
-        printf("%d ", numbers[i]);
-    }
-    printf("\n");
-
-    return 0;
+	set_numbers(numbers);
+	size = sizeof(numbers) / sizeof(numbers[0]);
+	printf("Before sorting:\n");
+	i = 0;
+	while (i < size)
+	{
+		printf("%d ", numbers[i]);
+		i++;
+	}
+	printf("\n");
+	insert_sort_array(numbers, size);
+	printf("After sorting:\n");
+	i = 0;
+	while (i < size)
+	{
+		printf("%d ", numbers[i]);
+		i++;
+	}
+	printf("\n");
+	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 13:40:27 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/23 12:35:49 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/31 20:46:44 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,26 +14,42 @@
 NAME = push_swap
 
 # Sources files
-SRCS = example_of_subject.c \
-	  init.c \
-	  \
-	  push.c \
-	  swap.c \
-	  rotate.c \
-	  reverse_rotate.c \
-	  \
-	  operation.c \
-	  stack_utils.c \
-	  \
-	  debug_data.c \
-	  repeat_push.c \
-	  repeat_swap.c \
-	  repeat_rotate.c \
-	  repeat_reverse_rotate.c
+SRCS = \
+	   example_of_subject.c \
+	   \
+	   init_stack.c \
+	   count_elements.c \
+	   allocate_data.c \
+	   set_data.c \
+	   \
+	   instruct_push.c \
+	   instruct_swap.c \
+	   instruct_rotate.c \
+	   \
+	   execute_reverse_rotate.c \
+	   execute_rotate.c \
+	   execute_swap.c \
+	   execute_push.c \
+	   \
+	   operation.c \
+	   \
+	   is_empty.c \
+	   is_full.c \
+	   \
+	   debug_data.c \
+	   repeat_push.c \
+	   repeat_swap.c \
+	   repeat_rotate.c \
+	   repeat_reverse_rotate.c \
+	   \
+	   error.c
 
 # Directories
 PROJ_DIR = ../../..
-SRCS_DIR = $(PROJ_DIR)/srcs \
+SRCS_DIR = \
+		   $(PROJ_DIR)/srcs \
+		   $(PROJ_DIR)/srcs/init_utils \
+		   $(PROJ_DIR)/srcs/is_utils \
 		   $(PROJ_DIR)/srcs/instruct \
 		   $(PROJ_DIR)/srcs/debug \
 		   srcs

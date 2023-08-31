@@ -6,12 +6,13 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/23 13:01:52 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/31 20:37:47 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "push_swap.h"
+#include "init.h"
 #include "debug.h"
 #include "ft_printf.h"
 
@@ -47,6 +48,7 @@ int	main(int argc, char *argv[])
 {
 	t_stack	stack_a;
 	t_stack	stack_b;
+	size_t	size;
 
 	if (argc < 2)
 	{
@@ -55,19 +57,13 @@ int	main(int argc, char *argv[])
 	}
 	init_stack(&stack_a, (char *)"a");
 	init_stack(&stack_b, (char *)"b");
-	if (argc > MAX_SIZE)
-	{
-		*stack_a.data = *allocate_array(argc - 1);
-		*stack_b.data = *allocate_array(argc - 1);
-	}
-	set_data(&stack_a, argc, argv);
+	size = count_elements(&argv[1]);
+	allocate_data(&stack_a, &stack_b, size);
+	set_data(&stack_a, &argv[1], size);
 	debug_data(&stack_a, &stack_b);
 	go_example(&stack_a, &stack_b);
-	if (argc > MAX_SIZE)
-	{
-		free(stack_a.data);
-		free(stack_b.data);
-	}
+	free(stack_a.data);
+	free(stack_b.data);
 	system("leaks push_swap");
 	return (0);
 }

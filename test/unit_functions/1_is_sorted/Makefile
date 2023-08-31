@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 13:40:27 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/23 15:40:30 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/31 20:25:47 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,28 +14,26 @@
 NAME = push_swap
 
 # Sources files
-SRCS = stack_utils.c \
-	   init.c \
+SRCS = \
+	   allocate_data.c \
+	   count_elements.c \
+	   init_stack.c \
+	   set_data.c \
+	   \
+	   is_sorted.c \
+	   \
+	   error.c\
+	   \
 	   debug_data.c \
+	   \
 	   test_is_sorted.c
-#	  \
-#	  push.c \
-#	  swap.c \
-#	  rotate.c \
-#	  reverse_rotate.c \
-#	  \
-#	  operation.c \
-#	  stack_utils.c \
-#	  \
-#	  debug_data.c \
-#	  repeat_push.c \
-#	  repeat_swap.c \
-#	  repeat_rotate.c \
-#	  repeat_reverse_rotate.c
 
 # Directories
 PROJ_DIR = ../../..
-SRCS_DIR = $(PROJ_DIR)/srcs \
+SRCS_DIR = \
+		   $(PROJ_DIR)/srcs \
+		   $(PROJ_DIR)/srcs/init_utils \
+		   $(PROJ_DIR)/srcs/is_utils \
 		   $(PROJ_DIR)/srcs/debug \
 		   srcs
 OBJS_DIR = obj

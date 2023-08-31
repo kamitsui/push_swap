@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 12:46:13 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/30 13:25:14 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/08/31 21:32:12 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	checker(t_stack *stack_a, t_stack stack_b, size_t size)
 		ft_printf("%s %d", instruction, (int)type);
 		free(instruction);
 	}
-	// Check if the stacks are sorted and empty
 	if (is_sorted(stack_a) && is_empty(stack_b))
 	{
 		ft_printf("OK\n");

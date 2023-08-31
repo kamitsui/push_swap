@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/31 18:31:53 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/08/31 21:31:19 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,21 +62,13 @@ SRCS = \
 	   debug_data.c \
 	   repeat_push.c \
 	   repeat_swap.c
-#	   instruct_rx.c \
-#	   instruct_rr.c \
-#	   instruct_rrr.c \
-#	   execute_rrr.c \
-#	   execute_rra.c \
-#	   execute_rrb.c \
-#	   execute_rr.c \
-#	   execute_rx.c \
-#	   execute_ra.c \
-#	   execute_rb.c \
-#	   
 SRCS_B = \
 		 main_bonus.c \
 		 \
+		 checker.c \
+		 \
 		 search_type_instruction.c \
+		 \
 		 is_instruction_rrr.c \
 		 is_instruction_rra.c \
 		 is_instruction_rrb.c \
