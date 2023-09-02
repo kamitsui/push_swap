@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/30 13:03:56 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/02 13:03:12 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,8 @@
  * @brief main function of checker
  */
 #include <stdlib.h>
-#include <stdbool.h>
-//#include <unistd.h>
 #include "push_swap.h"
 #include "init.h"
-//#include "sort.h"
 #include "error.h"
 #include "checker.h"
 #include "debug.h"// debug
@@ -62,5 +59,5 @@ int	main(int argc, char *argv[])
 	debug_data(&stack_a, &stack_b);
 	if (is_sorted(&stack_a))
 		handle_error(ERR_NUM);
-	return (checker(&stack_a, &stack_b, size));
+	return (checker(&stack_a, &stack_b));
 }

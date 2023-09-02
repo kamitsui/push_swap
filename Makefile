@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/31 21:31:19 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/02 12:50:51 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,9 @@ vpath %.c $(SRC_DIR)
 # Objects
 OBJ_DIR = objs
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
-OBJS_B = $(addprefix $(OBJ_DIR)/, $(SRCS_B:.c=.o))
+OBJS_FILTER = $(addprefix $(OBJ_DIR)/, main.o)
+OBJS_B = $(filter-out $(OBJS_FILTER), \
+		 $(addprefix $(OBJ_DIR)/, $(SRCS_B:.c=.o)) $(OBJS))
 
 # Dependency files
 DEP_DIR = .deps

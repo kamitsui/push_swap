@@ -6,12 +6,14 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 12:53:05 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/30 13:25:44 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/02 13:04:13 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_INSTRUCTION_H
-# define CHECKER_INSTRUCTION_H
+#ifndef CHECKER_H
+# define CHECKER_H
+
+# include "push_swap.h"
 
 /**
  * @brief e_instruction is e_num type of instruction to stack
@@ -45,14 +47,13 @@ enum	e_instruction
 	INST_ERROR
 };
 
-int	checker(t_stack *stack_a, t_stack stack_b, size_t size);
+int	checker(t_stack *stack_a, t_stack *stack_b);
 
 /**
  * @brief search type from instruction string
  */
 enum e_instruction	search_type_instruction(char *instruction);
 
-# include "push_swap.h"
 
 void	execute_instruction(enum e_instruction type,
 							t_stack *stack_a, t_stack *stack_b);

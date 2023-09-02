@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 12:46:13 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/31 21:32:12 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/02 13:05:37 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
  *
  * @return 
  */
-int	checker(t_stack *stack_a, t_stack stack_b, size_t size)
+int	checker(t_stack *stack_a, t_stack *stack_b)
 {
 	char				*instruction;
 	enum e_instruction	type;
@@ -36,10 +36,10 @@ int	checker(t_stack *stack_a, t_stack stack_b, size_t size)
 			break ;
 		type = search_type_instruction(instruction);
 		if (type != INST_ERROR)
-			execute_instruction(type);
+			execute_instruction(type, stack_a, stack_b);
 		else
 			break ;
-		ft_printf("%s %d", instruction, (int)type);
+		ft_printf("%s %d", instruction, (int)type);// debug
 		free(instruction);
 	}
 	if (is_sorted(stack_a) && is_empty(stack_b))

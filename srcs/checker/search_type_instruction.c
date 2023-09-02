@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 09:33:04 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/30 12:30:29 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/02 13:03:32 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
  * @file search_type_instruction.c
  * @brief search type from instruction string
  */
+#include "checker.h"
 #include "checker_instruction.h"
 #include "libft.h"
-#include <stdbool.h>
 
 /**
  * @brief search type from instruction string
@@ -29,7 +29,7 @@ enum e_instruction	search_type_instruction(char *instruction)
 {
 	enum e_instruction			type;
 	size_t						i;
-	const t_f_is_instruction	is_instructions[INST_ERROR] = {
+	static t_f_is_instruction	is_instructions[INST_ERROR] = {
 		is_instruction_rrr, is_instruction_rra, is_instruction_rrb,
 		is_instruction_rr, is_instruction_ra, is_instruction_rb,
 		is_instruction_pa, is_instruction_pb,
