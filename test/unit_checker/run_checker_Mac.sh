@@ -1,6 +1,6 @@
 #! /bin/bash
 PUSH_SWAP=../../push_swap
-CHECKER=../../checker
+CHECKER=../../checker_Mac
 
 # file include integer array
 filename="file.txt"
