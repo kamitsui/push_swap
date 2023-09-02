@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/29 14:54:52 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/02 14:11:15 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@
 #include "ft_printf.h"
 #include "debug.h"// debug
 
+static void	free_stack(t_stack *stack_a, t_stack *stack_b, size_t size)
+{
+	if (size > BUFF_SIZE)
+	{
+		free(stack_a->data);
+		free(stack_b->data);
+	}
+}
+
 /**
  * @brief main function of push swap (this program to sort integer values)
  *
@@ -31,7 +40,7 @@
  *
  * @return 
  */
-int main(int argc, char* argv[])
+int	main(int argc, char *argv[])
 {
 	t_stack	stack_a;
 	t_stack	stack_b;
@@ -52,16 +61,12 @@ int main(int argc, char* argv[])
 		stack_b.data = &data_b[0];
 	}
 	set_data(&stack_a, &argv[1], size);
-	debug_data(&stack_a, &stack_b);
 	if (is_sorted(&stack_a))
 		handle_error(ERR_NUM);
 	insert_sort(&stack_a, &stack_b);
-	debug_data(&stack_a, &stack_b);
-	if (argc > BUFF_SIZE)
-	{
-		free(stack_a.data);
-		free(stack_b.data);
-	}
-	system("leaks push_swap");// for debug
+	free_stack(&stack_a, &stack_b, size);
 	return (0);
 }
+//	debug_data(&stack_a, &stack_b);// for debug
+//	debug_data(&stack_a, &stack_b);// for debug
+//	system("leaks push_swap");// for debug

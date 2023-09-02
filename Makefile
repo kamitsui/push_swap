@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/02 12:50:51 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/02 14:06:11 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -145,7 +145,7 @@ clean:
 
 # Clean and remove target
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(NAME_B)
 
 # Rebuild target
 re: fclean all
