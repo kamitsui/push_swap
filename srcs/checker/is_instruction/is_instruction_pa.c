@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 10:54:20 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/30 12:31:38 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/02 14:53:11 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "checker_instruction.h"
 #include "libft.h"
 #include <stdbool.h>
-
+#include "ft_printf.h"//debgu
 /**
  * @brief check if pa
  *
@@ -27,7 +27,10 @@
  */
 enum e_instruction	is_instruction_pa(char *instruction)
 {
-	if (ft_strnequ(instruction, "pa", 2) == true)
+	size_t	n;
+
+	n = ft_strlen(instruction) - 1;
+	if (ft_strnequ(instruction, "pa", n) == true)
 		return (INST_PA);
 	else
 		return (INST_DEFAULT);

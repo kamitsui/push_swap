@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 11:00:37 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/30 12:32:54 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/02 14:59:23 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@
  */
 enum e_instruction	is_instruction_rrr(char *instruction)
 {
-	if (ft_strnequ(instruction, "rrr", 3) == true)
+	size_t	n;
+
+	n = ft_strlen(instruction) - 1;
+	if (ft_strnequ(instruction, "rrr", n) == true)
 		return (INST_RRR);
 	else
 		return (INST_DEFAULT);
