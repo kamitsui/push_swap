@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/04 19:19:16 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/04 20:51:36 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,9 @@ SRCS = \
 	   \
 	   sort.c \
 	   sort_small.c \
+	   sort_two_elements.c \
+	   sort_three_elements.c \
+	   sort_six_elements.c \
 	   sort_insert.c \
 	   \
 	   is_less_than.c \

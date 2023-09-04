@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_small.c                                       :+:      :+:    :+:   */
+/*   sort_six_elements.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 17:10:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/04 20:53:54 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/09/04 20:47:45 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/09/04 20:52:58 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "instruct.h"
 #include "sort.h"
 
-void	sort_small(t_stack *stack_a, t_stack *stack_b, size_t size)
+void	sort_six_elements(t_stack *stack_a, t_stack *stack_b)
 {
-	if (size <= 2)
-		sort_two_elements(stack_a);
-	else if (size <= 3)
-		sort_three_elements(stack_a);
-	else
-		sort_insert(stack_a, stack_b);
-		//sort_six_elements(stack_a, stack_b);
+	(void)stack_a;
+	(void)stack_b;
 }

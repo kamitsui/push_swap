@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_small.c                                       :+:      :+:    :+:   */
+/*   sort_two_elements.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 17:10:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/04 20:53:54 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/09/04 20:50:09 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/09/04 20:50:14 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "sort.h"
+#include "instruct.h"
 
-void	sort_small(t_stack *stack_a, t_stack *stack_b, size_t size)
+void	sort_two_elements(t_stack *stack_a)
 {
-	if (size <= 2)
-		sort_two_elements(stack_a);
-	else if (size <= 3)
-		sort_three_elements(stack_a);
-	else
-		sort_insert(stack_a, stack_b);
-		//sort_six_elements(stack_a, stack_b);
+	if (is_less_than(stack_a->data[0], stack_a->data[stack_a->top]) == true)
+		instruct_sx(stack_a);
 }
