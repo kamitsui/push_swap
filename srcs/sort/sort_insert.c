@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   insert_sort.c                                      :+:      :+:    :+:   */
+/*   sort_insert.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 17:55:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/31 17:19:42 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/04 19:18:55 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file insert_sort.c
+ * @file sort_insert.c
  * @brief This sort function using the insertion sort algorithm
  */
 #include "push_swap.h"
@@ -23,7 +23,7 @@
  * @param stack_a is unsorted data.
  * @param stack_b is empty. (for sorting stack_a)
  */
-void	insert_sort(t_stack *stack_a, t_stack *stack_b)
+void	sort_insert(t_stack *stack_a, t_stack *stack_b)
 {
 	int	current_element;
 

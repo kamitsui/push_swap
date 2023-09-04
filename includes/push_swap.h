@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:04:22 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/29 11:40:43 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/04 19:20:41 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ bool	is_full(t_stack *stack);
 bool	is_sorted(t_stack *stack);
 
 /**
+ * @brief Check if a is less than b
+ */
+bool	is_less_than(int a, int b);
+
+/**
  * @brief スタックに値をプッシュする（先頭要素に値を入れる）
  */
 void	push(t_stack *stack, int value);
@@ -69,10 +74,5 @@ int		pop(t_stack *stack);
  * @brief スタックから先頭要素(data[top])を削除せずに値を取り出す。
  */
 int		peek(t_stack *stack);
-
-/**
- * @brief Check if a is less than b
- */
-bool	is_less_than(int a, int b);
 
 #endif

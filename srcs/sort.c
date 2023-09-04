@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.h                                             :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/28 16:01:03 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/04 19:18:01 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/09/04 17:19:20 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/09/04 19:19:29 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/**
- * @file sort.h
- * @brief Define sort functions
- */
-#ifndef SORT_H
-# define SORT_H
+#include "push_swap.h"
+#include "sort.h"
 
-void	sort(t_stack *stack_a, t_stack *stack_b, size_t size);
-void	sort_small(t_stack *stack_a, t_stack *stack_b, size_t size);
-
-/**
- * @brief This sort function using the insertion sort algorithm
- */
-void	sort_insert(t_stack *stack_a, t_stack *stack_b);
-
-#endif
+void	sort(t_stack *stack_a, t_stack *stack_b, size_t size)
+{
+	if (size < 7)
+		sort_small(stack_a, stack_b, size);
+	else
+		sort_insert(stack_a, stack_b);
+}
