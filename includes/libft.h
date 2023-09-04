@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 14:55:57 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/20 12:25:13 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:52:06 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include <stddef.h>
+# include <stdbool.h>
 
 // Libft-00
 int		ft_isalpha(int c);
@@ -80,16 +81,26 @@ size_t	ft_strnlen(const char *s, size_t max_len);
 char	*ft_strncat(char *s1, const char *s2, size_t n);
 long	ft_strtol(const char *str, char **endptr, int base);
 char	*ft_strndup(const char *s1, size_t n);
+size_t	ft_count_words(char *str, char delimiter);
 
 // Additional other function (from ft_printf)
 int		ft_isxdigit(int c);
-char	*ft_strjoin_free(const char *s1, const char *s2);
-int		ft_strnequ(const char *s1, const char *s2, int n);
+char	*ft_strjoin_free(char const *s1, char const *s2);
+bool	ft_strnequ(char *s1, const char *s2, int n);
 char	*ft_strnew(size_t size);
 void	ft_strdel(char **as);
 char	*ft_itoa_binary(int n);
 
 // Additional other function (from pipex)
 char	*ft_strtok(char *str, char const *sep);
+
+// Additional other function (from fdf minilibx)
+int		ft_abs(int i);
+int		ft_intcmp(int a, int b);
+int		ft_sign(int num);
+
+// Additional other function (from push_swap)
+bool	ft_isinteger(const char *str);
+bool	ft_isint(const char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 12:46:13 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/02 15:09:37 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:37:38 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,13 @@
 #include "error.h"
 #include "ft_printf.h"
 #include "get_next_line.h"
-#include "debug.h"// for debug
+#include <stdbool.h>
 
 /**
  * @brief checker function for push_swap
  *
  * @param stack_a 
  * @param stack_b
- * @param size
  *
  * @return 
  */
@@ -49,7 +48,6 @@ int	checker(t_stack *stack_a, t_stack *stack_b)
 	if (is_sorted(stack_a) && is_empty(stack_b))
 	{
 		ft_printf("OK\n");
-		debug_data(stack_a, stack_b);// for debug
 		return (0);
 	}
 	ft_printf("KO\n");

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/02 14:52:00 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/02 15:47:33 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ int	main(int argc, char *argv[])
 		stack_b.data = &data_b[0];
 	}
 	set_data(&stack_a, &argv[1], size);
-	debug_data(&stack_a, &stack_b);// for debug
-	if (is_sorted(&stack_a))
-		handle_error(ERR_NUM);
+//	debug_data(&stack_a, &stack_b);// for debug
 	return (checker(&stack_a, &stack_b));
 }

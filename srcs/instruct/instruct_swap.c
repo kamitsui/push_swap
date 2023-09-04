@@ -6,12 +6,12 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:50:30 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/31 18:39:01 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:41:35 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file instruct_sx.c
+ * @file instruct_swap.c
  * @brief execute ( sa | sb ) & output ( "sa\\n" | "sb\\n" )
  */
 #include "push_swap.h"

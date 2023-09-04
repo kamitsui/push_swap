@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instruct_rrx.c                                     :+:      :+:    :+:   */
+/*   instruct_rotate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 11:50:46 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/31 18:10:50 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:41:15 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file instruct_rrx.c
+ * @file instruct_rotate.c
  * @brief instruction rotate
  * ( ra | rb | rr | rra | rrb | rrr )
  */

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 10:59:31 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/29 19:22:39 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/04 14:56:18 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "error.h"
 #include "libft.h"
 #include <stdbool.h>
+#include "ft_printf.h"// for debug
 
 /**
  * @brief 入力されたデータに重複している値がないかチェックする関数
@@ -69,6 +70,8 @@ void	set_data(t_stack *stack, char *input[], size_t size)
 		while (token != NULL)
 		{
 			stack->top++;
+			if (ft_isint(token) == false)
+				handle_error(ERR_NUM);
 			stack->data[size - stack->top - 1] = ft_atoi(token);
 			token = ft_strtok(NULL, " ");
 		}

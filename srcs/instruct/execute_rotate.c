@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute_rx.c                                       :+:      :+:    :+:   */
+/*   execute_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:58:49 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/31 18:28:09 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:40:45 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file execute_rx.c
+ * @file execute_rotate.c
  * @brief execute instruction ( ra | rb )
  */
 #include "push_swap.h"

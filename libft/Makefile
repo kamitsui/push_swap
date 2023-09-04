@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/11 20:51:49 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/29 20:23:52 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/04 14:55:14 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ SRCS = \
 	   ft_atoi.c \
 	   ft_bzero.c \
 	   ft_isdigit.c \
+	   ft_isint.c \
+	   ft_isinteger.c \
 	   ft_isxdigit.c \
 	   ft_itoa.c \
 	   ft_itoa_binary.c \
@@ -77,8 +79,6 @@ all: $(LIB)
 # Library target
 $(LIB): $(OBJS)
 	ar rcs $@ $^
-
-$(OBJS): $(DEPS)
 
 # Clean target
 clean:

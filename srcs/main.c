@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/02 14:11:15 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:32:37 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,11 @@ int	main(int argc, char *argv[])
 		stack_b.data = &data_b[0];
 	}
 	set_data(&stack_a, &argv[1], size);
-	if (is_sorted(&stack_a))
-		handle_error(ERR_NUM);
-	insert_sort(&stack_a, &stack_b);
+//	debug_data(&stack_a, &stack_b);// for debug
+	if (is_sorted(&stack_a) == false)
+		insert_sort(&stack_a, &stack_b);
+//	debug_data(&stack_a, &stack_b);// for debug
 	free_stack(&stack_a, &stack_b, size);
 	return (0);
 }
-//	debug_data(&stack_a, &stack_b);// for debug
-//	debug_data(&stack_a, &stack_b);// for debug
 //	system("leaks push_swap");// for debug
