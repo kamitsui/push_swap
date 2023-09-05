@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:55:13 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/05 18:43:13 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/05 19:26:28 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	partition(t_stack *stack_a, t_stack *stack_b, int low, int high)
 void	sort_quick(t_stack *stack_a, t_stack *stack_b, int low, int high)
 {
 	int	pi;
+
 	if (low < high)
 	{
 		pi = partition(stack_a, stack_b, low, high);
