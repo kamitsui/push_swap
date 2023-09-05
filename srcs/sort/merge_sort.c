@@ -6,13 +6,15 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 16:52:04 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/04 17:08:32 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/05 09:47:28 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void merge(t_stack *stack_a, t_stack *stack_b, int low, int mid, int high) {
+//void merge(t_stack *stack_a, t_stack *stack_b, int low, int mid, int high) {
+void merge(t_stack *stack_a, t_stack *stack_b, int low, int high) {
     int i = low;
-    int j = mid + 1;
+    //int j = mid + 1;
+    int j = low + (high - low) / 2 + 1;
     int k = low;
 
     while (i <= mid && j <= high) {
@@ -50,9 +52,10 @@ void merge_sort(t_stack *stack_a, t_stack *stack_b, int low, int high)
     if (low < high) {
         int mid = low + (high - low) / 2;
 
-        merge_sort(stack, temp_stack, low, mid);
-        merge_sort(stack, temp_stack, mid + 1, high);
+        merge_sort(stack_a, stack_b, low, mid);
+        merge_sort(stack_a, stack_b, mid + 1, high);
 
-        merge(stack, temp_stack, low, mid, high);
+        //merge(stack, temp_stack, low, mid, high);
+        merge(stack_a, stack_b, low, high);
     }
 }

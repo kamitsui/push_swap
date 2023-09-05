@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   free_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 17:19:20 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/05 14:42:51 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/09/05 16:11:29 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/09/05 16:11:59 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "sort.h"
+#include <stdlib.h>
 
-void	sort(t_stack *stack_a, t_stack *stack_b, size_t size)
+void	free_stack(t_stack *stack_a, t_stack *stack_b, size_t size)
 {
-	if (size < 7)
-		sort_small(stack_a, stack_b, size);
-	else
-		sort_quick(stack_a, stack_b, 0, stack_a->top);
-		//sort_six_elements(stack_a, stack_b);
+	if (size > BUFF_SIZE)
+	{
+		free(stack_a->data);
+		free(stack_b->data);
+	}
 }

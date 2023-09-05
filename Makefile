@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/04 20:51:36 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/05 16:13:12 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC_DIR = \
 		  srcs/checker/is_instruction
 SRCS = \
 	   main.c \
+	   free_stack.c \
 	   \
 	   init_stack.c \
 	   count_elements.c \
@@ -56,6 +57,7 @@ SRCS = \
 	   sort_three_elements.c \
 	   sort_six_elements.c \
 	   sort_insert.c \
+	   sort_quick.c \
 	   \
 	   is_less_than.c \
 	   is_sorted.c \

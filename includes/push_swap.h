@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:04:22 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/04 19:20:41 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/05 15:46:49 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,7 @@ int		pop(t_stack *stack);
  * @brief スタックから先頭要素(data[top])を削除せずに値を取り出す。
  */
 int		peek(t_stack *stack);
+
+void	free_stack(t_stack *stack_a, t_stack *stack_b, size_t size);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:01:03 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/04 20:52:23 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/05 15:45:12 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ void	sort_small(t_stack *stack_a, t_stack *stack_b, size_t size);
 void	sort_two_elements(t_stack *stack_a);
 void	sort_three_elements(t_stack *stack_a);
 void	sort_six_elements(t_stack *stack_a, t_stack *stack_b);
+
+void	sort_quick(t_stack *stack_a, t_stack *stack_b, int low, int high);
+int	partition(t_stack *stack_a, t_stack *stack_b, int low, int high);
 
 /**
  * @brief This sort function using the insertion sort algorithm

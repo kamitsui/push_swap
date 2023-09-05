@@ -6,14 +6,27 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 20:47:45 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/05 09:02:08 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/05 09:42:19 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/**
+ * @file sort_six_elements.c
+ * @brief This sort function is used when the number of elements
+ * is less than or equal to six.
+ */
 #include "push_swap.h"
 #include "instruct.h"
 #include "sort.h"
 
+/**
+ * @brief Search the position of the minimum value in an array
+ *
+ * @param data is an array
+ * @param size is the number of array elements
+ *
+ * @return 
+ */
 static int	search_min_data(int *data, int size)
 {
 	int	position_min;
@@ -35,6 +48,11 @@ static int	search_min_data(int *data, int size)
 	return (position_min);
 }
 
+/**
+ * @brief Move the minimum data to the top of the stack.
+ *
+ * @param stack_a
+ */
 static void	move_min_data(t_stack *stack_a)
 {
 	int	position_min;
@@ -58,6 +76,13 @@ static void	move_min_data(t_stack *stack_a)
 	}
 }
 
+/**
+ * @brief This sort function is used when the number of elements
+ * is less than or equal to six.
+ *
+ * @param stack_a is unsorted.
+ * @param stack_b is empty.
+ */
 void	sort_six_elements(t_stack *stack_a, t_stack *stack_b)
 {
 	while (stack_a->top >= 3)

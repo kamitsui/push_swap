@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 13:58:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/04 15:29:12 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/05 15:42:03 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,25 +14,25 @@
 DIR1 = 1_is_sorted
 DIR2 = 2_count_elements
 DIR3 = 3_ft_isint
-#DIR4 = 4_parse_exec
+DIR4 = 4_partition
 #DIR5 = 5_parse_traverse_exec
 
 # Target name
 NAME1 = $(DIR1)/push_swap
 NAME2 = $(DIR2)/a.out
 NAME3 = $(DIR3)/a.out
-# NAME4 = $(DIR4)/push_swap
+NAME4 = $(DIR4)/a.out
 # NAME5 = $(DIR5)/push_swap
 
 # Run Target
 RUN1 = cd $(DIR1) ; ./run.sh ; echo "\n\n"
 RUN2 = cd $(DIR2) ; make run ; echo "\n\n"
 RUN3 = cd $(DIR3) ; ./run.sh ; echo "\n\n"
-# RUN4 = ./$(NAME4) ; echo "\n\n"
+RUN4 = cd $(DIR4) ; ./run.sh ; echo "\n\n"
 # RUN5 = ./$(NAME5) ; echo "\n\n"
 
 # Default target
-all : $(NAME1) $(NAME2) $(NAME3)
+all : $(NAME1) $(NAME2) $(NAME3) $(NAME4)
 
 # First Target
 1 :
@@ -53,11 +53,11 @@ $(NAME3) :
 	make -C $(DIR3)
 
 # # Force Target
-# 4 :
-# 	make -C $(DIR4)
-# $(NAME4) :
-# 	make -C $(DIR4)
-# 
+4 :
+	make -C $(DIR4)
+$(NAME4) :
+	make -C $(DIR4)
+
 # # Force Target
 # 5 :
 # 	make -C $(DIR5)
@@ -69,7 +69,7 @@ run :
 	$(RUN1)
 	$(RUN2)
 	$(RUN3)
-#	$(RUN4)
+	$(RUN4)
 #	$(RUN5)
 
 # Run choose Target
@@ -79,14 +79,14 @@ run2 :
 	$(RUN2)
 run3 :
 	$(RUN3)
-#run4 :
-#	$(RUN4)
+run4 :
+	$(RUN4)
 #run5 :
 #	$(RUN5)
 
 # Clean target
 clean:
-	rm -f $(NAME1) $(NAME2) $(NAME3)
+	rm -f $(NAME1) $(NAME2) $(NAME3) $(NAME4)
 
 # Clean and remove target
 fclean: clean

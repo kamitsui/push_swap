@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/04 19:15:09 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/05 16:11:19 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,6 @@
 #include "error.h"
 #include "ft_printf.h"
 #include "debug.h"// debug
-
-static void	free_stack(t_stack *stack_a, t_stack *stack_b, size_t size)
-{
-	if (size > BUFF_SIZE)
-	{
-		free(stack_a->data);
-		free(stack_b->data);
-	}
-}
 
 /**
  * @brief main function of push swap (this program to sort integer values)
