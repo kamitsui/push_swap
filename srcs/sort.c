@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:19:20 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/05 14:42:51 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/06 14:01:16 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 
 void	sort(t_stack *stack_a, t_stack *stack_b, size_t size)
 {
+	t_range	range;
+
 	if (size < 7)
 		sort_small(stack_a, stack_b, size);
 	else
-		sort_quick(stack_a, stack_b, 0, stack_a->top);
+	{
+		range.low = 0;
+		range.high = stack_a->top;
+		sort_quick(stack_a, stack_b, range);
+	}
 		//sort_six_elements(stack_a, stack_b);
 }

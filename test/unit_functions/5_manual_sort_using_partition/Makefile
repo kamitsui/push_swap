@@ -6,16 +6,16 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 13:40:27 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/06 15:10:49 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/06 14:59:11 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Target name
-NAME = a.out
+NAME = push_swap
 
 # Sources files
 SRCS = \
-	   test_partition.c \
+	   test_manual_sort_using_partition.c \
 	   \
 	   \
 	   free_stack.c \
@@ -36,11 +36,13 @@ SRCS = \
 	   \
 	   operation.c \
 	   \
+	   sort.c \
 	   sort_small.c \
 	   sort_two_elements.c \
 	   sort_three_elements.c \
 	   sort_six_elements.c \
 	   sort_insert.c \
+	   sort_quick.c \
 	   partition.c \
 	   \
 	   is_less_than.c \
