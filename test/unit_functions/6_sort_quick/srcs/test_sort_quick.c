@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:07:32 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/06 14:27:18 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:29:29 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "debug.h"
 #include "sort.h"
 #include <stdlib.h>
+#include <fcntl.h>
 
 void	manual_sort(t_stack *stack_a, t_stack *stack_b)
 {
@@ -102,6 +103,7 @@ int	main(int argc, char *argv[])
 	t_stack	stack_b;
 	size_t	size;
 	t_range	range;
+	fd_log = open_log("debug.log", O_APPEND);// for debug
 
 	init_stack(&stack_a, (char *)"a");
 	init_stack(&stack_b, (char *)"b");
@@ -112,12 +114,13 @@ int	main(int argc, char *argv[])
 	debug_data(&stack_a, &stack_b);// for debug
 	if (is_sorted(&stack_a) == true)
 		return (0);
-//	manual_sort(&stack_a, &stack_b);
 	range.low = 0;
 	range.high = stack_a.top;
 	sort_quick(&stack_a, &stack_b, range);
-//	ft_printf("--- after ---\n");
-//	debug_data(&stack_a, &stack_b);// for debug
+	ft_printf("--- after ---\n");
+	debug_data(&stack_a, &stack_b);// for debug
+	ft_printf(">> is_sorted(stack_a)? [%d]  is_empty(stack_b)? [%d]\n",
+			is_sorted(&stack_a), is_empty(&stack_b));
 	free_stack(&stack_a, &stack_b, size);
 	(void)argc;
 	return (0);

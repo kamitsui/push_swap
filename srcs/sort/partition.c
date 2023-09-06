@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/06 14:57:52 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/06 15:48:28 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	partition(t_stack *stack_a, t_stack *stack_b, t_range range, bool *flag_sort
 		*flag_sorted = true;
 	//debug_data(stack_a, stack_b);
 	//ft_printf("flag [%d], true[%d] false[%d]\n", *flag_sorted, true, false);
-	while (is_empty(stack_b) == false)
-		instruct_px(stack_a, stack_b);
+//	while (is_empty(stack_b) == false)
+//		instruct_px(stack_a, stack_b);
 	return (i);
 }

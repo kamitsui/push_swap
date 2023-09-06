@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/06 14:59:43 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/06 17:06:29 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,8 @@ SRCS = \
 	   \
 	   debug_data.c \
 	   repeat_push.c \
-	   repeat_swap.c
+	   repeat_swap.c \
+	   open_log.c
 SRCS_B = \
 		 main_bonus.c \
 		 \

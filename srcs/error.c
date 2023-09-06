@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:37:09 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/28 22:15:50 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:24:24 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,15 @@ void	handle_error(int error_code)
 		status = errno;
 	error_message(error_code);
 	exit(status);
+}
+
+/**
+ * @brief エラーメッセージ出力とexit(1)を行う関数
+ *
+ * @param message エラー出力に書かせるメッセージ
+ */
+void	ft_perror_exit(char *message)
+{
+	ft_dprintf(STDERR_FILENO, message);
+	exit (1);
 }

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 13:26:56 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/28 22:17:24 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:25:30 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,10 @@
  * @brief エラー処理の関数（標準エラー出力とプロセス終了）
  */
 void	handle_error(int error_code);
+
+/**
+ * @brief エラーメッセージ出力とexit(1)を行う関数
+ */
+void	ft_perror_exit(char *message);
 
 #endif
