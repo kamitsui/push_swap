@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:44:14 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/21 15:31:07 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/07 11:48:55 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ unsigned long long	unsign_va_arg(t_sm *machine)
 	unsigned long long	num;
 	int					i;
 	static t_f_u_va_arg	f_u_va_arg[5] = {unsign_hh, unsign_ll,
-					unsign_h, unsign_l, unsign_int};
+		unsign_h, unsign_l, unsign_int};
 
 	i = 0;
 	while (i < NB_PREFIX)

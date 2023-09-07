@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 17:13:29 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/06/21 14:52:26 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/07 11:48:30 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ long long	sign_va_arg(t_sm *machine)
 	int					i;
 	int					bit_offset;
 	static t_f_s_va_arg	f_s_va_arg[5] = {sign_hh, sign_ll, sign_h,
-					sign_l, sign_int};
+		sign_l, sign_int};
 
 	bit_offset = NB_FLAG + NB_FIELD + 1;
 	i = 0;

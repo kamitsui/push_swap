@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_dprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 14:49:27 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/07 11:55:27 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/09/07 11:55:05 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/09/07 12:12:05 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,31 @@
 #include "ft_printf.h"
 #include "process.h"
 
-int	ft_printf(const char *input, ...)
+static void	handle_error(const char *cause)
+{
+	ft_dprintf(STDERR_FILENO, "%s\n", cause);
+	exit(1);
+}
+
+static int	set_stdout_fd(int fd)
+{
+	int	original_stdout_fd;
+
+	original_stdout_fd = dup(STDOUT_FILENO);
+	if (original_stdout_fd == -1)
+		handle_error("dup");
+	if (dup2(fd, STDOUT_FILENO) == -1)
+		handle_error("dup2");
+	return (original_stdout_fd);
+}
+
+int	ft_dprintf(int fd, const char *input, ...)
 {
 	t_sm	machine;
 	va_list	ap;
+	int		original_stdout_fd;
 
+	original_stdout_fd = set_stdout_fd(fd);
 	va_start(ap, input);
 	initialize_machine(&machine, &ap);
 	process(input, &machine);
@@ -37,5 +57,7 @@ int	ft_printf(const char *input, ...)
 	va_end(ap);
 	if (machine.state == ERROR)
 		return (-1);
+	if (dup2(original_stdout_fd, STDOUT_FILENO) == -1)
+		handle_error("dup2");
 	return (machine.out_size);
 }

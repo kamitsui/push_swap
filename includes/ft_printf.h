@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:10:46 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/28 17:39:04 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/07 11:51:39 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_sm
 
 int		ft_printf(const char *input, ...);
 int		ft_dprintf(int fd, const char *input, ...);
+void	initialize_machine(t_sm *machine, void *ap);
 char	*join_to_out(const char *s1, const char *s2, int len2);
 
 #endif

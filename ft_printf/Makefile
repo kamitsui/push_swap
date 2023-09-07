@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 14:39:52 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/29 20:28:18 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/07 13:02:13 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ LIBFT_DIR = ../libft
 # Source files
 SRCS = \
 	   ft_printf.c \
+	   ft_dprintf.c \
+	   initialize.c \
 	   process.c \
 	   conversion.c \
 	   join_to_out.c \
