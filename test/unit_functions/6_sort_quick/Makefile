@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 13:40:27 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/06 17:06:43 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/07 14:17:41 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,8 +96,8 @@ DEPS = $(addprefix $(DEPS_DIR)/, $(SRCS:.c=.d))
 $(OBJS_DIR)/%.o: %.c
 	@mkdir -p $(OBJS_DIR)
 	@mkdir -p $(DEPS_DIR)
-	$(CC) $(CFLAGS) $(INC) $(DEP_CF) -c $< -o $@
-#	$(CC) $(CFLAGS) $(INC) $(DEP_CF) $(LD_CF) -c $< -o $@
+#	$(CC) $(CFLAGS) $(INC) $(DEP_CF) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) $(DEP_CF) $(LD_CF) -c $< -o $@
 
 $(DEPS_DIR)/%.d: %.c
 	@mkdir -p $(DEPS_DIR)
@@ -107,8 +107,8 @@ all: $(NAME)
 
 # Mandatory Target
 $(NAME): $(LIBFT) $(LIB_PRINTF) $(OBJS)
-	$(CC) $(CFLAGS) $(LFLAGS) $(OBJS) $(LIB_PRINTF) -o $(NAME)
-#	$(CC) $(CFLAGS) $(LFLAGS) $(LD_CF) $(OBJS) $(LIB_PRINTF) -o $(NAME)
+#	$(CC) $(CFLAGS) $(LFLAGS) $(OBJS) $(LIB_PRINTF) -o $(NAME)
+	$(CC) $(CFLAGS) $(LFLAGS) $(LD_CF) $(OBJS) $(LIB_PRINTF) -o $(NAME)
 
 # Library target
 $(LIB_PRINTF): $(LIBFT)
