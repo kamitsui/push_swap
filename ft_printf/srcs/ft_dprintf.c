@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 11:55:05 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/07 12:12:05 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/07 18:55:51 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ int	ft_dprintf(int fd, const char *input, ...)
 		return (-1);
 	if (dup2(original_stdout_fd, STDOUT_FILENO) == -1)
 		handle_error("dup2");
+	close(original_stdout_fd);
 	return (machine.out_size);
 }

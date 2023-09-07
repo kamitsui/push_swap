@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 14:39:52 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/07 13:02:13 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/07 18:54:28 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,6 +104,7 @@ $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(DEP_DIR)
 	$(CC) $(CF) $(INC_CF) $(DEP_CF) -c $< -o $@
+#	$(CC) $(CF) $(INC_CF) $(DEP_CF) -c $< -o $@ $(LDF)
 
 $(DEP_DIR)/%.d: %.c
 	@mkdir -p $(DEP_DIR)

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:49:42 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/07 15:12:13 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/07 19:11:52 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,20 @@ void	debug_data(int debug_fd, t_stack *left, t_stack *right)
 		else
 			ft_dprintf(debug_fd, "%d ", left->data[left_top]);
 		if (right_top < 0)
+		{
 			ft_dprintf(debug_fd, "\n");
+			ft_dprintf(debug_fd, "\x1B[100m\x1B[37m");
+		}
 		else
+		{
 			ft_dprintf(debug_fd, "%d\n", right->data[right_top]);
+			ft_dprintf(debug_fd, "\x1B[100m\x1B[37m");
+		}
 		left_top -= 1;
 		right_top -= 1;
 	}
 	ft_dprintf(debug_fd, ONE_LINE);
+	ft_dprintf(debug_fd, "\x1B[100m\x1B[37m");
 	ft_dprintf(debug_fd, "%s %s", left->name, right->name);
 	ft_dprintf(debug_fd, "\x1B[0m\n");
 }
