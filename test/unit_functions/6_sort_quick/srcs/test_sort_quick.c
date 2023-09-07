@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:07:32 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/07 16:02:01 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/07 20:09:34 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 #include "sort.h"
 #include <stdlib.h>
 #include <fcntl.h>
+#include <unistd.h>
 
+int	fd_log;
 
 int	main(int argc, char *argv[])
 {
@@ -26,7 +28,7 @@ int	main(int argc, char *argv[])
 	t_stack	stack_b;
 	size_t	size;
 	t_range	range;
-	int	fd_log = open_log("debug.log", O_TRUNC);// for debug
+	fd_log = open_log("debug.log", O_TRUNC);// for debug
 
 	init_stack(&stack_a, (char *)"a");
 	init_stack(&stack_b, (char *)"b");
@@ -45,6 +47,7 @@ int	main(int argc, char *argv[])
 	ft_dprintf(fd_log, ">> is_sorted(stack_a)? [%d]  is_empty(stack_b)? [%d]\n",
 			is_sorted(&stack_a), is_empty(&stack_b));
 	free_stack(&stack_a, &stack_b, size);
+	close(fd_log);
 	(void)argc;
 	return (0);
 }

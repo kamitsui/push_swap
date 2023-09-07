@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:55:13 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/07 19:07:16 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/07 21:02:45 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,48 @@
 
 int	fd_log;// for debug
 
+void	recursive_bottom_side(t_stack *stack_a, t_stack *stack_b,
+//			t_range range)
+			t_range range, int temp_low)
+{
+	range.low = temp_low;
+	range.high = range.pi - 1;
+	ft_dprintf(fd_log,
+			">> call recursive sort_quick func -- bottom side\n");
+			// for debug
+	sort_quick(stack_a, stack_b, range);
+}
+
+void	recursive_top_side(t_stack *stack_a, t_stack *stack_b,
+			t_range range)
+//			t_range range, int temp_high)
+{
+	if (range.flag_sorted == false)
+	{
+		range.low = range.pi + 1;
+		//range.high = temp_high;
+		ft_dprintf(fd_log,
+				">> call recursive sort_quick func -- top side\n");
+				// for debug
+		sort_quick(stack_a, stack_b, range);
+	}
+}
+
 //void	sort_quick(t_stack *stack_a, t_stack *stack_b, int low, int high)
 void	sort_quick(t_stack *stack_a, t_stack *stack_b, t_range range)
 {
 	size_t	count;
 	int		temp_high;
-	bool	flag_sorted;
-	int		partition_index;
+//	bool	flag_sorted;
+//	int		partition_index;
 
 	count = 0;
-	temp_high = range.high;
-	int		temp_low = range.low;//for debug
-	flag_sorted = false;
+	temp_high = range.high;// for debug
+	int		temp_low = range.low;
 	if (range.low < range.high)
 	{
-		ft_dprintf(fd_log, "---- one time ---- range low[%d] ~ high[%d] ... top[%d]\n",
+		ft_dprintf(fd_log,
+				"---- one time ---- range low[%d] ~ high[%d] ... top[%d]\n",
 				range.low, range.high, stack_a->top);// for debug
 		debug_data(fd_log, stack_a, stack_b);// for debug
 		while (range.high < stack_a->top)
@@ -48,26 +75,20 @@ void	sort_quick(t_stack *stack_a, t_stack *stack_b, t_range range)
 		debug_data(fd_log, stack_a, stack_b);// for debug
 		ft_dprintf(fd_log, ">> call partition func -- pivot=[%d]\n",
 				stack_a->data[range.high]);// for debug
-		partition_index = partition(stack_a, stack_b, range, &flag_sorted);
+		//partition_index = partition(stack_a, stack_b, range, &flag_sorted);
+		range.pi = partition(stack_a, stack_b, range);
 		ft_dprintf(fd_log, ">> after partition func -- pi[%d] pivot=[%d]\n",
-				partition_index, stack_a->data[partition_index]);// for debug
+				range.pi, stack_a->data[range.pi]);// for debug
 		debug_data(fd_log, stack_a, stack_b);// for debug
-		range.high = partition_index - 1;
-		ft_dprintf(fd_log, ">> call recursive sort_quick func -- bottom side\n");// for debug
-		sort_quick(stack_a, stack_b, range);
-		if (flag_sorted == false)
-		{
-			range.low = partition_index + 1;
-			range.high = temp_high;
-			ft_dprintf(fd_log, ">> call recursive sort_quick func -- top side\n");// for debug
-			sort_quick(stack_a, stack_b, range);
-		}
+		recursive_top_side(stack_a, stack_b, range);
+		recursive_bottom_side(stack_a, stack_b, range, temp_low);
 		while (count > 0)
 		{
 			instruct_px(stack_a, stack_b);
 			count--;
 		}
-		ft_dprintf(fd_log, "---- end time ---- range low[%d] ~ high[%d] ... top[%d]\n",
+		ft_dprintf(fd_log,
+				"---- end time ---- range low[%d] ~ high[%d] ... top[%d]\n",
 				temp_low, temp_high, stack_a->top);// for debug
 	}
 }

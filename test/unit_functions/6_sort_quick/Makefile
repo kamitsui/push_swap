@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 13:40:27 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/07 14:17:41 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/07 20:12:58 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,8 +67,8 @@ SRCS_DIR = \
 		   $(PROJ_DIR)/srcs/instruct \
 		   $(PROJ_DIR)/srcs/debug \
 		   srcs
-OBJS_DIR = obj
-DEPS_DIR = .dep
+OBJS_DIR = objs
+DEPS_DIR = .deps
 
 # vpath for serching source files in multiple directories
 vpath %.c $(SRCS_DIR) $(SRCS_B_DIR)

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:01:03 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/06 14:01:46 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/07 20:54:13 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,15 @@ typedef struct s_range
 {
 	int	low;
 	int	high;
+	int	pi;
+	bool	flag_sorted;
 }	t_range;
 
 //void	sort_quick(t_stack *stack_a, t_stack *stack_b, int low, int high);
 void	sort_quick(t_stack *stack_a, t_stack *stack_b, t_range range);
 //int	partition(t_stack *stack_a, t_stack *stack_b, int low, int high);
-int	partition(t_stack *stack_a, t_stack *stack_b, t_range range, bool *flag_sorted);
+//int	partition(t_stack *stack_a, t_stack *stack_b, t_range range, bool *flag_sorted);
+int	partition(t_stack *stack_a, t_stack *stack_b, t_range range);
 
 /**
  * @brief This sort function using the insertion sort algorithm
