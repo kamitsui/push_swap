@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:07:32 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/06 15:12:25 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/07 17:06:30 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "debug.h"
 #include "sort.h"
 #include <stdlib.h>
+#include <unistd.h>
 
 //int	main(int argc, char *argv[])
 int	main(void)
@@ -49,7 +50,7 @@ int	main(void)
 	if (is_sorted(&stack_a) == false)
 		pi = partition(&stack_a, &stack_b, range, &flag_sorted);
 	ft_printf("pi[%d] pivot_data[%d]\n", pi, stack_a.data[pi]);
-	debug_data(&stack_a, &stack_b);// for debug
+	debug_data(STDOUT_FILENO, &stack_a, &stack_b);// for debug
 	free_stack(&stack_a, &stack_b, size);
 
 	ft_printf("---- 42, 3, 2, 0, 100, 59, 300, 43 ----\n");
@@ -63,7 +64,7 @@ int	main(void)
 	if (is_sorted(&stack_a2) == false)
 		pi = partition(&stack_a2, &stack_b2, range, &flag_sorted);
 	ft_printf("pi[%d] pivot_data[%d]\n", pi, stack_a2.data[pi]);
-	debug_data(&stack_a2, &stack_b2);// for debug
+	debug_data(STDOUT_FILENO, &stack_a2, &stack_b2);// for debug
 	free_stack(&stack_a2, &stack_b2, size);
 
 	ft_printf("---- 42, 3, 2, 0, 100, 59, 300, 43 ----\n");
@@ -77,7 +78,7 @@ int	main(void)
 	if (is_sorted(&stack_a3) == false)
 		pi = partition(&stack_a3, &stack_b3, range, &flag_sorted);
 	ft_printf("pi[%d] pivot_data[%d]\n", pi, stack_a3.data[pi]);
-	debug_data(&stack_a3, &stack_b3);// for debug
+	debug_data(STDOUT_FILENO, &stack_a3, &stack_b3);// for debug
 	free_stack(&stack_a3, &stack_b3, size);
 	return (0);
 }

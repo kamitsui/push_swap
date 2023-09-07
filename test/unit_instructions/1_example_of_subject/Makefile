@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 13:40:27 by kamitsui          #+#    #+#              #
-#    Updated: 2023/08/31 20:46:44 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/07 17:01:15 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS = \
 	   is_full.c \
 	   \
 	   debug_data.c \
+	   open_log.c \
 	   repeat_push.c \
 	   repeat_swap.c \
 	   repeat_rotate.c \
