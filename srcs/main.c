@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/07 19:06:11 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/08 09:19:31 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #include <fcntl.h>// debug
 
 int	fd_log; // for debug
+int	flag_debug; // debug
 
 /**
  * @brief main function of push swap (this program to sort integer values)
@@ -42,6 +43,7 @@ int	main(int argc, char *argv[])
 	int		data_b[BUFF_SIZE];
 	size_t	size;
 	fd_log = open_log("debug.log", O_TRUNC); // for debug
+	flag_debug = 0;// debug
 
 	if (argc < 2)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:04:22 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/05 15:46:49 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/08 13:33:49 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,22 @@ bool	is_full(t_stack *stack);
 bool	is_sorted(t_stack *stack);
 
 /**
+ * @brief スタックの整数がすでに昇順か否か調べる関数(範囲指定バージョン)
+ */
+bool	is_sorted_range(t_stack *stack, int low, int high);
+
+bool	is_reverse_sorted_range(t_stack *stack, int low, int high);
+
+/**
  * @brief Check if a is less than b
  */
 bool	is_less_than(int a, int b);
+
+/**
+ * @brief Check if the array's data in the range on stack is less than value
+ */
+bool	is_less_than_range_stack(t_stack *stack,
+		int low, int high, int pivot_data);
 
 /**
  * @brief スタックに値をプッシュする（先頭要素に値を入れる）

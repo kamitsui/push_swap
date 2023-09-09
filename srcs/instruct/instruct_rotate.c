@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 11:50:46 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/04 15:41:15 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/08 07:09:06 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 #include "instruct.h"
 #include "ft_printf.h"
 
+int	flag_debug;//debug
+int	fd_log;// debug
+
 /**
  * @brief execute ( ra | rb ) & output ( "ra\n" | "rb\n" )
  *
@@ -28,6 +31,8 @@ void	instruct_rx(t_stack *target)
 {
 	execute_rx(target);
 	ft_printf("r%s\n", target->name);
+	if (flag_debug == 1)// debug
+		ft_dprintf(fd_log, "r%s\n", target->name);// debug
 }
 
 /**
@@ -40,6 +45,8 @@ void	instruct_rr(t_stack *stack_a, t_stack *stack_b)
 {
 	execute_rr(stack_a, stack_b);
 	ft_printf("rr\n");
+	if (flag_debug == 1)// debug
+		ft_dprintf(fd_log, "rr\n");// debug
 }
 
 /**
@@ -51,6 +58,8 @@ void	instruct_rrx(t_stack *target)
 {
 	execute_rrx(target);
 	ft_printf("rr%s\n", target->name);
+	if (flag_debug == 1)// debug
+		ft_dprintf(fd_log, "rr%s\n", target->name);// debug
 }
 
 /**
@@ -63,4 +72,6 @@ void	instruct_rrr(t_stack *stack_a, t_stack *stack_b)
 {
 	execute_rrr(stack_a, stack_b);
 	ft_printf("rrr\n");
+	if (flag_debug == 1)// debug
+		ft_dprintf(fd_log, "rrr\n");// debug
 }

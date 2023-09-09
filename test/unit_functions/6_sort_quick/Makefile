@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 13:40:27 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/07 20:12:58 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/09 21:59:05 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,9 +44,13 @@ SRCS = \
 	   sort_insert.c \
 	   sort_quick.c \
 	   partition.c \
+	   sort_reverse.c \
 	   \
 	   is_less_than.c \
+	   is_less_than_range_stack.c \
+	   is_reverse_sorted_range.c \
 	   is_sorted.c \
+	   is_sorted_range.c \
 	   is_empty.c \
 	   is_full.c \
 	   \
@@ -129,9 +133,29 @@ re: fclean all
 
 # Run test
 run:
-	./run.sh
+	./run1.sh
+	./run2.sh
+	./run3.sh
+	./run4.sh
+	./run5.sh
+	./run6.sh
+	./run7.sh
+run1:
+	./run1.sh
+run2:
+	./run2.sh
+run3:
+	./run3.sh
+run4:
+	./run4.sh
+run5:
+	./run5.sh
+run6:
+	./run6.sh
+run7:
+	./run7.sh
 
 # Enable dependency file
 -include $(DEPS)
 
-.PHONY: debug all clean fclean re run
+.PHONY: debug all clean fclean re run run1 run2 run3 run4 run5 run6 run7
