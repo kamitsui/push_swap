@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:01:03 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/11 17:32:20 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/11 20:59:37 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_range
 	int	low;
 	int	high;
 	int	pi;
-	int		*flag;
+	int		flag;
 }	t_range;
 
 #define BIT_UNSORTED			0x00
@@ -37,7 +37,7 @@ typedef struct s_range
 #define BIT_SORTED_BOTTOM_SIDE	0x02
 
 void	sort_quick(t_stack *stack_a, t_stack *stack_b, t_range range);
-int	partition(t_stack *stack_a, t_stack *stack_b, t_range range);
+int	partition(t_stack *stack_a, t_stack *stack_b, t_range *range);
 
 void	sort_reverse(t_stack *stack_a, t_stack *stack_b, int size);
 

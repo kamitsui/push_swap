@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:55:13 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/11 15:23:37 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/11 20:59:29 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	fd_log;// for debug
 int	flag_debug;// for debug
 
 void	recursive_bottom_side(t_stack *stack_a, t_stack *stack_b,
-			t_range range, int temp_low)
+			t_range range, int original_low)
 {
-	range.low = temp_low;
+	range.low = original_low;
 	if (is_sorted_range(stack_a, range.low, range.high) == false)
 	{
 		range.high = range.pi - 1;
@@ -68,12 +68,13 @@ void	recursive_top_side(t_stack *stack_a, t_stack *stack_b,
 void	sort_quick(t_stack *stack_a, t_stack *stack_b, t_range range)
 {
 	int		count;
-	int		temp_high;
+	int		original_high;
+	int		original_low;
 	flag_debug = 1;
 
 	count = 0;
-	temp_high = range.high;// for debug
-	int		temp_low = range.low;
+	original_high = range.high;// for debug
+	original_low = range.low;
 
 	// rangeに２個以上のデータがある時は、sortを行う
 	if (range.low < range.high)
@@ -99,22 +100,30 @@ void	sort_quick(t_stack *stack_a, t_stack *stack_b, t_range range)
 				stack_a->data[range.high]);// for debug
 
 		// partition　high を pivot_dataとして、分割する関数
-		range.pi = partition(stack_a, stack_b, range);
+		range.pi = partition(stack_a, stack_b, &range);
 
-		if (is_sorted_range(stack_a, range.low, range.high) == false)
-		{
+		// TOPをstack_bに保持したまま、BOTTOM側をソートする
+//		if (range.flag & BIT_SORTED_TOP_SIDE != 0x00)
+//		{
+//			recursive_bottom_side(stack_a, stack_b, range, original_low);
+//		}
 
-			if (flag_debug == 1)//debug
-				ft_dprintf(fd_log, ">> after partition func -- pi[%d] pivot=[%d]\n",
-					range.pi, stack_a->data[range.pi]);// for debug
-			if (flag_debug == 1)//debug
-				debug_data(fd_log, stack_a, stack_b);// for debug
+		// 通常の再帰ソート
+//		else
+//		{
+			if (is_sorted_range(stack_a, range.low, range.high) == false)
+			{
 
-			recursive_top_side(stack_a, stack_b, range);
+				if (flag_debug == 1)//debug
+					ft_dprintf(fd_log, ">> after partition func -- pi[%d] pivot=[%d]\n",
+						range.pi, stack_a->data[range.pi]);// for debug
+				if (flag_debug == 1)//debug
+					debug_data(fd_log, stack_a, stack_b);// for debug
 
-			recursive_bottom_side(stack_a, stack_b, range, temp_low);
-
-		}
+				recursive_top_side(stack_a, stack_b, range);
+				recursive_bottom_side(stack_a, stack_b, range, original_low);
+			}
+//		}
 
 // -----------------  不要かも？？　range外のデータを戻す
 		while (count > 0)
@@ -126,6 +135,6 @@ void	sort_quick(t_stack *stack_a, t_stack *stack_b, t_range range)
 		if (flag_debug == 1)//debug
 			ft_dprintf(fd_log,
 				"---- end time ---- range low[%d] ~ high[%d] ... top[%d]\n",
-				temp_low, temp_high, stack_a->top);// for debug
+				original_low, original_high, stack_a->top);// for debug
 	}
 }

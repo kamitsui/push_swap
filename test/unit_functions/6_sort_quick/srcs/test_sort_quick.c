@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:07:32 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/11 17:35:46 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/11 21:00:35 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	main(int argc, char *argv[])
 	int		data_b[BUFF_SIZE];
 	size_t	size;
 	t_range	range;
-	int		flag;
 	fd_log = open_log("debug.log", O_TRUNC);// for debug
 	flag_debug = 1;// debug
 
@@ -52,8 +51,7 @@ int	main(int argc, char *argv[])
 		return (0);
 	range.low = 0;
 	range.high = stack_a.top;
-	flag = BIT_UNSORTED;
-	range.flag = &flag;
+	range.flag = BIT_UNSORTED;
 	sort_quick(&stack_a, &stack_b, range);
 	ft_dprintf(fd_log, "--- after ---\n");
 	debug_data(fd_log, &stack_a, &stack_b);// for debug
