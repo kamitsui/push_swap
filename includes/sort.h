@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:01:03 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/11 15:23:53 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/11 17:32:20 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ typedef struct s_range
 	int		*flag;
 }	t_range;
 
-#define FLAG_UNSORTED			0x00
-#define FLAG_SORTED_TOP_SIDE	0x01
-#define FLAG_SORTED_BOTTOM_SIDE	0x02
+#define BIT_UNSORTED			0x00
+#define BIT_SORTED_TOP_SIDE	0x01
+#define BIT_SORTED_BOTTOM_SIDE	0x02
 
 void	sort_quick(t_stack *stack_a, t_stack *stack_b, t_range range);
 int	partition(t_stack *stack_a, t_stack *stack_b, t_range range);

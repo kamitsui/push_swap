@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:19:20 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/11 15:24:41 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/11 17:32:31 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	sort(t_stack *stack_a, t_stack *stack_b, size_t size)
 		range.low = 0;
 		range.high = stack_a->top;
 		range.pi = stack_a->top;
-		flag = FLAG_UNSORTED;
+		flag = BIT_UNSORTED;
 
 		range.flag = &flag;
 		sort_quick(stack_a, stack_b, range);

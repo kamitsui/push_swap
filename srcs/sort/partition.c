@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/11 15:23:05 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/11 17:35:10 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,10 +138,10 @@ int	partition(t_stack *stack_a, t_stack *stack_b, t_range range)
 		}
 	}
 
-	// BOTTOM 側がソートされていたら、FLAGを立てる
+	// BOTTOM 側がソートされていたら、BITを立てる
 	if (is_sorted_range(stack_a, range.low, stack_a->top) == true)
 	{
-		*range.flag = FLAG_SORTED_BOTTOM_SIDE;
+		*range.flag |= BIT_SORTED_BOTTOM_SIDE;
 		if (flag_debug == 1)
 		{
 			ft_dprintf(fd_log,
@@ -153,13 +153,18 @@ int	partition(t_stack *stack_a, t_stack *stack_b, t_range range)
 
 // -------------- bottom side と pivot_data 整理完了 --------------
 // この時点がpivot_data がstack_a->topになる。（リターン値）
-	int	pi = stack_a->top;
+	range.pi = stack_a->top;
 	if (flag_debug == 1)//debug
 		debug_data(fd_log, stack_a, stack_b);
+// ----------------------------------------------------------------
 
 	// 避難していたTOP側が reverse_sort の時、 reverse_sort する 改良の余地あり（保留）
-	if (is_sorted(stack_b) == true)
+	//if (is_sorted(stack_b) == true)
+	//if (is_sorted_range(stack_b,
+	//	stack_b->top + 1 - count_less, stack_b->top + 1) == true)
+	if (is_sorted_range(stack_b, 0, stack_b->top) == true)
 	{
+		// TOP側のデータを逆ソートにする　stack_a 側に入る。
 		i = 0;
 		while (i < count_less)
 		{
@@ -168,42 +173,102 @@ int	partition(t_stack *stack_a, t_stack *stack_b, t_range range)
 			instruct_px(stack_a, stack_b);
 			i++;
 		}
-		// TOP side　がソートされていたら、FLAGを立てる　（if文は不要かも。。保留）
-		if (is_sorted_range(stack_a, range.pi + 1, range.high) == true)
-		{
-			*range.flag = FLAG_SORTED_TOP_SIDE;
-			if (flag_debug == 1)
-			{
-				ft_dprintf(fd_log,
-					">> bottom side is_sorted_range? [%d] true[%d] false[%d]\n",
-					is_sorted_range(stack_a, range.low, stack_a->top), true, false);
-				debug_data(fd_log, stack_a, stack_b);
-			}
-		}
+		*range.flag |= BIT_SORTED_TOP_SIDE;// TOP側がソート済みになる
+
+		// BOTTOM側もソート済みなら、。。。
+		// 未実装
+//		if ()
+//		{
+//		}
+
+		// TOP側のみソート済みなら。。。
+		// TOP要素をpbさせて、return(stack_a->top);
+//		else
+//		{
+		// 未実装
+//			i = 0;
+//			while (i++ < count_less)
+//				instruct_px(stack_a, stack_b);
+//			if (flag_debug == 1)
+//			{
+//				ft_dprintf(fd_log, "---- normal end partision function ----\n");
+//				debug_data(fd_log, stack_a, stack_b);
+//			}
+//			return (range.pi);
+//		}
 	}
 
-	// 9/10 not try
-	// 避難していたTOP側が　is_sort_range　なら、STACK_Aに戻さなくていい
-	// つまり余計なpa,pbをなくせる
-	//   pa  partition内で避難していたデータを戻さなくていい
-	// 　pb  呼び出し側のsort_quickでの余分なpbをなくせる (方法は要検討)
-//	else if (is_sorted_range(stack_b, range.low, range.high) == true)
-//	{
-//		while (i++ < size)
-//			instruct_px(stack_b, stack_a);
-//		*(range.flag_sorted) = true;
-//		return (stack_a->top);
-//	}
-
-	// 避難さていたstack_bの値を戻す作業　(pivot_data > data)
+	// 通常の処理
 	else
 	{
-		i = 0;
-		while (i++ < count_less)
-			instruct_px(stack_a, stack_b);
+		// TOP側のデータがソート済みの場合、stack_b のまま保持させる
+		// 注意　呼び出し側（sort_quick側）で検出と特殊処理をする必要あり。
+//		if (is_reverse_sorted(stack_b, 0, stack_b->top + 1) == true)
+//		{
+//			*range.flag |= BIT_SORTED_TOP_SIDE;
+//			// さらに、BOTTOM側とTOP側がソート済みなら、stack_b に避難させる
+//			if (*range.flag & BIT_SORTED_BOTTOM_SIDE != 0x00)
+//			{
+//				i = 0;
+//				while (i < count_over + 1)
+//				{
+//					instruct_px(stack_b);
+//					i++;
+//				}
+//			}
+//			return (stack_a->top);// ソートされていないものだけ返す
+//		}
+//
+//		// TOP側がソートされていない場合、paする（stack_a に戻す作業）
+//		// 通常の処理
+//		else
+//		{
+			// TOP側を戻す作業
+			i = 0;
+			while (i++ < count_less)
+				instruct_px(stack_a, stack_b);
+			if (flag_debug == 1)
+			{
+				ft_dprintf(fd_log, "---- normal end partision function ----\n");
+				debug_data(fd_log, stack_a, stack_b);
+			}
+//			return (range.pi);
+//		}
 	}
 
-	if (flag_debug == 1)
-		debug_data(fd_log, stack_a, stack_b);
-	return (pi);
+
+
+	// 避難さていたstack_bの値を戻す作業　(pivot_data > data)
+//	else
+//	{
+//
+//		// TOP side　がソートされていたら、BITを立てる　（if文は不要かも。。保留）
+//		if (is_sorted_range(stack_a, range.pi + 1, range.high) == true)
+//		{
+//			*range.flag = BIT_SORTED_TOP_SIDE;
+//			if (flag_debug == 1)
+//			{
+//				ft_dprintf(fd_log,
+//					">> bottom side is_sorted_range? [%d] true[%d] false[%d]\n",
+//					is_sorted_range(stack_a, range.low, stack_a->top), true, false);
+//				debug_data(fd_log, stack_a, stack_b);
+//			}
+//		}
+//
+//		if ((*range.flag & BIT_SORTED_TOP_SIDE) > 1)
+//		{
+//			// 避難していたTOP側が　is_sort_range　なら、STACK_Aに戻さなくていい
+//			// つまり余計なpa,pbをなくせる
+//			//   pa  partition内で避難していたデータを戻さなくていい
+//			// 　pb  呼び出し側のsort_quickでの余分なpbをなくせる (方法は要検討)
+//			while (i++ < size)
+//				instruct_px(stack_b, stack_a);
+//			*(range.flag_sorted) = true;
+//			return (stack_a->top);
+//		}
+//	}
+
+//	if (flag_debug == 1)
+//		debug_data(fd_log, stack_a, stack_b);
+	return (range.pi);
 }
