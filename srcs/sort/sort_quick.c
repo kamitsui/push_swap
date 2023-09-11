@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:55:13 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/10 21:03:12 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/11 15:23:37 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	sort_quick(t_stack *stack_a, t_stack *stack_b, t_range range)
 	int		temp_high;
 	flag_debug = 1;
 
-	*range.flag_sorted = false;// 実験　run5.shがKOする要因 →　採用
 	count = 0;
 	temp_high = range.high;// for debug
 	int		temp_low = range.low;

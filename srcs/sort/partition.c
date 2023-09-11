@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/10 20:56:45 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/11 15:23:05 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int	partition(t_stack *stack_a, t_stack *stack_b, t_range range)
 		sort_reverse(stack_a, stack_b, range.high - range.low);
 		if (flag_debug == 1)// for debug
 			debug_data(fd_log, stack_a, stack_b);
-		ft_dprintf(fd_log, "flag_sorted pointer [%p]\n", range.flag_sorted);
 		return (range.low);
 	}
 
@@ -76,7 +75,7 @@ int	partition(t_stack *stack_a, t_stack *stack_b, t_range range)
 	instruct_rx(stack_a);
 	int offset = range.low + 1;//pivot_dataをraさせたため、offsetを足す
 
-	// 仕分ける作業：大きい値は　stack_a内に留めて、　小さい値は stack_b に避難する
+// 仕分ける作業：大きい値は　stack_a内に留めて、　小さい値は stack_b に避難する
 	count_over = 0;
 	count_less = 0;
 	i = 0;
@@ -91,7 +90,9 @@ int	partition(t_stack *stack_a, t_stack *stack_b, t_range range)
 
 		// 補助：途中で、pivot_data以下の値がない時（つまりstack_bに避難しなくていい場合）
 		// 　　　breakして、無駄なraをなくす。
-		if (is_less_than_range_stack(stack_a, offset + count_over, range.high - count_less + count_over, pivot_data) == false)
+		if (is_less_than_range_stack(stack_a,
+				offset + count_over, range.high - count_less + count_over, pivot_data)
+					== false)
 		{
 			if (flag_debug == 1)
 				ft_dprintf(fd_log, "break\n");
@@ -100,7 +101,8 @@ int	partition(t_stack *stack_a, t_stack *stack_b, t_range range)
 
 		// 小さい値：stack_b へ避難させる pb
 		if (flag_debug == 1)// debug
-			ft_dprintf(fd_log, ">> if ( %d < %d\n", stack_a->data[stack_a->top], pivot_data);
+			ft_dprintf(fd_log,
+				">> if ( %d < %d\n", stack_a->data[stack_a->top], pivot_data);
 		if (stack_a->data[stack_a->top] < pivot_data)
 		{
 			instruct_px(stack_b, stack_a);
@@ -136,27 +138,55 @@ int	partition(t_stack *stack_a, t_stack *stack_b, t_range range)
 		}
 	}
 
-	// この時点がpivot_data がstack_a->topになる。（リターン値）
-	i = stack_a->top;
-	if (flag_debug == 1)//debug
-		debug_data(fd_log, stack_a, stack_b);
-
-	// 逆sortが必要な時   関数にまとめられるかも。。。？
-	if (is_sorted(stack_b) == true)
+	// BOTTOM 側がソートされていたら、FLAGを立てる
+	if (is_sorted_range(stack_a, range.low, stack_a->top) == true)
 	{
-		while (count_less > 0)
+		*range.flag = FLAG_SORTED_BOTTOM_SIDE;
+		if (flag_debug == 1)
 		{
-			if (count_less > 1)
-				instruct_rrx(stack_b);
-			instruct_px(stack_a, stack_b);
-			count_less--;
+			ft_dprintf(fd_log,
+				">> bottom side is_sorted_range? [%d] true[%d] false[%d]\n",
+				is_sorted_range(stack_a, range.low, stack_a->top), true, false);
+			debug_data(fd_log, stack_a, stack_b);
 		}
 	}
 
+// -------------- bottom side と pivot_data 整理完了 --------------
+// この時点がpivot_data がstack_a->topになる。（リターン値）
+	int	pi = stack_a->top;
+	if (flag_debug == 1)//debug
+		debug_data(fd_log, stack_a, stack_b);
+
+	// 避難していたTOP側が reverse_sort の時、 reverse_sort する 改良の余地あり（保留）
+	if (is_sorted(stack_b) == true)
+	{
+		i = 0;
+		while (i < count_less)
+		{
+			if (i < count_less - 1)
+				instruct_rrx(stack_b);
+			instruct_px(stack_a, stack_b);
+			i++;
+		}
+		// TOP side　がソートされていたら、FLAGを立てる　（if文は不要かも。。保留）
+		if (is_sorted_range(stack_a, range.pi + 1, range.high) == true)
+		{
+			*range.flag = FLAG_SORTED_TOP_SIDE;
+			if (flag_debug == 1)
+			{
+				ft_dprintf(fd_log,
+					">> bottom side is_sorted_range? [%d] true[%d] false[%d]\n",
+					is_sorted_range(stack_a, range.low, stack_a->top), true, false);
+				debug_data(fd_log, stack_a, stack_b);
+			}
+		}
+	}
 
 	// 9/10 not try
-	// スタックAがis__sort_rangeなら
-	// つまりpaをなくせば、再帰sort時の無駄なpaがなくなるのは？？？
+	// 避難していたTOP側が　is_sort_range　なら、STACK_Aに戻さなくていい
+	// つまり余計なpa,pbをなくせる
+	//   pa  partition内で避難していたデータを戻さなくていい
+	// 　pb  呼び出し側のsort_quickでの余分なpbをなくせる (方法は要検討)
 //	else if (is_sorted_range(stack_b, range.low, range.high) == true)
 //	{
 //		while (i++ < size)
@@ -167,12 +197,13 @@ int	partition(t_stack *stack_a, t_stack *stack_b, t_range range)
 
 	// 避難さていたstack_bの値を戻す作業　(pivot_data > data)
 	else
-		while (count_less-- > 0)
+	{
+		i = 0;
+		while (i++ < count_less)
 			instruct_px(stack_a, stack_b);
+	}
 
 	if (flag_debug == 1)
-	debug_data(fd_log, stack_a, stack_b);
-	if (flag_debug == 1)
-		ft_dprintf(fd_log, "flag [%d], true[%d] false[%d]\n", *(range.flag_sorted), true, false);
-	return (i);
+		debug_data(fd_log, stack_a, stack_b);
+	return (pi);
 }

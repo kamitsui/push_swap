@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:07:32 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/08 15:06:23 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/11 15:25:39 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char *argv[])
 	int		data_b[BUFF_SIZE];
 	size_t	size;
 	t_range	range;
-	bool	flag_sorted;
+	int		flag;
 	fd_log = open_log("debug.log", O_TRUNC);// for debug
 	flag_debug = 1;// debug
 
@@ -45,7 +45,6 @@ int	main(int argc, char *argv[])
 		stack_a.data = &data_a[0];
 		stack_b.data = &data_b[0];
 	}
-	//allocate_data(&stack_a, &stack_b, size);
 	set_data(&stack_a, &argv[1], size);
 	ft_dprintf(fd_log, "--- before ---\n");
 	debug_data(fd_log, &stack_a, &stack_b);// for debug
@@ -53,8 +52,8 @@ int	main(int argc, char *argv[])
 		return (0);
 	range.low = 0;
 	range.high = stack_a.top;
-	flag_sorted = false;
-	range.flag_sorted = &flag_sorted;
+	flag = FLAG_UNSORTED;
+	range.flag = &flag;
 	sort_quick(&stack_a, &stack_b, range);
 	ft_dprintf(fd_log, "--- after ---\n");
 	debug_data(fd_log, &stack_a, &stack_b);// for debug

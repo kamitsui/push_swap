@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:19:20 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/08 15:08:51 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/11 15:24:41 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	fd_log;//debug
 void	sort(t_stack *stack_a, t_stack *stack_b, size_t size)
 {
 	t_range	range;
-	bool	flag_sorted;
+	int		flag;
 
 	if (size < 7)
 		sort_small(stack_a, stack_b, size);
@@ -29,11 +29,9 @@ void	sort(t_stack *stack_a, t_stack *stack_b, size_t size)
 		range.low = 0;
 		range.high = stack_a->top;
 		range.pi = stack_a->top;
-		flag_sorted = false;
+		flag = FLAG_UNSORTED;
 
-		range.flag_sorted = &flag_sorted;
-//		ft_dprintf(fd_log, "flag_sorted pointer [%p]\n", range.flag_sorted);
+		range.flag = &flag;
 		sort_quick(stack_a, stack_b, range);
 	}
-		//sort_six_elements(stack_a, stack_b);
 }
