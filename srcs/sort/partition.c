@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/11 20:52:39 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/12 13:13:45 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,10 +158,7 @@ int	partition(t_stack *stack_a, t_stack *stack_b, t_range *range)
 		debug_data(fd_log, stack_a, stack_b);
 // ----------------------------------------------------------------
 
-	// 避難していたTOP側が reverse_sort の時、 reverse_sort する 改良の余地あり（保留）
-	//if (is_sorted(stack_b) == true)
-	//if (is_sorted_range(stack_b,
-	//	stack_b->top + 1 - count_less, stack_b->top + 1) == true)
+	// TOP側が reverse_sort なら、 reverse_sort する （保留）
 	if (is_sorted_range(stack_b, 0, stack_b->top) == true)
 	{
 		// TOP側のデータを逆ソートにする　stack_a 側に入る。
@@ -203,32 +200,33 @@ int	partition(t_stack *stack_a, t_stack *stack_b, t_range *range)
 	{
 		// TOP側のデータがソート済みの場合、stack_b のまま保持させる
 		// 注意　呼び出し側（sort_quick側）で検出と特殊処理をする必要あり。
-//		if (is_reverse_sorted(stack_b, 0, stack_b->top + 1) == true)
-//		{
-//			if (flag_debug == 1)// debug
-//			{
-//				ft_dprintf(fd_log, "---- sorted top side from partition func ----\n");
-//				debug_data(fd_log, stack_a, stack_b);
-//			}
-//			range->flag |= BIT_SORTED_TOP_SIDE;
+		if (is_reverse_sorted_range(stack_b, 0, stack_b->top) == true)
+		{
+			if (flag_debug == 1)// debug
+			{
+				ft_dprintf(fd_log, "---- sorted top side from partition func ----\n");
+				debug_data(fd_log, stack_a, stack_b);
+			}
+			range->flag |= BIT_SORTED_TOP_SIDE;
 
+			// 9/11 KOの原因か？　一旦コメントアウトで無効化
 			// さらに、BOTTOM側とTOP側がソート済みなら、stack_b に避難させる
-//			if (range->flag & BIT_SORTED_BOTTOM_SIDE != 0x00)
+//			if ((range->flag & BIT_SORTED_BOTTOM_SIDE) != 0x00)
 //			{
 //				i = 0;
 //				while (i < count_over + 1)
 //				{
-//					instruct_px(stack_b);
+//					instruct_px(stack_b, stack_a);
 //					i++;
 //				}
 //			}
-//			return (stack_a->top);// ソートされていないものだけ返す
-//		}
+			return (stack_a->top);// ソートされていないものだけ返す
+		}
 
 		// TOP側がソートされていない場合、paする（stack_a に戻す作業）
 		// 通常の処理
-//		else
-//		{
+		else
+		{
 			// TOP側を戻す作業
 			i = 0;
 			while (i++ < count_less)
@@ -239,7 +237,7 @@ int	partition(t_stack *stack_a, t_stack *stack_b, t_range *range)
 				debug_data(fd_log, stack_a, stack_b);
 			}
 			return (range->pi);
-//		}
+		}
 	}
 
 
