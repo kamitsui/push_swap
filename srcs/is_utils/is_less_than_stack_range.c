@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_less_than_range_stack.c                         :+:      :+:    :+:   */
+/*   is_less_than_stack_range.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 07:19:01 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/09 21:10:00 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/12 16:23:19 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	fd_log;//debug
  *
  * @return true: a < b  false: other
  */
-bool	is_less_than_range_stack(t_stack *stack,
+bool	is_less_than_stack_range(t_stack *stack,
 		int low, int high, int pivot_data)
 {
 	int		size;
