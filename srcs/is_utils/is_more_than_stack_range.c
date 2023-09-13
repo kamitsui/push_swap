@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_less_than_stack_range.c                         :+:      :+:    :+:   */
+/*   is_more_than_stack_range.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 07:19:01 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/13 13:56:01 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/13 10:31:59 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,6 @@
 #include "ft_printf.h"
 
 int	fd_log;//debug
-int	flag_debug;//debug
-
-static void	debug_is_less_than_stack_range(int data, int pivot_data)
-{
-	ft_dprintf(fd_log, "---- pivot_data[%d] > data[%d] ... result[%d]\n",
-		pivot_data, data, data < pivot_data);
-}
 
 /**
  * @brief Check if the array's data in the range on stack is less than value
@@ -35,7 +28,7 @@ static void	debug_is_less_than_stack_range(int data, int pivot_data)
  *
  * @return true: a < b  false: other
  */
-bool	is_less_than_stack_range(t_stack *stack,
+bool	is_more_than_stack_range(t_stack *stack,
 		int low, int high, int pivot_data)
 {
 	int		size;
@@ -47,14 +40,14 @@ bool	is_less_than_stack_range(t_stack *stack,
 	result = false;
 	while (i < size)
 	{
-		if (flag_debug == 0)// 1:debug on  0:debug off
-			debug_is_less_than_stack_range(stack->data[high - i], pivot_data);
-		if (pivot_data > stack->data[high - i])
+	ft_dprintf(fd_log, "---- data[%d] > pivot_data[%d]  ??\n", stack->data[high - i], pivot_data);
+		if (stack->data[high - i] > pivot_data)
 		{
 			result = true;
 			break ;
 		}
 		i++;
 	}
+	ft_dprintf(fd_log, "---- is_more_than -> [%d] %d:false %d:true\n", result, false, true);
 	return (result);
 }

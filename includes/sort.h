@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:01:03 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/12 14:10:38 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/13 15:51:35 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,14 @@ typedef struct s_range
 	int		flag;
 }	t_range;
 
-#define BIT_UNSORTED			0x00
-#define BIT_SORTED_TOP_SIDE		0x01// 不要になるかも
-#define BIT_SORTED_BOTTOM_SIDE	0x02// 不要になるかも
-#define BIT_MODE_REVERSE		0x04
+#define BIT_UNSORTED			0x01
+//#define BIT_SORTED_TOP_SIDE		0x01// 不要になるかも
+//#define BIT_SORTED_BOTTOM_SIDE	0x02// 不要になるかも
+#define BIT_MODE_REVERSE		0x02
 
 void	sort_quick(t_stack *src, t_stack *tmp, t_range range);
-int	partition(t_stack *stack_a, t_stack *stack_b, t_range *range);
+void	partition(t_stack *stack_a, t_stack *stack_b, t_range *range);
+void	partition_reverse(t_stack *stack_a, t_stack *stack_b, t_range *range);
 
 void	sort_reverse(t_stack *stack_a, t_stack *stack_b, int size);
 

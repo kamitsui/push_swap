@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/12 16:26:11 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:24:50 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,21 @@
 int	fd_log;// for debug
 int	flag_debug;//debug
 
-int	partition(t_stack *src, t_stack *tmp, t_range *range)
+void	partition(t_stack *src, t_stack *tmp, t_range *range)
 {
 	int	pivot_data;
 	int	size;
 	int	i;
 	int	count_over;
 	int	count_less;
-//	static t_f_is_compare				is_compare[2] = {
-//			is_less_than, is_more_than};
-//	static t_f_is_compare_stack_range	is_compare_stack_range[2] = {
-//			is_less_than_stack_range, is_more_than_stack_range};
-//	static t_f_is_sorted	is_reverse_sorted_direction[2] = {
-//			is_reverse_sorted_range, is_sorted_range};
-//	int	mode;
 	flag_debug = 1;
 
-//	mode = (range->flag & BIT_MODE_REVERSE) > 0;
+	if (flag_debug == 1)//debug
+	{
+		ft_dprintf(fd_log, ">> call partition\n");
+		debug_data(fd_log, src, tmp);
+	}
+
 	pivot_data = src->data[range->high];
 	size = range->high - range->low;
 
@@ -56,7 +54,7 @@ int	partition(t_stack *src, t_stack *tmp, t_range *range)
 		sort_reverse(src, tmp, range->high - range->low);
 		if (flag_debug == 1)// for debug
 			debug_data(fd_log, src, tmp);
-		return (range->low);
+		//return (range->low);
 	}
 
 	// ここからが通常の処理
@@ -132,11 +130,9 @@ int	partition(t_stack *src, t_stack *tmp, t_range *range)
 			i++;
 		}
 	}
-// -------------- bottom side と pivot_data 整理完了 --------------
-// この時点がpivot_data がsrc->topになる。（リターン値）
-	range->pi = src->top;
-	if (flag_debug == 1)//debug
-		debug_data(fd_log, src, tmp);
+// -------------- bottom side と top side 整理完了 --------------
+// この時点がtmp->topがrange->highになる。
+// 次はこのrangeがsortの対象（top side）
+	range->high = tmp->top;
 // ----------------------------------------------------------------
-	return (range->pi);
 }

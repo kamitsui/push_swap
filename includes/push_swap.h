@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:04:22 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/12 16:21:58 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/13 10:28:05 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ bool	is_less_than(int a, int b);
 bool	is_less_than_stack_range(t_stack *stack,
 		int low, int high, int pivot_data);
 
+bool	is_more_than_stack_range(t_stack *stack,
+		int low, int high, int pivot_data);
 /**
  * @brief スタックに値をプッシュする（先頭要素に値を入れる）
  */
