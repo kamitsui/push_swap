@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/13 16:26:02 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/14 11:42:33 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void	partition_reverse(t_stack *src, t_stack *tmp, t_range *range)
 
 	if (flag_debug == 1)// debug
 		debug_partition(src, *range, pivot_data);
-//		ft_dprintf(fd_log, "pivot_data[%d] size[%d]=high[%d]-low[%d] top[%d]\n",
-//			pivot_data, size, range->high, range->low, src->top);
 
 	// ----------------   ?? 不要になるかも　保留 -----------------
 	// pivot_dataまで（range外のデータ）をtmpに避難させる
@@ -82,11 +80,12 @@ void	partition_reverse(t_stack *src, t_stack *tmp, t_range *range)
 
 	// 目的：pivot_dataが一番大きい値なら、BOTTOM側は作らなくていい。highをそのままpiとして返す
 	if (is_less_than_stack_range(src, range->low, range->high, pivot_data) == false)
+		return ;
 		//return (range->high);
 
 	// range内のデータが逆順だったら、逆sortをさせる。
 	// この条件だめかも？？　bottom側のデータも見てしまっているため? 保留
-	if (is_reverse_sorted_range(src, range->low, range->high) == true)
+	if (is_sorted_range(src, range->low, range->high) == true)
 	{
 		if (flag_debug == 1)// for debug
 			ft_dprintf(fd_log, ">> call sort_reverse func -- size[%d]\n",
@@ -140,7 +139,7 @@ void	partition_reverse(t_stack *src, t_stack *tmp, t_range *range)
 				ft_dprintf(fd_log, "count_less++ -> [%d]\n", count_less);
 		}
 
-		// 小さい値：tmp へ避難させる push tmp
+		// 大きい値：tmp へ避難させる push tmp
 		else
 		{
 			if (flag_debug == 1)// debug
@@ -156,20 +155,6 @@ void	partition_reverse(t_stack *src, t_stack *tmp, t_range *range)
 	// pivot_dataをtmpのtopに戻す
 	instruct_rrx(tmp);
 
-
-//	// BOTTOM 側がソートされていたら、BITを立てる
-//	if (is_sorted_range(src, range->low, src->top) == true)
-//	{
-//		range->flag |= BIT_SORTED_BOTTOM_SIDE;
-//		if (flag_debug == 1)
-//		{
-//			ft_dprintf(fd_log,
-//				">> bottom side is_sorted_range? [%d] true[%d] false[%d]\n",
-//				is_sorted_range(src, range->low, src->top), true, false);
-//			debug_data(fd_log, src, tmp);
-//		}
-//	}
-
 // -------------- bottom side と pivot_data 整理完了 --------------
 // この時点がpivot_data がsrc->topになる。（リターン値）
 	range->pi = src->top;
@@ -179,127 +164,38 @@ void	partition_reverse(t_stack *src, t_stack *tmp, t_range *range)
 		debug_data(fd_log, src, tmp);
 // ----------------------------------------------------------------
 
-//	// TOP側が reverse_sort なら、 reverse_sort する （保留）
-//	if (is_sorted_range(tmp, 0, tmp->top) == true)
-//	{
-//		// TOP側のデータを逆ソートにする　src 側に入る。
-//		i = 0;
-//		while (i < count_less)
-//		{
-//			if (i < count_less - 1)
-//				instruct_rrx(tmp);
-//			instruct_px(src, tmp);
-//			i++;
-//		}
-//		range->flag |= BIT_SORTED_TOP_SIDE;// TOP側がソート済みになる
-//
-//		// BOTTOM側もソート済みなら、。。。
-//		// 未実装
-//		if ()
-//		{
-//		}
-
-		// TOP側のみソート済みなら。。。
-		// TOP要素をpbさせて、return(src->top);
-//		else
-//		{
-		// 未実装
-//			i = 0;
-//			while (i++ < count_less)
-//				instruct_px(src, tmp);
-//			if (flag_debug == 1)
-//			{
-//				ft_dprintf(fd_log, "---- normal end partision function ----\n");
-//				debug_data(fd_log, src, tmp);
-//			}
-//			return (range->pi);
-//		}
-//	}
-
-//	// 通常の処理
-//	else
-//	{
-//		// TOP側のデータがソート済みの場合、tmp のまま保持させる
-//		// 注意　呼び出し側（sort_quick側）で検出と特殊処理をする必要あり。
-//		if (is_reverse_sorted_range(tmp, 0, tmp->top) == true)
-//		{
-//			if (flag_debug == 1)// debug
-//			{
-//				ft_dprintf(fd_log, "---- sorted top side from partition func ----\n");
-//				debug_data(fd_log, src, tmp);
-//			}
-//			range->flag |= BIT_SORTED_TOP_SIDE;
-
-			// 9/11 KOの原因か？　一旦コメントアウトで無効化
-			// さらに、BOTTOM側とTOP側がソート済みなら、tmp に避難させる
-//			if ((range->flag & BIT_SORTED_BOTTOM_SIDE) != 0x00)
-//			{
-//				i = 0;
-//				while (i < count_over + 1)
-//				{
-//					instruct_px(tmp, src);
-//					i++;
-//				}
-//			}
-//			return (src->top);// ソートされていないものだけ返す
-//		}
-
-		// TOP側がソートされていない場合、paする（src に戻す作業）
-		// 通常の処理
-//		else
-//		{
-//			// TOP側を戻す作業
-//			i = 0;
-//			while (i++ < count_less)
-//				instruct_px(src, tmp);
-//			if (flag_debug == 1)
-//			{
-//				ft_dprintf(fd_log, "---- normal end partision function ----\n");
-//				debug_data(fd_log, src, tmp);
-//			}
-//			return (range->pi);
-//		}
-//	}
-
-
-
-	// 避難さていたtmpの値を戻す作業　(pivot_data > data)
-//	else
-//	{
-//
-//		// TOP side　がソートされていたら、BITを立てる　（if文は不要かも。。保留）
-//		if (is_sorted_range(src, range->pi + 1, range->high) == true)
-//		{
-//			range->flag = BIT_SORTED_TOP_SIDE;
-//			if (flag_debug == 1)
-//			{
-//				ft_dprintf(fd_log,
-//					">> bottom side is_sorted_range? [%d] true[%d] false[%d]\n",
-//					is_sorted_range(src, range->low, src->top), true, false);
-//				debug_data(fd_log, src, tmp);
-//			}
-//		}
-//
-//		if ((range->flag & BIT_SORTED_TOP_SIDE) > 1)
-//		{
-//			// 避難していたTOP側が　is_sort_range　なら、srcに戻さなくていい
-//			// つまり余計なpa,pbをなくせる
-//			//   pa  partition内で避難していたデータを戻さなくていい
-//			// 　pb  呼び出し側のsort_quickでの余分なpbをなくせる (方法は要検討)
-//			while (i++ < size)
-//				instruct_px(tmp, src);
-//			(range->flag_sorted) = true;
-//			return (src->top);
-//		}
-//	}
-
-//	if (flag_debug == 1)
-//		debug_data(fd_log, src, tmp);
-	if (flag_debug == 1)
+//	// TOP側が sorted なら、 reverse_sort する(stack_b側は常に逆順にしたい)
+	if (is_sorted_range(tmp, 0, tmp->top) == true)
 	{
-		ft_dprintf(fd_log, "-- range low[%d] high[%d] pi[%d]\n",
-				range->low, range->high, range->pi);
-		ft_dprintf(fd_log, "---- end partision_reverse ----\n");
+		// TOP側のデータを逆ソートにする　src 側に入る。
+		i = 0;
+		while (i < count_less)
+		{
+			if (i < count_less - 1)
+				instruct_rrx(tmp);
+			instruct_px(src, tmp);
+			i++;
+		}
+		if (flag_debug == 1)// debug
+		{
+			ft_dprintf(fd_log, "-- range low[%d] high[%d] pi[%d]\n",
+					range->low, range->high, range->pi);
+			ft_dprintf(fd_log, "---- end partision_reverse ----\n");
+			debug_data(fd_log, src, tmp);
+		}
+		return ;
 	}
-	//return (range->pi);
+
+	// 通常の処理  (逆ソートが不要の場合）
+	else
+	{
+		if (flag_debug == 1)// debug
+		{
+			ft_dprintf(fd_log, "-- range low[%d] high[%d] pi[%d]\n",
+					range->low, range->high, range->pi);
+			ft_dprintf(fd_log, "---- end partision_reverse ----\n");
+			debug_data(fd_log, src, tmp);
+		}
+		return ;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:55:13 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/13 16:54:14 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/14 11:47:56 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,8 +140,12 @@ void	sort_quick(t_stack *src, t_stack *tmp, t_range range)
 //	}
 
 		// mode == 0 の時??
-//			if (is_reverse_sorted_range(tmp, 0, tmp->top) == fase)
+			if (is_reverse_sorted_range(src, range.low, range.high) == false && mode == 1)
 				recursive_top_side(src, tmp, range);
+			else if (is_sorted_range(src, range.low, range.high) == false && mode == 0)
+				recursive_top_side(src, tmp, range);
+			else
+				return ;
 //			if (is_sorted_range(src, , range.high) == false)
 //				recursive_bottom_side(src, tmp, range, original_low);
 //		}
