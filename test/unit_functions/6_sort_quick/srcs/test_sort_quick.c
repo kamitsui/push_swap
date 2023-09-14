@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:07:32 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/11 21:00:35 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:58:56 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	main(int argc, char *argv[])
 		return (0);
 	range.low = 0;
 	range.high = stack_a.top;
-	range.flag = BIT_UNSORTED;
+	range.mode = MODE_NORMAL;
 	sort_quick(&stack_a, &stack_b, range);
 	ft_dprintf(fd_log, "--- after ---\n");
 	debug_data(fd_log, &stack_a, &stack_b);// for debug

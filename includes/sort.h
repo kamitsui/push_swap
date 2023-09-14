@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:01:03 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/13 15:51:35 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/14 18:43:24 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,21 @@ typedef struct s_range
 {
 	int	low;
 	int	high;
-	int	pi;
-	int		flag;
+	int	mode;
 }	t_range;
 
-#define BIT_UNSORTED			0x01
-//#define BIT_SORTED_TOP_SIDE		0x01// 不要になるかも
-//#define BIT_SORTED_BOTTOM_SIDE	0x02// 不要になるかも
-#define BIT_MODE_REVERSE		0x02
+typedef struct	s_count
+{
+	int	over;
+	int	less;
+}	t_count;
+
+#define MODE_NORMAL		0
+#define MODE_REVERSE	1
 
 void	sort_quick(t_stack *src, t_stack *tmp, t_range range);
-void	partition(t_stack *stack_a, t_stack *stack_b, t_range *range);
-void	partition_reverse(t_stack *stack_a, t_stack *stack_b, t_range *range);
+void	partition(t_stack *stack_a, t_stack *stack_b, t_range range);
+void	partition_reverse(t_stack *stack_a, t_stack *stack_b, t_range range);
 
 void	sort_reverse(t_stack *stack_a, t_stack *stack_b, int size);
 
@@ -47,7 +50,5 @@ void	sort_reverse(t_stack *stack_a, t_stack *stack_b, int size);
  * @brief This sort function using the insertion sort algorithm
  */
 void	sort_insert(t_stack *stack_a, t_stack *stack_b);
-
-typedef bool	(*t_f_is_sorted_direction)(t_stack *, int, int);
 
 #endif

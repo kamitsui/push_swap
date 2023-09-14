@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   is_more_than.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 17:19:20 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/14 12:57:29 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/08/28 15:25:11 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/09/14 18:56:26 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include "sort.h"
-#include "debug.h"//debug
-#include "ft_printf.h"//debug
+/**
+ * @file is_more_than.c
+ * @brief Check if a is more than b
+ */
+#include <stdbool.h>
 
-int	fd_log;//debug
-
-void	sort(t_stack *stack_a, t_stack *stack_b, size_t size)
+/**
+ * @brief Check if a is more than b
+ *
+ * @param a is the larger integer to compare
+ * @param b is the smaller integer to compare
+ *
+ * @return true: a > b  false: other
+ */
+bool	is_more_than(int a, int b)
 {
-	t_range	range;
-
-	if (size < 7)
-		sort_small(stack_a, stack_b, size);
+	if (a > b)
+		return (true);
 	else
-	{
-		range.low = 0;
-		range.high = stack_a->top;
-		range.mode = MODE_NORMAL;
-		sort_quick(stack_a, stack_b, range);
-	}
+		return (false);
 }

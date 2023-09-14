@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/13 10:28:57 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/14 18:59:17 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ SRCS = \
 	   sort_reverse.c \
 	   \
 	   is_less_than.c \
+	   is_more_than.c \
 	   is_less_than_stack_range.c \
 	   is_more_than_stack_range.c \
 	   is_sorted.c \

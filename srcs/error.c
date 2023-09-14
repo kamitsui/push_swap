@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:37:09 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/06 17:24:24 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/14 19:03:05 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 #include <string.h>
 #include <unistd.h>
 
+int	fd_log;// for debug
+int	flag_debug;//debug
+
 /**
  * @brief エラーメッセージを標準エラー出力する関数。(ヘルパー関数）
  *
@@ -32,6 +35,8 @@ static void	error_message(int error_code)
 		MSG_ERR_PUSH, MSG_ERR_PEEK};
 
 	ft_dprintf(STDERR_FILENO, msg[error_code]);
+	if (flag_debug == 1)// debug
+		ft_dprintf(fd_log, msg[error_code]);
 }
 
 /**

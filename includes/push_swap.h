@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:04:22 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/13 10:28:05 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/14 18:56:33 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,17 @@ bool	is_sorted_range(t_stack *stack, int low, int high);
 
 bool	is_reverse_sorted_range(t_stack *stack, int low, int high);
 
+typedef bool	(*t_f_is_sorted_direction)(t_stack *, int, int);
+
 /**
  * @brief Check if a is less than b
  */
 bool	is_less_than(int a, int b);
+
+/**
+ * @brief Check if a is more than b
+ */
+bool	is_more_than(int a, int b);
 
 /**
  * @brief Check if the array's data in the range on stack is less than value

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:55:13 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/14 11:47:56 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/14 21:45:15 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,82 +24,112 @@
 int	fd_log;// for debug
 int	flag_debug;// for debug
 
-void	recursive_top_side(t_stack *src, t_stack *tmp, t_range range)
+// TOP側が sorted なら、 reverse_sort する(stack_b側は常に逆順にしたい)
+//void	reverse_sort(t_stack *src, t_stack *tmp, t_range range)
+//{
+//	if (is_sorted_range(tmp, 0, tmp->top) == true)
+//	{
+//		// TOP側のデータを逆ソートにする　src 側に入る。
+//		i = 0;
+//		while (i < count.less)
+//		{
+//			if (i < count.less - 1)
+//				instruct_rrx(tmp);
+//			instruct_px(src, tmp);
+//			i++;
+//		}
+//		if (flag_debug == 1)// debug
+//		{
+//			ft_dprintf(fd_log, "-- range low[%d] high[%d] pi[%d]\n",
+//					range->low, range->high, range->pi);
+//			ft_dprintf(fd_log, "---- end partision_reverse ----\n");
+//			debug_data(fd_log, src, tmp);
+//		}
+//		return ;
+//	}
+//}
+
+void	end_process(t_stack *src, t_stack *tmp, int mode)
+{
+	if (mode == 1
+			&& is_reverse_sorted_range(src, 0, src->top)
+			&& is_sorted_range(tmp, 0, tmp->top))
+		while (is_empty(src) == false)
+			instruct_px(tmp, src);
+	else if (mode == 0
+			&& is_reverse_sorted_range(tmp, 0, tmp->top)
+			&& is_sorted_range(src, 0, src->top))
+		while (is_empty(tmp) == false)
+			instruct_px(src, tmp);
+	else
+		return ;
+}
+
+void	recursive_top_side(t_stack *src, t_stack *tmp, t_range range,
+		int original_tmp_top)
 {
 	if (flag_debug == 1)// for debug
-		ft_dprintf(fd_log, "mode[%d] 0:normal 1:reverse == false?\n",
-			(range.flag & BIT_MODE_REVERSE) > 0);
-	if ((range.flag & BIT_MODE_REVERSE) > 0)
 	{
-//		if (is_reverse_sorted_range(src, range.low, range.high) == false)
-//		{
-			if (flag_debug == 1)// for debug
-			{
-				ft_dprintf(fd_log,
-						">> call recursive sort_quick func -- top side mode[%d]\n",
-						(range.flag & BIT_MODE_REVERSE) > 0);
-			}
-			sort_quick(src, tmp, range);
-//		}
-//		else // check 用
-//			ft_dprintf(fd_log,
-//					">> don't call recursive sort_quick func -- top side\n");
+		ft_dprintf(fd_log,
+			">> call recursive sort_quick func -- top side -- from mode[%d]\n",
+			range.mode);
+	}
+	if (range.mode == 1)
+	{
+		ft_dprintf(fd_log, ">> before -- range low[%d] high[%d]\n", range.low, range.high);
+		range.low = 0;
+		range.high = src->top;
+		ft_dprintf(fd_log, ">> after -- range low[%d] high[%d]\n", range.low, range.high);
+		sort_quick(src, tmp, range);
 	}
 	else
 	{
-		if (is_reverse_sorted_range(tmp, range.low, range.high) == false)
-		{
-			range.flag = BIT_UNSORTED | BIT_MODE_REVERSE;
-			if (flag_debug == 1)// for debug
-			{
-				ft_dprintf(fd_log,
-						">> call recursive sort_quick func -- top side\n");
-			}
-			sort_quick(tmp, src, range);
-		}
-		else // check 用
-			ft_dprintf(fd_log,
-					">> don't call recursive sort_quick func -- top side\n");
+		ft_dprintf(fd_log, ">> before -- range low[%d] high[%d]\n", range.low, range.high);
+		range.low = original_tmp_top;
+		//range.low = 0;
+		range.high = tmp->top;
+		range.mode = MODE_REVERSE;
+		ft_dprintf(fd_log, ">> after -- range low[%d] high[%d]\n", range.low, range.high);
+		sort_quick(tmp, src, range);
 	}
 }
 
-void	recursive_bottom_side(t_stack *stack_a, t_stack *stack_b,
-			t_range range, int original_low)
+void	recursive_bottom_side(t_stack *src, t_stack *tmp, t_range range,
+		int original_tmp_top)
 {
-	range.low = original_low;
-	if (is_sorted_range(stack_a, range.low, range.high) == false)
-	{
-		range.high = range.pi - 1;
-
-		if (flag_debug == 1)// debug
-			ft_dprintf(fd_log,
-				">> call recursive sort_quick func -- bottom side\n");
-				// for debug
-
-		sort_quick(stack_a, stack_b, range);
-	}
-	// check用
-	else
+	if (flag_debug == 1)// debug
 		ft_dprintf(fd_log,
-			">> don't call recursive sort_quick func -- bottom side\n");
+			">> call recursive sort_quick func -- bottom side -- from mode[%d]\n",
+			range.mode);
+	if (range.mode == 1)
+	{
+		instruct_px(src, tmp);
+		range.low = original_tmp_top + 1;
+		range.high = tmp->top;
+		range.mode = MODE_NORMAL;
+		sort_quick(tmp, src, range);
+	}
+	else
+	{
+		instruct_px(tmp, src);
+		//range.low += 1;
+		range.high = src->top;
+		sort_quick(src, tmp, range);
+	}
 }
 
 void	sort_quick(t_stack *src, t_stack *tmp, t_range range)
 {
-	int		count;
-//	static t_f_is_sorted_direction	is_sorted_direction[2] = {
-//				is_sorted_range, is_reverse_sorted_range};
-	int		mode;
-	flag_debug = 1;
+	int	original_tmp_top;
+	static t_f_is_sorted_direction	is_sorted_direction[2] = {
+			is_sorted_range, is_reverse_sorted_range};
+	flag_debug = 1;//debug
 
-	mode = (range.flag & BIT_MODE_REVERSE) > 0;
-	count = 0;
+	original_tmp_top = tmp->top * (is_empty(tmp) == false);
 
-	// rangeのデータ１個だけ　|| range内がソート済みなら
-	// sortせず終了
-	if (range.low >= range.high)
-//	if (range.low >= range.high
-//			|| is_sorted_direction[mode](src, range.low, range.high) == true)
+	// 再帰の終了条件　rangeのデータ１個だけ || range内がソート済みなら
+	if (range.low >= range.high
+			|| is_sorted_direction[range.mode](src, range.low, range.high) == true)
 		return ;
 
 	if (flag_debug == 1)//debug
@@ -107,17 +137,16 @@ void	sort_quick(t_stack *src, t_stack *tmp, t_range range)
 		ft_dprintf(fd_log,
 			"---- one time ---- range low[%d] ~ high[%d] ... top[%d]\n",
 			range.low, range.high, src->top);// for debug
-		ft_dprintf(fd_log, "mode[%d]  0:normal 1:reverse\n", mode);
+		ft_dprintf(fd_log, "mode[%d]  0:normal 1:reverse\n", range.mode);
 		debug_data(fd_log, src, tmp);// for debug
-		ft_dprintf(fd_log, ">> call partition function\n");
 	}
 
 // -----------------------------------------------------------
 	// partition　high を pivot_dataとして、分割する関数
-	if (mode == 0)
-		partition(src, tmp, &range);
+	if (range.mode == 0)
+		partition(src, tmp, range);
 	else
-		partition_reverse(src, tmp, &range);
+		partition_reverse(src, tmp, range);
 // -----------------------------------------------------------
 
 	if (flag_debug == 1)//debug
@@ -126,40 +155,30 @@ void	sort_quick(t_stack *src, t_stack *tmp, t_range range)
 		debug_data(fd_log, src, tmp);
 	}
 
-
-	if (flag_debug == 1)//debug
-		ft_dprintf(fd_log,
-				">> is_reverse_sorted_range = [%d] false[%d] true[%d]\n",
-				is_reverse_sorted_range(tmp, range.low, range.high),
-				false, true);
-
-//	if (mode == 1)
+//	if (range.mode == 1)
 //	{
 //		ft_dprintf(fd_log, "exit\n");
 //		exit(0);
 //	}
 
-		// mode == 0 の時??
-			if (is_reverse_sorted_range(src, range.low, range.high) == false && mode == 1)
-				recursive_top_side(src, tmp, range);
-			else if (is_sorted_range(src, range.low, range.high) == false && mode == 0)
-				recursive_top_side(src, tmp, range);
-			else
-				return ;
-//			if (is_sorted_range(src, , range.high) == false)
-//				recursive_bottom_side(src, tmp, range, original_low);
-//		}
+	if (flag_debug == 1)// debug
+	{
+		ft_dprintf(fd_log, "range  low[%d] high[%d]\n",
+				range.low, range.high);
+	}
+
+	recursive_top_side(src, tmp, range, original_tmp_top);
+	recursive_bottom_side(src, tmp, range, original_tmp_top);
 
 
 // -----------------  top側のデータを戻す
-//	while (count > 0)
-//	{
-//		instruct_px(src, tmp);
-//		count--;
-//	}
+	end_process(src, tmp, range.mode);
 
 	if (flag_debug == 1)//debug
+	{
 		ft_dprintf(fd_log,
-			"---- end time ---- range low[%d] ~ high[%d] ... src->top[%d]\n",
-			range.low, range.high, src->top);
+			"---- end time ---- range low[%d] ~ high[%d] ... src->top[%d] tmp->top[%d]\n",
+			range.low, range.high, src->top, tmp->top);
+		debug_data(fd_log, src, tmp);
+	}
 }

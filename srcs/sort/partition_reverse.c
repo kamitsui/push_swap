@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/14 11:42:33 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/14 21:36:35 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,106 +20,107 @@
 int	fd_log;// for debug
 int	flag_debug;//debug
 
-static void	debug_partition(t_stack *stack, t_range range, int pivot_data)
+static void	move_data_reverse_mode(t_stack *src, t_stack *tmp,
+		t_count *count, int pivot_data)
 {
-	int	size;
-
-	size = range.high - range.low;
-	ft_dprintf(fd_log, "pivot_data[%d] size[%d]=high[%d]-low[%d] top[%d]\n",
-		pivot_data, size, range.high, range.low, stack->top);
+	// 小さい値：src 内でrotateする。
+	ft_dprintf(fd_log, "data[%d] pivot_data[%d]\n", src->data[src->top], pivot_data);
+	if (is_less_than(src->data[src->top], pivot_data) == true)
+	{
+		instruct_rx(src);
+		count->less++;
+		if (flag_debug == 1)// debug
+			ft_dprintf(fd_log, "count->less++ -> [%d]\n", count->less);
+	}
+	// 大きい値：tmp へ避難させる push tmp
+	else
+	{
+		instruct_px(tmp, src);
+		count->over++;
+		if (flag_debug == 1)// debug
+			ft_dprintf(fd_log, "count->over++ -> [%d]\n", count->over);
+	}
 }
 
-static void	debug_is_less_than_stack_range(t_stack *stack, int low, int high, int pivot_data)
-{
-	ft_dprintf(fd_log, "pivot_data[%d] > data[%d] ~ data[%d]\n",
-		pivot_data, low, high);
-	ft_dprintf(fd_log, ">> is_less_than_stack_range = [%d] false[%d] true[%d]\n",
-		is_less_than_stack_range(stack, low, high, pivot_data), false, true);
-}
-
-void	partition_reverse(t_stack *src, t_stack *tmp, t_range *range)
+void	partition_reverse(t_stack *src, t_stack *tmp, t_range range)
 {
 	int	pivot_data;
 	int	size;
 	int	i;
-	int	count_over;
-	int	count_less;
+	t_count	count;
 	flag_debug = 1;
-	//int	mode = (range->flag & BIT_MODE_REVERSE) > 0;
 
-	if (flag_debug == 1)//debug
-	{
-		ft_dprintf(fd_log, ">> call partition reverse\n");
-		debug_data(fd_log, src, tmp);
-	}
+	pivot_data = src->data[range.high];
+	size = range.high - range.low;
 
-	pivot_data = src->data[range->high];
-	size = range->high - range->low;
-
-	if (flag_debug == 1)// debug
-		debug_partition(src, *range, pivot_data);
-
-	// ----------------   ?? 不要になるかも　保留 -----------------
-	// pivot_dataまで（range外のデータ）をtmpに避難させる
-//	while (range->high < src->top)
-//		instruct_px(tmp, src);
-
-//	if (flag_debug == 1)// debug
-//		ft_dprintf(fd_log, "[%d]pivot_data\n", pivot_data);
-
-	// is_less_than_in_stack_range
-	// ピボットの値未満しかなければ、以下の処理をせず、range->highを返す
-	// 期待効果は、無駄な命令が減る。
+	// is_more_than_stack_range   pivot_dataより大きい数値があるか？
 	if (flag_debug == 1)// debug
 	{
-		debug_is_less_than_stack_range(src, range->low, range->high, pivot_data);
-//		ft_dprintf(fd_log, "pivot_data[%d] > range.low ~ range.high\n", pivot_data);
-//		ft_dprintf(fd_log, ">> is_less_than_stack_range = [%d] true[%d] false[%d]\n",
-//			is_less_than_stack_range(src, range->low, range->high, pivot_data));
+		ft_dprintf(fd_log, ">> call partition_reverse function\n");
+		ft_dprintf(fd_log,
+			">> is_more_than_stack_range = [%d] false[%d] true[%d]\n",
+			is_more_than_stack_range(src, range.low, range.high, pivot_data),
+			false, true);
 	}
 
-	// 目的：pivot_dataが一番大きい値なら、BOTTOM側は作らなくていい。highをそのままpiとして返す
-	if (is_less_than_stack_range(src, range->low, range->high, pivot_data) == false)
+	// partition 終了条件：pivot_dataが一番大きい値の場合
+	if (is_more_than_stack_range(src, range.low, range.high, pivot_data) == false)
+	{
+		if (flag_debug == 1)//debug
+			ft_dprintf(fd_log,
+				">> stop partition_reverse ... pivot_data is most large data\n");
+		instruct_px(tmp, src);
 		return ;
-		//return (range->high);
+	}
 
 	// range内のデータが逆順だったら、逆sortをさせる。
 	// この条件だめかも？？　bottom側のデータも見てしまっているため? 保留
-	if (is_sorted_range(src, range->low, range->high) == true)
+	if (is_sorted_range(src, range.low, range.high) == true)
 	{
 		if (flag_debug == 1)// for debug
 			ft_dprintf(fd_log, ">> call sort_reverse func -- size[%d]\n",
-					range->high - range->low);
-		sort_reverse(src, tmp, range->high - range->low);
+					range.high - range.low);
+		sort_reverse(src, tmp, range.high - range.low);
 		if (flag_debug == 1)// for debug
 			debug_data(fd_log, src, tmp);
-	//	return (range->high);
 	}
 
 	// ここからが通常の処理
 	// pivot_dataを逃す push src->tmp + rotate src
 	instruct_px(tmp, src);
 	instruct_rx(tmp);
-	count_over = 1;//pivot_dataをpushさせたため、count_overを足す
-	int offset = 0;// non meening
+	int offset;
+	int	transition_low;
+	int	transition_high;
 
-// 仕分ける作業：大きい値は　src内に留めて、　小さい値は tmp に避難する
-	//count_over = 0;
-	count_less = 0;
+	debug_data(fd_log, src, tmp);
+
+// 仕分ける作業：大きい値は　tmpへpushし、　小さい値は src内 に留める
+	count.over = 0;//pivot_dataをpushさせたため、count.overを足す
+	count.less = 0;
+	offset = 0;
 	i = 0;
 	while (i < size)
 	{
-		if (flag_debug == 1)// debug
-			ft_dprintf(fd_log, "[%d] is_less_than_range_stack(..., low[%d], high[%d], pivot_data[%d])\n",
-				is_less_than_stack_range(src, offset + count_over,
-					range->high - count_less + count_over, pivot_data),
-				src->data[offset + count_less],
-				src->data[range->high - count_less + count_over], pivot_data);
+		transition_low = offset + count.over;
+		transition_high = range.high - count.less + count.over;
+		if (flag_debug == 1)// debug  breakするか否か？の状態確認
+		{
+			ft_dprintf(fd_log, ">> transition_low[%d] transition_high[%d]\n",
+					transition_low, transition_high);
+			ft_dprintf(fd_log, ">> data_low[%d] ~ data_high[%d] ... pivot_data[%d]\n",
+				src->data[transition_low],
+				src->data[transition_high], pivot_data);
+			ft_dprintf(fd_log, ">> is_less_than_stack_range = [%d] false[%d] true[%d]\n",
+				is_less_than_stack_range(src, transition_low,
+				transition_high, pivot_data),
+				false, true);
+		}
 
-		// 補助：途中で、pivot_data以下の値がない時（つまりtmpに避難しなくていい場合）
-		// 　　　breakして、無駄なraをなくす。
+		// ループ終了条件　pivot_data以下の値しかない場合
+		// breakして、無駄なraをなくす。
 		if (is_less_than_stack_range(src,
-				offset + count_over, range->high - count_less + count_over, pivot_data)
+				transition_low, transition_high, pivot_data)
 					== false)
 		{
 			if (flag_debug == 1)
@@ -127,75 +128,19 @@ void	partition_reverse(t_stack *src, t_stack *tmp, t_range *range)
 			break ;
 		}
 
-		// 小さい値：src 内でrotateする。
 		if (flag_debug == 1)// debug
+		{
 			ft_dprintf(fd_log,
-				">> if ( %d < %d\n", src->data[src->top], pivot_data);
-		if (src->data[src->top] < pivot_data)
-		{
-			instruct_rx(src);
-			count_less++;
-			if (flag_debug == 1)// debug
-				ft_dprintf(fd_log, "count_less++ -> [%d]\n", count_less);
+				">> is_more_than( %d , %d ) = [%d] false[%d] true[%d]\n",
+				src->data[src->top], pivot_data,
+				is_more_than(src->data[src->top], pivot_data), false, true);
 		}
-
-		// 大きい値：tmp へ避難させる push tmp
-		else
-		{
-			if (flag_debug == 1)// debug
-				ft_dprintf(fd_log, ">> call ra\n");
-			instruct_px(tmp, src);
-			count_over++;
-			if (flag_debug == 1)// debug
-				ft_dprintf(fd_log, "count_over++ -> [%d]\n", count_over);
-		}
+		ft_dprintf(fd_log, ">> call move_data_reverse\n");
+		move_data_reverse_mode(src, tmp, &count, pivot_data);
 		i++;
 	}
-
-	// pivot_dataをtmpのtopに戻す
+	i = 0;
+	while (i++ < count.less)
+		instruct_rrx(src);
 	instruct_rrx(tmp);
-
-// -------------- bottom side と pivot_data 整理完了 --------------
-// この時点がpivot_data がsrc->topになる。（リターン値）
-	range->pi = src->top;
-	range->high = src->top;
-	range->low = 0;
-	if (flag_debug == 1)//debug
-		debug_data(fd_log, src, tmp);
-// ----------------------------------------------------------------
-
-//	// TOP側が sorted なら、 reverse_sort する(stack_b側は常に逆順にしたい)
-	if (is_sorted_range(tmp, 0, tmp->top) == true)
-	{
-		// TOP側のデータを逆ソートにする　src 側に入る。
-		i = 0;
-		while (i < count_less)
-		{
-			if (i < count_less - 1)
-				instruct_rrx(tmp);
-			instruct_px(src, tmp);
-			i++;
-		}
-		if (flag_debug == 1)// debug
-		{
-			ft_dprintf(fd_log, "-- range low[%d] high[%d] pi[%d]\n",
-					range->low, range->high, range->pi);
-			ft_dprintf(fd_log, "---- end partision_reverse ----\n");
-			debug_data(fd_log, src, tmp);
-		}
-		return ;
-	}
-
-	// 通常の処理  (逆ソートが不要の場合）
-	else
-	{
-		if (flag_debug == 1)// debug
-		{
-			ft_dprintf(fd_log, "-- range low[%d] high[%d] pi[%d]\n",
-					range->low, range->high, range->pi);
-			ft_dprintf(fd_log, "---- end partision_reverse ----\n");
-			debug_data(fd_log, src, tmp);
-		}
-		return ;
-	}
 }
