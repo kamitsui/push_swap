@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 13:40:27 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/14 18:59:36 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/15 11:02:23 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -147,6 +147,7 @@ run:
 	./run9.sh
 	./run10.sh
 	./run11.sh
+	./run12.sh
 run1:
 	./run1.sh
 run2:
@@ -169,8 +170,10 @@ run10:
 	./run10.sh
 run11:
 	./run11.sh
+run12:
+	./run12.sh
 
 # Enable dependency file
 -include $(DEPS)
 
-.PHONY: debug all clean fclean re run run1 run2 run3 run4 run5 run6 run7 run8 run9 run10 run11
+.PHONY: debug all clean fclean re run run1 run2 run3 run4 run5 run6 run7 run8 run9 run10 run11 run12

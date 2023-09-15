@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:55:13 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/14 21:45:15 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/15 11:43:39 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,27 @@ int	flag_debug;// for debug
 
 void	end_process(t_stack *src, t_stack *tmp, int mode)
 {
+	if (flag_debug == 1)// debug
+		ft_dprintf(fd_log, ">> end_process from mode[%d]\n",
+			mode);
 	if (mode == 1
 			&& is_reverse_sorted_range(src, 0, src->top)
 			&& is_sorted_range(tmp, 0, tmp->top))
+	{
+		if (flag_debug == 1)// debug
+			ft_dprintf(fd_log, ">> move sorted data\n");
 		while (is_empty(src) == false)
 			instruct_px(tmp, src);
+	}
 	else if (mode == 0
 			&& is_reverse_sorted_range(tmp, 0, tmp->top)
 			&& is_sorted_range(src, 0, src->top))
+	{
+		if (flag_debug == 1)// debug
+			ft_dprintf(fd_log, ">> move sorted data\n");
 		while (is_empty(tmp) == false)
 			instruct_px(src, tmp);
+	}
 	else
 		return ;
 }
@@ -103,7 +114,7 @@ void	recursive_bottom_side(t_stack *src, t_stack *tmp, t_range range,
 			range.mode);
 	if (range.mode == 1)
 	{
-		instruct_px(src, tmp);
+		//instruct_px(src, tmp);
 		range.low = original_tmp_top + 1;
 		range.high = tmp->top;
 		range.mode = MODE_NORMAL;
@@ -130,7 +141,15 @@ void	sort_quick(t_stack *src, t_stack *tmp, t_range range)
 	// 再帰の終了条件　rangeのデータ１個だけ || range内がソート済みなら
 	if (range.low >= range.high
 			|| is_sorted_direction[range.mode](src, range.low, range.high) == true)
+	{
+		//if (range.mode == 0 && (range.low > 0)
+		//		&& (is_sorted_range(src, 0, range.low - 1) == false))
+		//{
+		//	while (src->top >= range.low)
+		//		instruct_px(tmp, src);
+		//}
 		return ;
+	}
 
 	if (flag_debug == 1)//debug
 	{
@@ -155,20 +174,36 @@ void	sort_quick(t_stack *src, t_stack *tmp, t_range range)
 		debug_data(fd_log, src, tmp);
 	}
 
-//	if (range.mode == 1)
-//	{
-//		ft_dprintf(fd_log, "exit\n");
-//		exit(0);
-//	}
-
 	if (flag_debug == 1)// debug
 	{
 		ft_dprintf(fd_log, "range  low[%d] high[%d]\n",
 				range.low, range.high);
 	}
 
+	if (is_sorted_direction[range.mode](src, 0, src->top) == true
+			&& is_sorted_direction[range.mode == MODE_NORMAL](tmp, 0, tmp->top) == true)
+		end_process(src, tmp, range.mode);
+
 	recursive_top_side(src, tmp, range, original_tmp_top);
+	if (flag_debug == 1)//debug
+	{
+		ft_dprintf(fd_log,
+			"---- end recursive_top_side ---- range low[%d] ~ high[%d] ... src->top[%d] tmp->top[%d] mode[%d]\n",
+			range.low, range.high, src->top, tmp->top, range.mode);
+	}
 	recursive_bottom_side(src, tmp, range, original_tmp_top);
+	if (flag_debug == 1)//debug
+	{
+		ft_dprintf(fd_log,
+			"---- end recursive_bottom_side ---- range low[%d] ~ high[%d] ... src->top[%d] tmp->top[%d] mode[%d]\n",
+			range.low, range.high, src->top, tmp->top, range.mode);
+	}
+
+//	if (range.mode == 1)
+//	{
+//		ft_dprintf(fd_log, "exit\n");
+//		exit(0);
+//	}
 
 
 // -----------------  top側のデータを戻す

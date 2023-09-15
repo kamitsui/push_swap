@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 07:19:01 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/13 13:56:01 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/15 10:34:17 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ bool	is_less_than_stack_range(t_stack *stack,
 	result = false;
 	while (i < size)
 	{
-		if (flag_debug == 0)// 1:debug on  0:debug off
+		if (flag_debug == 1)// 1:debug on  0:debug off
 			debug_is_less_than_stack_range(stack->data[high - i], pivot_data);
 		if (pivot_data > stack->data[high - i])
 		{

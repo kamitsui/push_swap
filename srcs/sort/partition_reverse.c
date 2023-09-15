@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/14 21:36:35 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/15 11:21:25 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ void	partition_reverse(t_stack *src, t_stack *tmp, t_range range)
 		ft_dprintf(fd_log, ">> call partition_reverse function\n");
 		ft_dprintf(fd_log,
 			">> is_more_than_stack_range = [%d] false[%d] true[%d]\n",
-			is_more_than_stack_range(src, range.low, range.high, pivot_data),
+			is_more_than_stack_range(src, range.low, range.high - 1, pivot_data),
 			false, true);
 	}
 
 	// partition 終了条件：pivot_dataが一番大きい値の場合
-	if (is_more_than_stack_range(src, range.low, range.high, pivot_data) == false)
+	if (is_more_than_stack_range(src, range.low, range.high - 1, pivot_data) == false)
 	{
 		if (flag_debug == 1)//debug
 			ft_dprintf(fd_log,
@@ -81,8 +81,20 @@ void	partition_reverse(t_stack *src, t_stack *tmp, t_range range)
 			ft_dprintf(fd_log, ">> call sort_reverse func -- size[%d]\n",
 					range.high - range.low);
 		sort_reverse(src, tmp, range.high - range.low);
+		//instruct_px(tmp, src);
 		if (flag_debug == 1)// for debug
 			debug_data(fd_log, src, tmp);
+		return ;
+	}
+
+	// partition 終了条件：pivod_dataが一番小さい値の場合
+	if (is_less_than_stack_range(src, range.low, range.high, pivot_data) == false)
+	{
+		if (flag_debug == 1)//debug
+			ft_dprintf(fd_log,
+				">> stop partition_reverse ... pivot data is most small data\n");
+		instruct_rx(src);
+		return ;
 	}
 
 	// ここからが通常の処理
@@ -102,8 +114,9 @@ void	partition_reverse(t_stack *src, t_stack *tmp, t_range range)
 	i = 0;
 	while (i < size)
 	{
-		transition_low = offset + count.over;
-		transition_high = range.high - count.less + count.over;
+		transition_low = offset + count.less;
+		//transition_high = range.high - count.less + count.over;
+		transition_high = src->top;
 		if (flag_debug == 1)// debug  breakするか否か？の状態確認
 		{
 			ft_dprintf(fd_log, ">> transition_low[%d] transition_high[%d]\n",
@@ -111,17 +124,17 @@ void	partition_reverse(t_stack *src, t_stack *tmp, t_range range)
 			ft_dprintf(fd_log, ">> data_low[%d] ~ data_high[%d] ... pivot_data[%d]\n",
 				src->data[transition_low],
 				src->data[transition_high], pivot_data);
-			ft_dprintf(fd_log, ">> is_less_than_stack_range = [%d] false[%d] true[%d]\n",
-				is_less_than_stack_range(src, transition_low,
+			ft_dprintf(fd_log, ">> is_more_than_stack_range = [%d] false[%d] true[%d]\n",
+				is_more_than_stack_range(src, transition_low,
 				transition_high, pivot_data),
 				false, true);
+			ft_dprintf(fd_log, ">> check include data more than pivot_data\n");
 		}
 
 		// ループ終了条件　pivot_data以下の値しかない場合
 		// breakして、無駄なraをなくす。
-		if (is_less_than_stack_range(src,
-				transition_low, transition_high, pivot_data)
-					== false)
+		if (is_more_than_stack_range(src,
+				transition_low, transition_high, pivot_data) == false)
 		{
 			if (flag_debug == 1)
 				ft_dprintf(fd_log, "break\n");
