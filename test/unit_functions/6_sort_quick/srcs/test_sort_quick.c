@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:07:32 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/14 16:58:56 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/15 14:09:26 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-int	fd_log;
-int	flag_debug;
+int	g_fd_log;
+int	g_flag_debug;
 
 int	main(int argc, char *argv[])
 {
@@ -31,8 +31,8 @@ int	main(int argc, char *argv[])
 	int		data_b[BUFF_SIZE];
 	size_t	size;
 	t_range	range;
-	fd_log = open_log("debug.log", O_TRUNC);// for debug
-	flag_debug = 1;// debug
+	g_fd_log = open_log("debug.log", O_TRUNC);// for debug
+	g_flag_debug = 1;// debug
 
 	init_stack(&stack_a, (char *)"a");
 	init_stack(&stack_b, (char *)"b");
@@ -45,20 +45,20 @@ int	main(int argc, char *argv[])
 		stack_b.data = &data_b[0];
 	}
 	set_data(&stack_a, &argv[1], size);
-	ft_dprintf(fd_log, "--- before ---\n");
-	debug_data(fd_log, &stack_a, &stack_b);// for debug
+	ft_dprintf(g_fd_log, "--- before ---\n");
+	debug_data(g_fd_log, &stack_a, &stack_b);// for debug
 	if (is_sorted(&stack_a) == true)
 		return (0);
 	range.low = 0;
 	range.high = stack_a.top;
 	range.mode = MODE_NORMAL;
 	sort_quick(&stack_a, &stack_b, range);
-	ft_dprintf(fd_log, "--- after ---\n");
-	debug_data(fd_log, &stack_a, &stack_b);// for debug
-	ft_dprintf(fd_log, ">> is_sorted(stack_a)? [%d]  is_empty(stack_b)? [%d]\n",
+	ft_dprintf(g_fd_log, "--- after ---\n");
+	debug_data(g_fd_log, &stack_a, &stack_b);// for debug
+	ft_dprintf(g_fd_log, ">> is_sorted(stack_a)? [%d]  is_empty(stack_b)? [%d]\n",
 			is_sorted(&stack_a), is_empty(&stack_b));
 	free_stack(&stack_a, &stack_b, size);
-	close(fd_log);
+	close(g_fd_log);
 	(void)argc;
 	return (0);
 }

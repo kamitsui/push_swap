@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/08 09:19:31 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/15 14:20:17 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 #include "debug.h"// debug
 #include <fcntl.h>// debug
 
-int	fd_log; // for debug
-int	flag_debug; // debug
+int	g_fd_log; // for debug
+int	g_flag_debug; // debug
 
 /**
  * @brief main function of push swap (this program to sort integer values)
@@ -42,8 +42,8 @@ int	main(int argc, char *argv[])
 	int		data_a[BUFF_SIZE];
 	int		data_b[BUFF_SIZE];
 	size_t	size;
-	fd_log = open_log("debug.log", O_TRUNC); // for debug
-	flag_debug = 0;// debug
+	g_fd_log = open_log("debug.log", O_TRUNC); // for debug
+	g_flag_debug = 0;// debug
 
 	if (argc < 2)
 		return (1);
@@ -58,12 +58,12 @@ int	main(int argc, char *argv[])
 		stack_b.data = &data_b[0];
 	}
 	set_data(&stack_a, &argv[1], size);
-	debug_data(fd_log, &stack_a, &stack_b);// for debug
+	debug_data(g_fd_log, &stack_a, &stack_b);// for debug
 	if (is_sorted(&stack_a) == false)
 		sort(&stack_a, &stack_b, size);
-	debug_data(fd_log, &stack_a, &stack_b);// for debug
+	debug_data(g_fd_log, &stack_a, &stack_b);// for debug
 	free_stack(&stack_a, &stack_b, size);
-	close (fd_log);// for debug
+	close (g_fd_log);// for debug
 	return (0);
 }
 //	system("leaks push_swap");// for debug

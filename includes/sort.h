@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:01:03 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/14 18:43:24 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/15 14:07:49 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ typedef struct	s_count
 	int	less;
 }	t_count;
 
+typedef struct s_transition
+{
+	int	low;
+	int	high;
+}	t_transition;
+
 #define MODE_NORMAL		0
 #define MODE_REVERSE	1
 
@@ -45,6 +51,8 @@ void	partition(t_stack *stack_a, t_stack *stack_b, t_range range);
 void	partition_reverse(t_stack *stack_a, t_stack *stack_b, t_range range);
 
 void	sort_reverse(t_stack *stack_a, t_stack *stack_b, int size);
+void	set_transition(t_transition *transition,
+			t_count count, t_range range, t_stack *src);
 
 /**
  * @brief This sort function using the insertion sort algorithm

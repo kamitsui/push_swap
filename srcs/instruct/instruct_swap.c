@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:50:30 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/08 07:06:39 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/15 14:22:55 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 #include "instruct.h"
 #include "ft_printf.h"
 
-int	flag_debug;//debug
-int	fd_log;// debug
+int	g_flag_debug;//debug
+int	g_fd_log;// debug
 
 /**
  * @brief execute ( sa | sb ) & output ( "sa\\n" | "sb\\n" )
@@ -30,8 +30,8 @@ void	instruct_sx(t_stack *target)
 {
 	execute_sx(target);
 	ft_printf("s%s\n", target->name);
-	if (flag_debug == 1)// debug
-		ft_dprintf(fd_log, "s%s\n", target->name);// debug
+	if (g_flag_debug == 1)// debug
+		ft_dprintf(g_fd_log, "s%s\n", target->name);// debug
 }
 
 /**
@@ -44,6 +44,6 @@ void	instruct_ss(t_stack *stack_a, t_stack *stack_b)
 {
 	execute_ss(stack_a, stack_b);
 	ft_printf("ss\n");
-	if (flag_debug == 1)// debug
-		ft_dprintf(fd_log, "ss\n");// debug
+	if (g_flag_debug == 1)// debug
+		ft_dprintf(g_fd_log, "ss\n");// debug
 }

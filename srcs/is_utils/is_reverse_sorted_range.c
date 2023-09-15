@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 13:28:10 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/12 13:13:32 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/15 14:24:34 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
  */
 #include "push_swap.h"
 #include <stdbool.h>
-
-#include "ft_printf.h"// debug
-int	fd_log;//debug
 
 /**
  * @brief スタックの整数がすでに降順か否か調べる関数(範囲指定バージョン)

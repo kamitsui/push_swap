@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 06:41:08 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/08 06:45:43 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/15 14:24:57 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ bool	is_sorted_range(t_stack *stack, int low, int high)
 	int	i;
 	int	size;
 
-	//size = stack->top + 1;
 	size = high - low;
 	if (size < 0)
 		return (false);
