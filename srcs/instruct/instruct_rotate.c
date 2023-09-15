@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 11:50:46 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/15 14:22:40 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/15 18:52:29 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@
 #include "instruct.h"
 #include "ft_printf.h"
 
-int	g_flag_debug;//debug
-int	g_fd_log;// debug
+// for debug
+#include "debug.h"
+int	g_fd_log;
+int	g_flag_debug;
 
 /**
  * @brief execute ( ra | rb ) & output ( "ra\n" | "rb\n" )
@@ -31,9 +33,10 @@ void	instruct_rx(t_stack *target)
 {
 	execute_rx(target);
 	ft_printf("r%s\n", target->name);
-	if (g_flag_debug == 1)// debug
-		ft_dprintf(g_fd_log, "r%s\n", target->name);// debug
 }
+//debug code
+//	if (g_flag_debug == DEBUG_ON)
+//		ft_dprintf(g_fd_log, "r%s\n", target->name);
 
 /**
  * @brief execute rr & output "rr\\n"
@@ -45,9 +48,10 @@ void	instruct_rr(t_stack *stack_a, t_stack *stack_b)
 {
 	execute_rr(stack_a, stack_b);
 	ft_printf("rr\n");
-	if (g_flag_debug == 1)// debug
-		ft_dprintf(g_fd_log, "rr\n");// debug
 }
+//debug code
+//	if (g_flag_debug == DEBUG_ON)
+//		ft_dprintf(g_fd_log, "rr\n");
 
 /**
  * @brief execute ( ra | rb ) & output ( "rra\n" | "rrb\n" )
@@ -58,9 +62,10 @@ void	instruct_rrx(t_stack *target)
 {
 	execute_rrx(target);
 	ft_printf("rr%s\n", target->name);
-	if (g_flag_debug == 1)// debug
-		ft_dprintf(g_fd_log, "rr%s\n", target->name);// debug
 }
+//debug code
+//	if (g_flag_debug == DEBUG_ON)
+//		ft_dprintf(g_fd_log, "rr%s\n", target->name);
 
 /**
  * @brief execute rrr & output "rrr\\n"
@@ -72,6 +77,7 @@ void	instruct_rrr(t_stack *stack_a, t_stack *stack_b)
 {
 	execute_rrr(stack_a, stack_b);
 	ft_printf("rrr\n");
-	if (g_flag_debug == 1)// debug
-		ft_dprintf(g_fd_log, "rrr\n");// debug
 }
+//debug code
+//	if (g_flag_debug == DEBUG_ON)
+//		ft_dprintf(g_fd_log, "rrr\n");

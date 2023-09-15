@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:07:32 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/15 14:09:26 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/15 17:51:11 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+// disable when review
 int	g_fd_log;
 int	g_flag_debug;
 
@@ -31,8 +32,8 @@ int	main(int argc, char *argv[])
 	int		data_b[BUFF_SIZE];
 	size_t	size;
 	t_range	range;
-	g_fd_log = open_log("debug.log", O_TRUNC);// for debug
-	g_flag_debug = 1;// debug
+	g_fd_log = open_log("debug.log", O_TRUNC);
+	g_flag_debug = DEBUG_ON;
 
 	init_stack(&stack_a, (char *)"a");
 	init_stack(&stack_b, (char *)"b");
@@ -46,7 +47,7 @@ int	main(int argc, char *argv[])
 	}
 	set_data(&stack_a, &argv[1], size);
 	ft_dprintf(g_fd_log, "--- before ---\n");
-	debug_data(g_fd_log, &stack_a, &stack_b);// for debug
+	debug_data(g_fd_log, &stack_a, &stack_b);
 	if (is_sorted(&stack_a) == true)
 		return (0);
 	range.low = 0;
@@ -54,9 +55,10 @@ int	main(int argc, char *argv[])
 	range.mode = MODE_NORMAL;
 	sort_quick(&stack_a, &stack_b, range);
 	ft_dprintf(g_fd_log, "--- after ---\n");
-	debug_data(g_fd_log, &stack_a, &stack_b);// for debug
-	ft_dprintf(g_fd_log, ">> is_sorted(stack_a)? [%d]  is_empty(stack_b)? [%d]\n",
-			is_sorted(&stack_a), is_empty(&stack_b));
+	debug_data(g_fd_log, &stack_a, &stack_b);
+	ft_dprintf(g_fd_log,
+		">> is_sorted(stack_a)? [%d]  is_empty(stack_b)? [%d]\n",
+		is_sorted(&stack_a), is_empty(&stack_b));
 	free_stack(&stack_a, &stack_b, size);
 	close(g_fd_log);
 	(void)argc;

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 07:19:01 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/15 14:24:12 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/15 16:28:44 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@
 #include <stdbool.h>
 #include "ft_printf.h"
 
-int	g_fd_log;//debug
-int	g_flag_debug;// debug
+// for debug
+//#include "debug.h"
 
-static void	debug_is_more_than_stack_range(int data, int pivot_data)
-{
-	ft_dprintf(g_fd_log, "---- pivot_data[%d] > data[%d] ... result[%d]\n",
-		pivot_data, data, data > pivot_data);
-}
+// debug function
+//static void	debug_is_more_than_stack_range(int data, int pivot_data)
+//{
+//	ft_dprintf(g_fd_log, "---- pivot_data[%d] > data[%d] ... result[%d]\n",
+//		pivot_data, data, data > pivot_data);
+//}
 
 /**
  * @brief Check if the array's data in the range on stack is less than value
@@ -47,8 +48,6 @@ bool	is_more_than_stack_range(t_stack *stack,
 	result = false;
 	while (i < size)
 	{
-		if (g_flag_debug == 1)// 1:debug on  0:debug off
-			debug_is_more_than_stack_range(stack->data[high - i], pivot_data);
 		if (pivot_data < stack->data[high - i])
 		{
 			result = true;
@@ -58,3 +57,7 @@ bool	is_more_than_stack_range(t_stack *stack,
 	}
 	return (result);
 }
+//debug code
+//whileループ内のbreak条件をデバッグする
+//		if (g_flag_debug == DEBUG_ON)
+//			debug_is_more_than_stack_range(stack->data[high - i], pivot_data);

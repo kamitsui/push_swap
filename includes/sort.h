@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:01:03 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/15 14:07:49 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/15 19:08:56 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
  */
 #ifndef SORT_H
 # define SORT_H
+
+# include "push_swap.h"
 
 void	sort(t_stack *stack_a, t_stack *stack_b, size_t size);
 void	sort_small(t_stack *stack_a, t_stack *stack_b, size_t size);
@@ -47,8 +49,13 @@ typedef struct s_transition
 #define MODE_REVERSE	1
 
 void	sort_quick(t_stack *src, t_stack *tmp, t_range range);
+void	recursive_top_side(
+		t_stack *src, t_stack *tmp, t_range range, int original_tmp_top);
+void	recursive_bottom_side(
+		t_stack *src, t_stack *tmp, t_range range, int original_tmp_top);
 void	partition(t_stack *stack_a, t_stack *stack_b, t_range range);
 void	partition_reverse(t_stack *stack_a, t_stack *stack_b, t_range range);
+void	end_process(t_stack *src, t_stack *tmp, int mode);
 
 void	sort_reverse(t_stack *stack_a, t_stack *stack_b, int size);
 void	set_transition(t_transition *transition,

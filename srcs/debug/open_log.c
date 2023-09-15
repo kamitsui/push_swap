@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 16:48:31 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/06 17:26:25 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/15 15:38:29 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "error.h"
 #include <fcntl.h>
 
-int		open_log(const char *file_name, int oflag)
+int	open_log(const char *file_name, int oflag)
 {
 	int	fd;
 

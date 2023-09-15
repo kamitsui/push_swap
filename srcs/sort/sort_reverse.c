@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 13:07:39 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/10 18:23:52 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/15 19:17:13 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 #include "debug.h"//debug
 #include "ft_printf.h"//debug
 
-int	fd_log;//debug
+int	g_fd_log;
+int	g_flag_debug;
 
 void	rotable_stack_b(t_stack *stack_a, t_stack *stack_b, int size)
 {
@@ -99,10 +100,5 @@ void	sort_reverse(t_stack *stack_a, t_stack *stack_b, int size)
 			instruct_px(stack_a, stack_b);
 			i++;
 		}
-//		while (i < size - 1)
-//		{
-//			instruct_px(stack_a, stack_b);
-//			i++;
-//		}
 	}
 }
