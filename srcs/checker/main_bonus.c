@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/15 19:13:22 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/15 20:00:21 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@
 #include "init.h"
 #include "error.h"
 #include "checker.h"
-
-// for debug
-#include "debug.h"
-int	g_flag_debug;
 
 /**
  * @brief main function of checker
@@ -46,7 +42,6 @@ int	main(int argc, char *argv[])
 	int		data_b[BUFF_SIZE];
 	size_t	size;
 
-	g_flag_debug = DEBUG_OFF;
 	if (argc < 2)
 		return (1);
 	init_stack(&stack_a, (char *)"a");

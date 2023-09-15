@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 12:53:05 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/02 13:04:13 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/15 20:38:04 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,14 @@ enum	e_instruction
 	INST_ERROR
 };
 
-int	checker(t_stack *stack_a, t_stack *stack_b);
+int					checker(t_stack *stack_a, t_stack *stack_b);
 
 /**
  * @brief search type from instruction string
  */
 enum e_instruction	search_type_instruction(char *instruction);
 
-
-void	execute_instruction(enum e_instruction type,
-							t_stack *stack_a, t_stack *stack_b);
+void				execute_instruction(enum e_instruction type,
+						t_stack *stack_a, t_stack *stack_b);
 
 #endif

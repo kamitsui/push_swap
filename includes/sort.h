@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:01:03 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/15 19:08:56 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/15 20:41:31 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_range
 	int	mode;
 }	t_range;
 
-typedef struct	s_count
+typedef struct s_count
 {
 	int	over;
 	int	less;
@@ -45,14 +45,14 @@ typedef struct s_transition
 	int	high;
 }	t_transition;
 
-#define MODE_NORMAL		0
-#define MODE_REVERSE	1
+# define MODE_NORMAL		0
+# define MODE_REVERSE	1
 
 void	sort_quick(t_stack *src, t_stack *tmp, t_range range);
 void	recursive_top_side(
-		t_stack *src, t_stack *tmp, t_range range, int original_tmp_top);
+			t_stack *src, t_stack *tmp, t_range range, int original_tmp_top);
 void	recursive_bottom_side(
-		t_stack *src, t_stack *tmp, t_range range, int original_tmp_top);
+			t_stack *src, t_stack *tmp, t_range range, int original_tmp_top);
 void	partition(t_stack *stack_a, t_stack *stack_b, t_range range);
 void	partition_reverse(t_stack *stack_a, t_stack *stack_b, t_range range);
 void	end_process(t_stack *src, t_stack *tmp, int mode);

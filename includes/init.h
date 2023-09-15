@@ -6,15 +6,15 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 22:57:10 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/29 17:54:47 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/15 20:39:08 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INIT_H
 # define INIT_H
 
-#include <stdlib.h>
-#include "push_swap.h"
+# include <stdlib.h>
+# include "push_swap.h"
 
 /**
  * @brief count number of elements data

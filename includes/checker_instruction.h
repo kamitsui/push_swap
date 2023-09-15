@@ -6,14 +6,14 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 20:42:42 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/02 13:04:39 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/15 20:38:50 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECKER_INSTRUCTION_H
 # define CHECKER_INSTRUCTION_H
 
-#include "checker.h"
+# include "checker.h"
 
 /**
  * @brief Function pointer for collecting is_instruction_**\n

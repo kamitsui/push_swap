@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:04:22 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/14 18:56:33 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/15 20:40:03 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ bool	is_more_than(int a, int b);
  * @brief Check if the array's data in the range on stack is less than value
  */
 bool	is_less_than_stack_range(t_stack *stack,
-		int low, int high, int pivot_data);
+			int low, int high, int pivot_data);
 
 bool	is_more_than_stack_range(t_stack *stack,
-		int low, int high, int pivot_data);
+			int low, int high, int pivot_data);
 /**
  * @brief スタックに値をプッシュする（先頭要素に値を入れる）
  */

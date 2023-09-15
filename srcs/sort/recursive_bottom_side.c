@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:09:53 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/15 18:55:11 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/15 20:04:04 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 // for debug
 #include "debug.h"
 #include "ft_printf.h"
+
 int	g_fd_log;
 int	g_flag_debug;
 
