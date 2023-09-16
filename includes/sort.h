@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:01:03 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/16 15:30:03 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/16 19:18:23 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 # include "push_swap.h"
 
 void	sort(t_stack *stack_a, t_stack *stack_b, size_t size);
-void	sort_small(t_stack *src, t_stack *tmp, size_t size);
+void	sort_small(t_stack *src, t_stack *tmp, size_t size, int mode);
 
-void	sort_two_elements(t_stack *stack_a);
-void	sort_three_elements(t_stack *stack_a);
-void	sort_six_elements(t_stack *stack_a, t_stack *stack_b);
+void	sort_two_elements(t_stack *stack, int mode);
+void	sort_three_elements(t_stack *stack, int mode);
+void	sort_six_elements(t_stack *src, t_stack *tmp, int mode);
 
 typedef struct s_range
 {
@@ -56,6 +56,9 @@ void	recursive_bottom_side(
 void	partition(t_stack *stack_a, t_stack *stack_b, t_range range);
 void	partition_reverse(t_stack *stack_a, t_stack *stack_b, t_range range);
 void	end_process(t_stack *src, t_stack *tmp, int mode);
+
+// partition_small
+void	partition_three_elements(t_stack *src, t_stack *tmp, t_range range);
 
 void	sort_reverse(t_stack *stack_a, t_stack *stack_b, int size);
 void	set_transition(t_transition *transition,

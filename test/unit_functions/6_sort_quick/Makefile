@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 13:40:27 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/16 12:27:07 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/16 19:20:41 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRCS = \
 	   end_process.c \
 	   partition.c \
 	   partition_reverse.c \
+	   partition_small.c \
 	   sort_reverse.c \
 	   \
 	   is_less_than.c \

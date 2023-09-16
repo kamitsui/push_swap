@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/16 16:31:49 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/16 19:22:44 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 // データを仕分けるヘルパー関数
 // 小さいデータはtmpへpush、大きいデータはsrc内でrotate
-static void	move_data_normal_mode(t_stack *src, t_stack *tmp,
+static void	move_data(t_stack *src, t_stack *tmp,
 		t_count *count, int pivot_data)
 {
 	if (is_less_than(src->data[src->top], pivot_data) == true)
@@ -71,6 +71,13 @@ static int	handle_exception(t_stack *src, t_stack *tmp, t_range range)
 		sort_reverse(src, tmp, range.high - range.low);
 		return (1);
 	}
+	//if (range.high - range.low < 7)
+	if (range.high - range.low == 2 && range.mode == MODE_NORMAL)
+	{
+		partition_three_elements(src, tmp, range);
+		//partition_small(srcs, tmp, range);
+		return (1);
+	}
 	return (0);
 }
 //partition関数に入った時の状態＋is_less_than...関数をデバッグ
@@ -106,7 +113,7 @@ void	partition(t_stack *src, t_stack *tmp, t_range range)
 		if (is_less_than_stack_range(src,
 				transition.low, transition.high, pivot_data) == false)
 			break ;
-		move_data_normal_mode(src, tmp, &count, pivot_data);
+		move_data(src, tmp, &count, pivot_data);
 		i++;
 	}
 	move_large_data(src, count);

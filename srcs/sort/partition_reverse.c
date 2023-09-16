@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/16 17:19:42 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/16 21:23:14 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 // データを仕分けるヘルパー関数
 // 小さいデータはsrc内でrotate、大きいデータはtmpへpush
-static void	move_data_reverse_mode(t_stack *src, t_stack *tmp,
+static void	move_data(t_stack *src, t_stack *tmp,
 		t_count *count, int pivot_data)
 {
 	if (is_less_than(src->data[src->top], pivot_data) == true)
@@ -56,6 +56,12 @@ static int	handle_exception(t_stack *src, t_stack *tmp, t_range range)
 		sort_reverse(src, tmp, range.high - range.low);
 		return (1);
 	}
+	if (range.high - range.low == 2 && range.mode == MODE_REVERSE)
+	{
+		partition_three_elements(src, tmp, range);
+		//partition_small(srcs, tmp, range);
+		return (1);
+	}
 	return (0);
 }
 //debug code
@@ -85,7 +91,7 @@ void	set_transition(t_transition *transition,
 	}
 }
 
-void	move_large_data_reverse_mode(t_stack *src, t_stack *tmp, t_count count)
+static void	move_large_data(t_stack *src, t_stack *tmp, t_count count)
 {
 	int	i;
 
@@ -116,10 +122,10 @@ void	partition_reverse(t_stack *src, t_stack *tmp, t_range range)
 		if (is_more_than_stack_range(src,
 				transition.low, transition.high, pivot_data) == false)
 			break ;
-		move_data_reverse_mode(src, tmp, &count, pivot_data);
+		move_data(src, tmp, &count, pivot_data);
 		i++;
 	}
-	move_large_data_reverse_mode(src, tmp, count);
+	move_large_data(src, tmp, count);
 }
 //デバッグ用のフラグ
 //	g_flag_debug = 1;

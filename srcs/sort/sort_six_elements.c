@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 20:47:45 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/05 09:42:19 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/16 18:06:00 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,18 @@ static int	search_min_data(int *data, int size)
 /**
  * @brief Move the minimum data to the top of the stack.
  *
- * @param stack_a
+ * @param stack
  */
-static void	move_min_data(t_stack *stack_a)
+static void	move_min_data(t_stack *stack)
 {
 	int	position_min;
 
-	position_min = search_min_data(stack_a->data, stack_a->top + 1);
-	if (position_min >= stack_a->top / 2)
+	position_min = search_min_data(stack->data, stack->top + 1);
+	if (position_min >= stack->top / 2)
 	{
-		while (position_min != stack_a->top)
+		while (position_min != stack->top)
 		{
-			instruct_rx(stack_a);
+			instruct_rx(stack);
 			position_min++;
 		}
 	}
@@ -70,7 +70,7 @@ static void	move_min_data(t_stack *stack_a)
 	{
 		while (position_min >= 0)
 		{
-			instruct_rrx(stack_a);
+			instruct_rrx(stack);
 			position_min--;
 		}
 	}
@@ -80,18 +80,18 @@ static void	move_min_data(t_stack *stack_a)
  * @brief This sort function is used when the number of elements
  * is less than or equal to six.
  *
- * @param stack_a is unsorted.
- * @param stack_b is empty.
+ * @param src is unsorted.
+ * @param tmp is working stack
  */
-void	sort_six_elements(t_stack *stack_a, t_stack *stack_b)
+void	sort_six_elements(t_stack *src, t_stack *tmp, int mode)
 {
-	while (stack_a->top >= 3)
+	while (src->top >= 3)
 	{
-		move_min_data(stack_a);
-		instruct_px(stack_b, stack_a);
+		move_min_data(src);
+		instruct_px(tmp, src);
 	}
-	if (is_sorted(stack_a) == false)
-		sort_three_elements(stack_a);
-	while (is_empty(stack_b) == false)
-		instruct_px(stack_a, stack_b);
+	if (is_sorted(src) == false)
+		sort_three_elements(src, mode);
+	while (is_empty(tmp) == false)
+		instruct_px(src, tmp);
 }

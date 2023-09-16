@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:50:30 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/15 20:01:43 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/16 20:40:00 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	instruct_sx(t_stack *target)
 {
 	execute_sx(target);
 	ft_printf("s%s\n", target->name);
+	if (g_flag_debug == DEBUG_ON)// debug
+		ft_dprintf(g_fd_log, "s%s\n", target->name);// debug
 }
 //debug code
 //	if (g_flag_debug == DEBUG_ON)// debug

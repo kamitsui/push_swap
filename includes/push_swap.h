@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:04:22 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/15 20:40:03 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/16 17:55:02 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ bool	is_sorted_range(t_stack *stack, int low, int high);
 
 bool	is_reverse_sorted_range(t_stack *stack, int low, int high);
 
+/**
+ * @brief is_sorted_range関数とis_reverse_sorted_range関数を
+ * 関数ポインタとして扱うために定義
+ */
 typedef bool	(*t_f_is_sorted_direction)(t_stack *, int, int);
 
 /**
@@ -73,6 +77,12 @@ bool	is_less_than(int a, int b);
  * @brief Check if a is more than b
  */
 bool	is_more_than(int a, int b);
+
+/**
+ * @brief is_less_than関数とis_more_than関数を
+ * 関数ポインタとして扱うために定義
+ */
+typedef bool	(*t_f_is_compare_than)(int, int);
 
 /**
  * @brief Check if the array's data in the range on stack is less than value
