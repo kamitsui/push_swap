@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 06:41:08 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/15 14:24:57 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/16 17:11:22 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@
  */
 #include "push_swap.h"
 #include <stdbool.h>
+
+//// for debug
+//#include "debug.h"
+//#include "ft_printf.h"
+//
+//int	g_fd_log;
+//int	g_flag_debug;
 
 /**
  * @brief スタックの整数がすでに昇順か否か調べる関数(範囲指定バージョン)
@@ -31,7 +38,7 @@ bool	is_sorted_range(t_stack *stack, int low, int high)
 
 	size = high - low;
 	if (size < 0)
-		return (false);
+		return (true);
 	i = 0;
 	while (i < size)
 	{
@@ -41,3 +48,6 @@ bool	is_sorted_range(t_stack *stack, int low, int high)
 	}
 	return (true);
 }
+//debug code
+//	if (g_flag_debug == DEBUG_ON)
+//	ft_dprintf(g_fd_log, ">> low[%d] high[%d] size[%d]\n", low, high, size);

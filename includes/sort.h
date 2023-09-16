@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:01:03 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/15 20:41:31 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/16 15:30:03 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "push_swap.h"
 
 void	sort(t_stack *stack_a, t_stack *stack_b, size_t size);
-void	sort_small(t_stack *stack_a, t_stack *stack_b, size_t size);
+void	sort_small(t_stack *src, t_stack *tmp, size_t size);
 
 void	sort_two_elements(t_stack *stack_a);
 void	sort_three_elements(t_stack *stack_a);

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/15 14:14:17 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/16 16:31:49 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,6 @@ static int	handle_exception(t_stack *src, t_stack *tmp, t_range range)
 	int	pivot_data;
 
 	pivot_data = src->data[range.high];
-	if (is_less_than_stack_range(src,
-			range.low, range.high - 1, pivot_data) == false)
-	{
-		return (1);
-	}
 	if (is_reverse_sorted_range(src, range.low, range.high) == true)
 	{
 		sort_reverse(src, tmp, range.high - range.low);
@@ -80,17 +75,7 @@ static int	handle_exception(t_stack *src, t_stack *tmp, t_range range)
 }
 //partition関数に入った時の状態＋is_less_than...関数をデバッグ
 //	if (g_flag_debug == 1)// debug
-//	{
 //		ft_dprintf(g_fd_log, ">> call partition function\n");
-//		ft_dprintf(g_fd_log,
-//			">> is_less_than_stack_range = [%d] false[%d] true[%d]\n",
-//			is_less_than_stack_range(src,
-//			range.low, range.high - 1, pivot_data), false, true);
-//	}
-//一つ目の終了条件：pivot_data以下の値がない場合、分割せず終了する
-//		if (g_flag_debug == 1)//debug
-//			ft_dprintf(g_fd_log,
-//				">> stop partition ... pivot data is most small data\n");
 //sort_reverse関数を呼ぶ前のデバッグ
 //		if (g_flag_debug == 1)// for debug
 //			ft_dprintf(g_fd_log, ">> call sort_reverse func -- size[%d]\n",

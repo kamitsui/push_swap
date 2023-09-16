@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/15 14:18:23 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/16 17:19:42 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,9 @@ static int	handle_exception(t_stack *src, t_stack *tmp, t_range range)
 	int	pivot_data;
 
 	pivot_data = src->data[range.high];
-	if (is_more_than_stack_range(src,
-			range.low, range.high - 1, pivot_data) == false)
-	{
-		instruct_px(tmp, src);
-		return (1);
-	}
 	if (is_sorted_range(src, range.low, range.high) == true)
 	{
 		sort_reverse(src, tmp, range.high - range.low);
-		return (1);
-	}
-	if (is_less_than_stack_range(src,
-			range.low, range.high, pivot_data) == false)
-	{
-		instruct_rx(src);
 		return (1);
 	}
 	return (0);
@@ -73,17 +61,7 @@ static int	handle_exception(t_stack *src, t_stack *tmp, t_range range)
 //debug code
 //partition関数に入った時の状態＋is_more_than...関数の結果
 //	if (g_flag_debug == 1)// debug
-//	{
 //		ft_dprintf(g_fd_log, ">> call partition_reverse function\n");
-//		ft_dprintf(g_fd_log,
-//			">> is_more_than_stack_range = [%d] false[%d] true[%d]\n",
-//			is_more_than_stack_range(src,
-//			range.low, range.high - 1, pivot_data), false, true);
-//	}
-//一つ目の終了条件：pivot_data以上のデータがない場合、分割せず終了する
-//		if (g_flag_debug == 1)//debug
-//			ft_dprintf(g_fd_log,
-//				">> stop partition_reverse ... pivot_data is most large data\n");
 //sort_reverse関数を呼ぶ前のデバッグ
 //		if (g_flag_debug == 1)// for debug
 //			ft_dprintf(g_fd_log, ">> call sort_reverse func -- size[%d]\n",
@@ -91,10 +69,6 @@ static int	handle_exception(t_stack *src, t_stack *tmp, t_range range)
 //sort_reverse関数の後のスタックをデバッグ
 //		if (g_flag_debug == 1)// for debug
 //			debug_data(g_fd_log, src, tmp);
-//pivot_dataが一番小さい値の場合
-//		if (g_flag_debug == 1)//debug
-//			ft_dprintf(g_fd_log,
-//				">> stop partition_reverse ... pivot data is most small data\n");
 
 void	set_transition(t_transition *transition,
 			t_count count, t_range range, t_stack *src)

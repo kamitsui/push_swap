@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:15:48 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/15 20:03:36 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/16 16:36:04 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	debug_put_message(int mode)
 		ft_dprintf(g_fd_log, ">> move sorted data ... from mode[%d]\n", mode);
 }
 
+// スタックAがソート済み、スタックBが逆ソート済みの場合、終了プロセスが走る
+// 処理内容：スタックBが空になるまでスタックAにpushする
 void	end_process(t_stack *src, t_stack *tmp, int mode)
 {
 	if (mode == 1

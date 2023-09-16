@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:55:13 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/15 20:05:33 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/16 16:26:11 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,15 @@ void	sort_quick(t_stack *src, t_stack *tmp, t_range range)
 	else
 		partition_reverse(src, tmp, range);
 	debug_after_partition(src, tmp, range);
-	if (is_sorted_direction[range.mode](src, 0, src->top) == true
-		&& is_sorted_direction[range.mode == MODE_NORMAL](tmp, 0, tmp->top)
-		== true)
-		end_process(src, tmp, range.mode);
-	recursive_top_side(src, tmp, range, original_tmp_top);
-	debug_after_recursive_top_side(src, tmp, range);
-	recursive_bottom_side(src, tmp, range, original_tmp_top);
-	debug_after_recursive_bottom_side(src, tmp, range);
+	if (is_sorted_direction[range.mode](src, 0, src->top) == false
+		|| is_sorted_direction[range.mode == MODE_NORMAL](tmp, 0, tmp->top)
+		== false)
+	{
+		recursive_top_side(src, tmp, range, original_tmp_top);
+		debug_after_recursive_top_side(src, tmp, range);
+		recursive_bottom_side(src, tmp, range, original_tmp_top);
+		debug_after_recursive_bottom_side(src, tmp, range);
+	}
 	end_process(src, tmp, range.mode);
 	debug_sort_quick_end(src, tmp, range);
 }
