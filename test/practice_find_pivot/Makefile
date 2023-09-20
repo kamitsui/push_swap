@@ -6,15 +6,17 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 13:40:27 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/17 22:13:39 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/20 19:57:06 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Target name
-NAME = a.out
+NAME1 = find_pivot
+NAME2 = find_median
 
 # Sources files
-SRCS = find_pivot.c
+SRCS1 = find_pivot.c
+SRCS2 = find_median.c
 
 # Directories
 SRCS_DIR = \
@@ -42,8 +44,10 @@ LD_CF = -g -fsanitize=address
 INC = -I$(PROJ_DIR)/includes
 
 # Object files and dependency files
-OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS:.c=.o))
-DEPS = $(addprefix $(DEPS_DIR)/, $(SRCS:.c=.d))
+OBJS1 = $(addprefix $(OBJS_DIR)/, $(SRCS1:.c=.o))
+DEPS1 = $(addprefix $(DEPS_DIR)/, $(SRCS1:.c=.d))
+OBJS2 = $(addprefix $(OBJS_DIR)/, $(SRCS2:.c=.o))
+DEPS2 = $(addprefix $(DEPS_DIR)/, $(SRCS2:.c=.d))
 
 # Rules for building object files
 $(OBJS_DIR)/%.o: %.c
@@ -56,12 +60,18 @@ $(DEPS_DIR)/%.d: %.c
 	@mkdir -p $(DEPS_DIR)
 
 # Default target
-all: $(NAME)
+all: $(NAME1) $(NAME2)
 
 # Mandatory Target
-$(NAME): $(LIBFT) $(LIB_PRINTF) $(OBJS)
-	$(CC) $(CFLAGS) $(LFLAGS) $(OBJS) $(LIB_PRINTF) -o $(NAME)
-#	$(CC) $(CFLAGS) $(LFLAGS) $(LD_CF) $(OBJS) -o $(NAME)
+1: $(NAME1)
+$(NAME1): $(LIBFT) $(LIB_PRINTF) $(OBJS1)
+	$(CC) $(CFLAGS) $(LFLAGS) $(OBJS1) $(LIB_PRINTF) -o $(NAME1)
+#	$(CC) $(CFLAGS) $(LFLAGS) $(LD_CF) $(OBJS) -o $(NAME1)
+
+2: $(NAME2)
+$(NAME2): $(LIBFT) $(LIB_PRINTF) $(OBJS2)
+	$(CC) $(CFLAGS) $(LFLAGS) $(OBJS2) $(LIB_PRINTF) -o $(NAME2)
+#	$(CC) $(CFLAGS) $(LFLAGS) $(LD_CF) $(OBJS) -o $(NAME2)
 
 # Library target
 $(LIB_PRINTF): $(LIBFT)
@@ -75,16 +85,19 @@ clean:
 
 # Clean and remove target
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME1) $(NAME2)
 
 # Rebuild target
 re: fclean all
 
 # Run test
 run:
-	./$(NAME)
+run1:
+	./$(NAME1)
+run2:
+	./$(NAME2)
 
 # Enable dependency file
 -include $(DEPS)
 
-.PHONY: debug all clean fclean re run
+.PHONY: debug all clean fclean re run run1 run2 1 2
