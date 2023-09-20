@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/11 20:51:49 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/04 14:55:14 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/19 23:00:36 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS = \
 	   ft_itoa_binary.c \
 	   ft_memcpy.c \
 	   ft_memmove.c \
+	   ft_qsort.c \
 	   ft_split.c \
 	   ft_strchr.c \
 	   ft_strdup.c \
