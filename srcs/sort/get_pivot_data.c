@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:08:59 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/20 22:36:44 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/20 22:42:15 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,24 @@ int	get_pivot_data(t_stack *stack, t_range range)
 		int mid2 = arr[size / 2];
 		if (size > MAX_SIZE)
 			free(arr);
+		// -------------- debug code ---------------------
+		if (g_flag_debug == DEBUG_ON)
+		{
+			ft_dprintf(g_fd_log, "mid1[%d] mid2[%d]\n", mid1, mid2);
+			ft_dprintf(g_fd_log, "median [%d]\n",
+					(int)((mid1 + mid2) / 2.0));
+		}
+		// ----------------------------------------------
 		return ((int)((mid1 + mid2) / 2.0));
 	}
 	else
 	{
 		if (size > MAX_SIZE)
 			free(arr);
+		// -------------- debug code ---------------------
+		if (g_flag_debug == DEBUG_ON)
+			ft_dprintf(g_fd_log, "median [%d]\n", arr[size/2]);
+		// ----------------------------------------------
 		return ((int)arr[size / 2]);
 	}
 }

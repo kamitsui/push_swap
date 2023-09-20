@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/20 20:43:11 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/20 23:18:49 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	partition(t_stack *src, t_stack *tmp, t_range range)
 	size = range.high - range.low;
 	count.over = 0;
 	count.less = 0;
-	instruct_rx(src);
+	//instruct_rx(src);// 9/20無効化　get_pivot_dataの機能追加により
 	i = 0;
 	while (i < size)
 	{

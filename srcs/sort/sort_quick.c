@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:55:13 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/16 16:26:11 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/20 22:59:17 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ void	sort_quick(t_stack *src, t_stack *tmp, t_range range)
 		partition_reverse(src, tmp, range);
 	debug_after_partition(src, tmp, range);
 	if (is_sorted_direction[range.mode](src, 0, src->top) == false
-		|| is_sorted_direction[range.mode == MODE_NORMAL](tmp, 0, tmp->top)
+		//|| is_sorted_direction[range.mode == MODE_NORMAL](tmp, 0, tmp->top)
+		|| is_sorted_direction[range.mode == MODE_NORMAL](tmp, original_tmp_top, tmp->top)
 		== false)
 	{
 		recursive_top_side(src, tmp, range, original_tmp_top);
@@ -93,7 +94,8 @@ void	sort_quick(t_stack *src, t_stack *tmp, t_range range)
 		recursive_bottom_side(src, tmp, range, original_tmp_top);
 		debug_after_recursive_bottom_side(src, tmp, range);
 	}
-	end_process(src, tmp, range.mode);
+	//end_process(src, tmp, range.mode);
+	end_process(src, tmp, original_tmp_top, range.mode);
 	debug_sort_quick_end(src, tmp, range);
 }
 //この関数で使う debug functions
