@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:01:03 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/16 19:18:23 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/20 20:42:04 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,7 @@ void	set_transition(t_transition *transition,
  * @brief This sort function using the insertion sort algorithm
  */
 void	sort_insert(t_stack *stack_a, t_stack *stack_b);
+
+int	get_pivot_data(t_stack *stack, t_range range);
 
 #endif

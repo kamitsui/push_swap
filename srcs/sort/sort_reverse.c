@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 13:07:39 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/16 17:07:18 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/20 22:02:55 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,20 @@ static void	rotable_src_stack(t_stack *src, t_stack *tmp, int size)
 {
 	int	i;
 
+	ft_dprintf(g_fd_log, ">> call rotable_src_stack()\n");
 	i = 0;
 	while (i < size)
 	{
 		instruct_rrx(src);
 		if (i < size - 1)
 			instruct_px(tmp, src);
+		i++;
+	}
+	instruct_sx(src);
+	i = 0;
+	while (i < size - 1)
+	{
+		instruct_px(src, tmp);
 		i++;
 	}
 }

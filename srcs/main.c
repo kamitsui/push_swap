@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/15 20:09:40 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/20 19:09:00 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	main(int argc, char *argv[])
 {
 	t_stack	stack_a;
 	t_stack	stack_b;
-	int		data_a[BUFF_SIZE];
-	int		data_b[BUFF_SIZE];
+	int		data_a[MAX_SIZE];
+	int		data_b[MAX_SIZE];
 	size_t	size;
 
 //----- debug code ----------
@@ -55,7 +55,7 @@ int	main(int argc, char *argv[])
 	init_stack(&stack_a, (char *)"a");
 	init_stack(&stack_b, (char *)"b");
 	size = count_elements(&argv[1]);
-	if (size > BUFF_SIZE)
+	if (size > MAX_SIZE)
 		allocate_data(&stack_a, &stack_b, size);
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/17 20:08:39 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/20 20:43:11 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ void	partition(t_stack *src, t_stack *tmp, t_range range)
 
 	if (handle_exception(src, tmp, range) == 1)
 		return ;
-	// pivot_data = search_pivot_data(src, range);
-	pivot_data = src->data[range.high];
+	pivot_data = get_pivot_data(src, range);
+	//pivot_data = src->data[range.high];
 	size = range.high - range.low;
 	count.over = 0;
 	count.less = 0;

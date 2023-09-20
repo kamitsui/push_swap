@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/16 21:23:14 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/20 21:38:22 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,8 @@ void	partition_reverse(t_stack *src, t_stack *tmp, t_range range)
 
 	if (handle_exception(src, tmp, range) == 1)
 		return ;
-	pivot_data = src->data[range.high];
+	pivot_data = get_pivot_data(src, range);
+	//pivot_data = src->data[range.high];
 	count.over = 0;
 	count.less = 0;
 	instruct_px(tmp, src);
