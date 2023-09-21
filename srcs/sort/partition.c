@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/20 23:18:49 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/21 21:07:35 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,19 @@
 #include <stdbool.h>
 
 //デバッグ用
-//#include "debug.h"// for debug
-//#include "ft_printf.h"// debug
-//int	g_fd_log;// debug
-//int	g_flag_debug;//debug
+#include "debug.h"// for debug
+#include "ft_printf.h"// debug
+
+int	g_fd_log;// debug
+int	g_flag_debug;//debug
 
 // データを仕分けるヘルパー関数
 // 小さいデータはtmpへpush、大きいデータはsrc内でrotate
 static void	move_data(t_stack *src, t_stack *tmp,
 		t_count *count, int pivot_data)
 {
-	if (is_less_than(src->data[src->top], pivot_data) == true)
+	if (is_less_than(src->data[src->top], pivot_data) == true
+			|| src->data[src->top] == pivot_data)
 	{
 		instruct_px(tmp, src);
 		count->less++;
@@ -47,13 +49,30 @@ static void	move_large_data(t_stack *src, t_count count)
 {
 	int	i;
 
-	if (count.over != src->top)
+	//if (original_src_top - count.less != src->top)// 不要?
+	if (count.over - 1 != src->top)
 	{
 		i = 0;
-		while (i < count.over + 1)
+//		while (i < count.over)
+//		{
+//			instruct_rrx(src);
+//			i++;
+//		}
+		if (src->top / 2 < count.over)
 		{
-			instruct_rrx(src);
-			i++;
+			while (i < src->top - count.over)
+			{
+				instruct_rx(src);
+				i++;
+			}
+		}
+		else
+		{
+			while (i < count.over)
+			{
+				instruct_rrx(src);
+				i++;
+			}
 		}
 	}
 }
@@ -65,6 +84,8 @@ static int	handle_exception(t_stack *src, t_stack *tmp, t_range range)
 {
 	int	pivot_data;
 
+	if (g_flag_debug == 1)// debug
+		ft_dprintf(g_fd_log, ">> call partition function\n");
 	pivot_data = src->data[range.high];
 	if (is_reverse_sorted_range(src, range.low, range.high) == true)
 	{
@@ -94,21 +115,24 @@ static int	handle_exception(t_stack *src, t_stack *tmp, t_range range)
 void	partition(t_stack *src, t_stack *tmp, t_range range)
 {
 	int				pivot_data;
-	int				size;
 	int				i;
+//	int				size;
 	t_count			count;
 	t_transition	transition;
+	int				original_src_top;
 
+	original_src_top = src->top;
 	if (handle_exception(src, tmp, range) == 1)
 		return ;
 	pivot_data = get_pivot_data(src, range);
 	//pivot_data = src->data[range.high];
-	size = range.high - range.low;
+//	size = range.high - range.low;
 	count.over = 0;
 	count.less = 0;
 	//instruct_rx(src);// 9/20無効化　get_pivot_dataの機能追加により
 	i = 0;
-	while (i < size)
+	//while (i < size)
+	while (i < range.high - range.low + 1)// 上記9/20無効化に伴い、ループ回数を+1
 	{
 		set_transition(&transition, count, range, src);
 		if (is_less_than_stack_range(src,
@@ -117,6 +141,9 @@ void	partition(t_stack *src, t_stack *tmp, t_range range)
 		move_data(src, tmp, &count, pivot_data);
 		i++;
 	}
+	if (g_flag_debug == DEBUG_ON)
+		ft_dprintf(g_fd_log, ">> src->top[%d]  original_src_top[%d]  count_less[%d]\n",
+			src->top, original_src_top, count.less);
 	move_large_data(src, count);
 }
 //デバッグ用のフラグ

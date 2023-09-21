@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:08:59 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/20 22:42:15 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:49:58 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	get_pivot_data(t_stack *stack, t_range range)
 	int	size;
 	int	arr_stack[MAX_SIZE];
 	int	*arr;
+	int	pivot_data;
 
 	size = range.high - range.low + 1;
 	//arr = init_array(stack, range, &arr_stack);
@@ -79,36 +80,29 @@ int	get_pivot_data(t_stack *stack, t_range range)
 		arr = &arr_stack[0];
 	ft_memcpy(arr, &stack->data[range.low], size * sizeof(int));
 	ft_qsort(arr, 0, size - 1);
+//	debug_array(arr, size - 1);
 	// return (get_median(arr, size));
 	if (size % 2 == 0)
 	{
-		int mid1 = arr[(size - 1) / 2];
-		int mid2 = arr[size / 2];
+		long mid1 = arr[(size - 1) / 2];
+		long mid2 = arr[size / 2];
+		pivot_data = (int)((mid1 + mid2) / 2);
 		if (size > MAX_SIZE)
 			free(arr);
-		// -------------- debug code ---------------------
-		if (g_flag_debug == DEBUG_ON)
-		{
-			ft_dprintf(g_fd_log, "mid1[%d] mid2[%d]\n", mid1, mid2);
-			ft_dprintf(g_fd_log, "median [%d]\n",
-					(int)((mid1 + mid2) / 2.0));
-		}
-		// ----------------------------------------------
-		return ((int)((mid1 + mid2) / 2.0));
+		return (pivot_data);
 	}
 	else
 	{
+		pivot_data = arr[size/2];
 		if (size > MAX_SIZE)
 			free(arr);
-		// -------------- debug code ---------------------
-		if (g_flag_debug == DEBUG_ON)
-			ft_dprintf(g_fd_log, "median [%d]\n", arr[size/2]);
-		// ----------------------------------------------
-		return ((int)arr[size / 2]);
+		//return ((int)arr[size / 2]);
+		return (pivot_data);
 	}
 }
 //debug code
 // ソート前の配列デバッグ
+//	// -------------- debug code ---------------------
 //	if (g_flag_debug == DEBUG_ON)
 //	{
 //		ft_dprintf(g_fd_log,
@@ -117,7 +111,9 @@ int	get_pivot_data(t_stack *stack, t_range range)
 //		ft_dprintf(g_fd_log, "---- before ----\n");
 //		debug_array(&stack->data[range.low], size);
 //	}
+//	// ----------------------------------------------
 // ソート後の配列デバッグ
+//	// -------------- debug code ---------------------
 //	if (g_flag_debug == DEBUG_ON)
 //	{
 //		ft_dprintf(g_fd_log, "---- after ----\n");
@@ -126,13 +122,21 @@ int	get_pivot_data(t_stack *stack, t_range range)
 //		ft_dprintf(g_fd_log, "size / 2 = %d  arr[%d] = [%d]\n",
 //			size/2, size/2, arr[size/2]);
 //	}
+//	// ----------------------------------------------
 // リターン値 median, mid1, mid2を出力 （配列要素数が偶数の時）
+//		// -------------- debug code ---------------------
 //		if (g_flag_debug == DEBUG_ON)
 //		{
+//			ft_dprintf(g_fd_log,
+//				"arr[(size - 1) / 2] = [%d] arr[size / 2] = [%d]\n",
+//				arr[(size - 1) / 2], arr[size / 2]);
 //			ft_dprintf(g_fd_log, "mid1[%d] mid2[%d]\n", mid1, mid2);
 //			ft_dprintf(g_fd_log, "median [%d]\n",
 //					(int)((mid1 + mid2) / 2.0));
 //		}
+//		// ----------------------------------------------
 // リターン値　medianを出力 (配列要素数が奇数の時）
+//		// -------------- debug code ---------------------
 //		if (g_flag_debug == DEBUG_ON)
 //			ft_dprintf(g_fd_log, "median [%d]\n", arr[size/2]);
+//		// ----------------------------------------------

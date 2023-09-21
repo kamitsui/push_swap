@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/20 21:38:22 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:53:52 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,18 @@
 #include <stdbool.h>
 
 //デバッグ用
-//#include "debug.h"// for debug
-//#include "ft_printf.h"// debug
-//int	g_fd_log;// debug
-//int	g_flag_debug;//debug
+#include "debug.h"// for debug
+#include "ft_printf.h"// debug
+int	g_fd_log;// debug
+int	g_flag_debug;//debug
 
 // データを仕分けるヘルパー関数
 // 小さいデータはsrc内でrotate、大きいデータはtmpへpush
 static void	move_data(t_stack *src, t_stack *tmp,
 		t_count *count, int pivot_data)
 {
-	if (is_less_than(src->data[src->top], pivot_data) == true)
+	if (is_less_than(src->data[src->top], pivot_data) == true
+			|| src->data[src->top] == pivot_data)
 	{
 		instruct_rx(src);
 		count->less++;
@@ -50,6 +51,8 @@ static int	handle_exception(t_stack *src, t_stack *tmp, t_range range)
 {
 	int	pivot_data;
 
+	if (g_flag_debug == 1)// debug
+		ft_dprintf(g_fd_log, ">> call partition_reverse function\n");
 	pivot_data = src->data[range.high];
 	if (is_sorted_range(src, range.low, range.high) == true)
 	{
@@ -76,29 +79,15 @@ static int	handle_exception(t_stack *src, t_stack *tmp, t_range range)
 //		if (g_flag_debug == 1)// for debug
 //			debug_data(g_fd_log, src, tmp);
 
-void	set_transition(t_transition *transition,
-			t_count count, t_range range, t_stack *src)
-{
-	if (range.mode == MODE_REVERSE)
-	{
-		transition->low = count.less;
-		transition->high = src->top;
-	}
-	else
-	{
-		transition->low = (range.low + 1) + count.over;
-		transition->high = range.high - count.less + count.over;
-	}
-}
-
-static void	move_large_data(t_stack *src, t_stack *tmp, t_count count)
+//static void	move_large_data(t_stack *src, t_stack *tmp, t_count count)
+static void	move_large_data(t_stack *src, t_count count)
 {
 	int	i;
 
 	i = 0;
 	while (i++ < count.less)
 		instruct_rrx(src);
-	instruct_rrx(tmp);
+//	instruct_rrx(tmp);
 }
 
 void	partition_reverse(t_stack *src, t_stack *tmp, t_range range)
@@ -107,26 +96,31 @@ void	partition_reverse(t_stack *src, t_stack *tmp, t_range range)
 	int				i;
 	t_count			count;
 	t_transition	transition;
+	int				original_src_top;
 
+	original_src_top = src->top;
 	if (handle_exception(src, tmp, range) == 1)
 		return ;
 	pivot_data = get_pivot_data(src, range);
 	//pivot_data = src->data[range.high];
 	count.over = 0;
 	count.less = 0;
-	instruct_px(tmp, src);
-	instruct_rx(tmp);
+//	instruct_px(tmp, src);
+//	instruct_rx(tmp);
 	i = 0;
-	while (i < range.high - range.low)
+	while (i < range.high - range.low + 1)
 	{
 		set_transition(&transition, count, range, src);
+		//if (is_more_than_stack_range(src,
 		if (is_more_than_stack_range(src,
 				transition.low, transition.high, pivot_data) == false)
 			break ;
 		move_data(src, tmp, &count, pivot_data);
 		i++;
 	}
-	move_large_data(src, tmp, count);
+	//move_large_data(src, tmp, count);
+	if (original_src_top - count.over != src->top)
+		move_large_data(src, count);
 }
 //デバッグ用のフラグ
 //	g_flag_debug = 1;

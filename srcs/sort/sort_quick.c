@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:55:13 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/20 22:59:17 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:14:31 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	sort_quick(t_stack *src, t_stack *tmp, t_range range)
 		|| is_sorted_direction[range.mode](src, range.low, range.high) == true)
 		return ;
 	original_tmp_top = tmp->top * (is_empty(tmp) == false);
+	ft_dprintf(g_fd_log, "original_tmp_top [%d]\n", original_tmp_top);//debug
 	debug_sort_quick_start(src, tmp, range);
 	if (range.mode == 0)
 		partition(src, tmp, range);

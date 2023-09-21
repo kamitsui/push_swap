@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:09:53 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/20 23:14:19 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:36:47 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	recursive_bottom_side(
 		//instruct_px(tmp, src);// 9/20　無効化
 		range.high = src->top;
 		sort_quick(src, tmp, range);
+		//while (tmp->top != original_tmp_top)// 不要
+		//	instruct_px(src, tmp);
 	}
 }
 //debug code

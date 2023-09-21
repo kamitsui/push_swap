@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/20 19:09:00 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:45:15 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int	main(int argc, char *argv[])
 
 //----- debug code ----------
 	g_fd_log = open_log("debug.log", O_TRUNC);
-	//g_flag_debug = DEBUG_ON;
-	g_flag_debug = DEBUG_OFF;
+	g_flag_debug = DEBUG_ON;
+	//g_flag_debug = DEBUG_OFF;
 //---------------------------
 
 	if (argc < 2)
@@ -72,6 +72,7 @@ int	main(int argc, char *argv[])
 	if (is_sorted(&stack_a) == false)
 		sort(&stack_a, &stack_b, size);
 
+	ft_dprintf(g_fd_log, "in main func\n");
 //----- debug code ----------
 	if (g_flag_debug == DEBUG_ON)
 		debug_data(g_fd_log, &stack_a, &stack_b);

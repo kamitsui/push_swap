@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:15:48 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/20 23:07:47 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/21 20:35:07 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	end_process(t_stack *src, t_stack *tmp,
 		}
 		if (is_sorted_range(tmp, original_tmp_top, tmp->top) == true)
 		{
-			while (tmp->top > original_tmp_top)
+			//while (tmp->top > original_tmp_top)// OK
+			while (tmp->top > original_tmp_top)// OK
 				instruct_px(src, tmp);
 			return ;
 		}
@@ -59,8 +60,15 @@ void	end_process(t_stack *src, t_stack *tmp,
 		&& is_sorted_range(src, 0, src->top))
 	{
 		debug_put_message(mode);//debug
+		int i = 0;
 		while (is_empty(tmp) == false)
+		//while (tmp->top > -1)
+		{
+			ft_dprintf(g_fd_log, "end process push count [%d]  tmp->top [%d]\n", i, tmp->top);
 			instruct_px(src, tmp);
+			i++;
+		}
+		return ;// ??
 	}
 	else
 		return ;
