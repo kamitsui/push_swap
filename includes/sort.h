@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:01:03 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/22 13:23:25 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/22 14:42:49 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_count
 {
 	int	over;
 	int	less;
+	int	min;
 }	t_count;
 
 typedef struct s_transition
@@ -73,7 +74,7 @@ void	sort_insert(t_stack *stack_a, t_stack *stack_b);
 
 // get_xxx_data
 int	get_pivot_data(t_stack *stack, t_range range);
-int	get_min_data(t_stack *stack, t_range range);
+int	get_min_data(t_stack *stack, int low, int high);
 int	*allocate_array(int	size);
 
 #endif

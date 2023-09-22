@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:07:32 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/22 13:22:13 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/22 14:43:37 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	main(int argc, char *argv[])
 	size_t	size;
 	t_range	range;
 	g_fd_log = open_log("debug.log", O_TRUNC);
+	g_fd_log = STDOUT_FILENO;
 	g_flag_debug = DEBUG_ON;
 
 	init_stack(&stack_a, (char *)"a");
@@ -57,7 +58,7 @@ int	main(int argc, char *argv[])
 	range.high = stack_a.top;
 	range.mode = MODE_NORMAL;
 	int	min_data;
-	min_data = get_min_data(&stack_a, range);
+	min_data = get_min_data(&stack_a, range.low, range.high);
 	if (g_flag_debug == DEBUG_ON)
 		ft_dprintf(g_fd_log, ">> min_data [%d]\n", min_data);
 	free_stack(&stack_a, &stack_b, size);
