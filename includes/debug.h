@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 22:36:20 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/15 19:07:20 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/22 13:14:56 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,8 @@ void	debug_sort_quick_end(t_stack *src, t_stack *tmp, t_range range);
 void	debug_range(t_range range);
 void	debug_before_range(t_range range);
 void	debug_after_range(t_range range);
+
+// get_pivot_data , get_min_data
+void	debug_array(int arr[], int size);
 
 #endif

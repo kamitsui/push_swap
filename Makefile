@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/21 20:53:09 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/22 13:15:24 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,8 @@ SRCS = \
 	   \
 	   set_transition.c \
 	   get_pivot_data.c \
+	   get_min_data.c \
+	   allocate_array.c \
 	   \
 	   is_less_than.c \
 	   is_more_than.c \
@@ -86,7 +88,8 @@ SRCS = \
 	   repeat_swap.c \
 	   open_log.c \
 	   debug_sort_quick.c \
-	   debug_range.c
+	   debug_range.c \
+	   debug_array.c
 SRCS_B = \
 		 main_bonus.c \
 		 \

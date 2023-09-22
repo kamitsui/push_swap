@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:08:59 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/21 20:49:58 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/22 13:07:37 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,6 @@
 int	g_fd_log;
 int	g_flag_debug;
 
-static int	*allocate_array(int	size)
-{
-	int	*array_pointer;
-
-	array_pointer = (int *)malloc(sizeof(int) * size);
-	if (array_pointer == NULL)
-		handle_error(ERR_MALLOC);
-	return (array_pointer);
-}
 
 // デバッグ用の関数
 //static void	debug_array(int arr[], int size)
