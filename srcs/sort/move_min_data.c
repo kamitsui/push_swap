@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 14:25:27 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/22 14:51:54 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/22 16:00:19 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 // Only call by partition.c
 void	move_min_data(t_stack *stack_a, t_stack *stack_b, int count)
 {
+	int	i;
+
 	i = 0;
 	while (i++ < count)
 		instruct_rrx(stack_b);

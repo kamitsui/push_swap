@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:07:08 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/22 14:48:11 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/22 16:02:44 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	get_min_data(t_stack *stack, int low, int high)
 		arr = &arr_stack[0];
 	ft_memcpy(arr, &stack->data[low], size * sizeof(int));
 	ft_qsort(arr, 0, size - 1);
-	debug_array(arr, size);
 	return (arr[0]);
 }
+//debug code
+//	debug_array(arr, size);

@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 13:40:27 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/20 21:40:54 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/22 15:59:59 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,8 +50,12 @@ SRCS = \
 	   partition_reverse.c \
 	   partition_small.c \
 	   sort_reverse.c \
+	   move_min_data.c \
 	   \
+	   set_transition.c \
 	   get_pivot_data.c \
+	   get_min_data.c \
+	   allocate_array.c \
 	   \
 	   is_less_than.c \
 	   is_more_than.c \
@@ -67,6 +71,7 @@ SRCS = \
 	   open_log.c \
 	   debug_range.c \
 	   debug_sort_quick.c \
+	   debug_array.c \
 	   \
 	   error.c
 

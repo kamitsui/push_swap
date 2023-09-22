@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:15:48 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/21 20:35:07 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:59:00 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,46 +32,85 @@ static void	debug_put_message(int mode)
 // スタックAがソート済み、スタックBが逆ソート済みの場合、終了プロセスが走る
 // 処理内容：スタックBが空になるまでスタックAにpushする
 //void	end_process(t_stack *src, t_stack *tmp, int mode)
-void	end_process(t_stack *src, t_stack *tmp,
-		int original_tmp_top, int mode)
+void	end_process(t_stack *src, t_stack *tmp, t_range range, t_count count)
 {
-	if (mode == 1
-		&& is_reverse_sorted_range(src, 0, src->top))
+	int	i;
+
+	if ((is_sorted_range(src, 0, src->top) == true
+			&& is_empty(tmp) == true && range.mode == MODE_NORMAL)
+			|| (is_sorted_range(tmp, 0, tmp->top) == true
+			&& is_empty(src) == true && range.mode == MODE_REVERSE))
+		return ;
+	if (range.mode == MODE_REVERSE
+		&& is_sorted_range(src, 0, src->top))
+		//&& is_reverse_sorted_range(src, 0, src->top))// 9/22以前
 		//&& is_sorted_range(tmp, 0, tmp->top))
 		//&& is_sorted_range(tmp, original_tmp_top, tmp->top))
 	{
-		debug_put_message(mode);//debug
+		debug_put_message(range.mode);//debug
+		while (is_empty(src) == false)
+		{
+			instruct_px(tmp, src);
+			instruct_rx(tmp);
+		}
+		if (is_sorted_range(tmp, tmp->top - count.over, tmp->top) == true
+			&& count.over > 0)
+		{
+			i = 0;
+			ft_dprintf(g_fd_log, ">> tmp->top - count.over [%d]\n", tmp->top - count.over);
+			while (i++ < count.over)
+				instruct_rx(tmp);
+		}
+// 9/22以前
+//				instruct_px(tmp, src);
+//		if (is_sorted_range(tmp, 0, tmp->top) == true)
+//		{
+//			while (is_empty(src) == false)
+//				instruct_px(tmp, src);
+//			return ;
+//		}
+//		if (is_sorted_range(tmp, original_tmp_top, tmp->top) == true)
+//		{
+//			//while (tmp->top > original_tmp_top)// OK
+//			while (tmp->top > original_tmp_top)// OK
+//				instruct_px(src, tmp);
+//			return ;
+//		}
+	}
+	else if (range.mode == MODE_NORMAL
+		//&& is_reverse_sorted_range(tmp, 0, tmp->top)// 9/22以前
+		&& is_sorted_range(src, range.low, src->top))
+	{
+		debug_put_message(range.mode);//debug
+		if (is_reverse_sorted_range(tmp, 0, tmp->top) == true)
+		{
+			i = 0;
+			while (is_empty(tmp) == false)
+			{
+				instruct_px(src, tmp);
+				i++;
+			}
+			while (i-- > 0)
+				instruct_rx(src);
+		}
 		if (is_sorted_range(tmp, 0, tmp->top) == true)
 		{
-			while (is_empty(src) == false)
-				instruct_px(tmp, src);
-			return ;
-		}
-		if (is_sorted_range(tmp, original_tmp_top, tmp->top) == true)
-		{
-			//while (tmp->top > original_tmp_top)// OK
-			while (tmp->top > original_tmp_top)// OK
+			while (is_empty(tmp) == false)
+			{
 				instruct_px(src, tmp);
-			return ;
+				instruct_rrx(src);
+			}
 		}
-	}
-	else if (mode == 0
-		&& is_reverse_sorted_range(tmp, 0, tmp->top)
-		&& is_sorted_range(src, 0, src->top))
-	{
-		debug_put_message(mode);//debug
-		int i = 0;
-		while (is_empty(tmp) == false)
-		//while (tmp->top > -1)
+		if (is_sorted_range(src, range.low, src->top) == true)
 		{
-			ft_dprintf(g_fd_log, "end process push count [%d]  tmp->top [%d]\n", i, tmp->top);
-			instruct_px(src, tmp);
-			i++;
+			i = 0;
+			while (i++ < range.high - range.low + 1)
+				instruct_rx(src);
 		}
-		return ;// ??
 	}
 	else
 		return ;
+	//(void)original_tmp_top;
 }
 //debug code
 //end_process関数が走ったか確認する

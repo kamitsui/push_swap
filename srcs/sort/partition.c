@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/21 21:07:35 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:30:46 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,16 @@ int	g_flag_debug;//debug
 // データを仕分けるヘルパー関数
 // 小さいデータはtmpへpush、大きいデータはsrc内でrotate
 static void	move_data(t_stack *src, t_stack *tmp,
-		t_count *count, int pivot_data)
+		t_count *count, int pivot_data, int min_data)
 {
-	if (is_less_than(src->data[src->top], pivot_data) == true
+	if (src->data[src->top] == min_data)
+	{
+		//instruct_rx(src);
+		instruct_px(tmp, src);
+		instruct_rx(tmp);
+		count->min++;
+	}
+	else if (is_less_than(src->data[src->top], pivot_data) == true
 			|| src->data[src->top] == pivot_data)
 	{
 		instruct_px(tmp, src);
@@ -80,27 +87,27 @@ static void	move_large_data(t_stack *src, t_count count)
 //例外処理
 //　pivot_data以下の値がない時・・・分割できないため終了
 //　逆順の場合・・・sort_reverseして終了
-static int	handle_exception(t_stack *src, t_stack *tmp, t_range range)
-{
-	int	pivot_data;
-
-	if (g_flag_debug == 1)// debug
-		ft_dprintf(g_fd_log, ">> call partition function\n");
-	pivot_data = src->data[range.high];
-	if (is_reverse_sorted_range(src, range.low, range.high) == true)
-	{
-		sort_reverse(src, tmp, range.high - range.low);
-		return (1);
-	}
-	//if (range.high - range.low < 7)
-	if (range.high - range.low == 2 && range.mode == MODE_NORMAL)
-	{
-		partition_three_elements(src, tmp, range);
-		//partition_small(srcs, tmp, range);
-		return (1);
-	}
-	return (0);
-}
+//static int	handle_exception(t_stack *src, t_stack *tmp, t_range range)
+//{
+//	int	pivot_data;
+//
+//	if (g_flag_debug == 1)// debug
+//		ft_dprintf(g_fd_log, ">> call partition function\n");
+//	pivot_data = src->data[range.high];
+//	if (is_reverse_sorted_range(src, range.low, range.high) == true)
+//	{
+//		sort_reverse(src, tmp, range.high - range.low);
+//		return (1);
+//	}
+//	//if (range.high - range.low < 7)
+//	if (range.high - range.low == 2 && range.mode == MODE_NORMAL)
+//	{
+//		partition_three_elements(src, tmp, range);
+//		//partition_small(srcs, tmp, range);
+//		return (1);
+//	}
+//	return (0);
+//}
 //partition関数に入った時の状態＋is_less_than...関数をデバッグ
 //	if (g_flag_debug == 1)// debug
 //		ft_dprintf(g_fd_log, ">> call partition function\n");
@@ -112,39 +119,34 @@ static int	handle_exception(t_stack *src, t_stack *tmp, t_range range)
 //		if (g_flag_debug == 1)// for debug
 //			debug_data(g_fd_log, src, tmp);
 
-void	partition(t_stack *src, t_stack *tmp, t_range range)
+void	partition(t_stack *src, t_stack *tmp, t_range range, t_count *count)
 {
 	int				pivot_data;
+	int				min_data;
 	int				i;
 //	int				size;
-	t_count			count;
 	t_transition	transition;
 	int				original_src_top;
 
 	original_src_top = src->top;
-	if (handle_exception(src, tmp, range) == 1)
-		return ;
+//	if (handle_exception(src, tmp, range) == 1)
+//		return ;
 	pivot_data = get_pivot_data(src, range);
-	//pivot_data = src->data[range.high];
-//	size = range.high - range.low;
-	count.over = 0;
-	count.less = 0;
-	//instruct_rx(src);// 9/20無効化　get_pivot_dataの機能追加により
 	i = 0;
-	//while (i < size)
-	while (i < range.high - range.low + 1)// 上記9/20無効化に伴い、ループ回数を+1
+	while (i < range.high - range.low + 1)
 	{
-		set_transition(&transition, count, range, src);
+		set_transition(&transition, *count, range, src);
+		min_data = get_min_data(src, transition.low, transition.high);
+		ft_dprintf(g_fd_log, ">> min_data = %d  src->data[top] = %d\n", min_data,
+				src->data[src->top]);
 		if (is_less_than_stack_range(src,
 				transition.low, transition.high, pivot_data) == false)
 			break ;
-		move_data(src, tmp, &count, pivot_data);
+		move_data(src, tmp, count, pivot_data, min_data);
 		i++;
 	}
-	if (g_flag_debug == DEBUG_ON)
-		ft_dprintf(g_fd_log, ">> src->top[%d]  original_src_top[%d]  count_less[%d]\n",
-			src->top, original_src_top, count.less);
-	move_large_data(src, count);
+	move_large_data(src, *count);
+	move_min_data(src, tmp, count->min);
 }
 //デバッグ用のフラグ
 //	g_flag_debug = 1;

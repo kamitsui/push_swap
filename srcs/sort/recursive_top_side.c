@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:24:03 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/21 17:50:07 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/22 15:41:37 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,14 @@ void	recursive_top_side(
 	else
 	{
 		debug_before_range(range);
-		range.low = original_tmp_top + (original_tmp_top != 0);
+		range.low = 0;
+		//range.low = original_tmp_top + (original_tmp_top != 0);// 9/22以前?
 		range.high = tmp->top;
 		range.mode = MODE_REVERSE;
 		debug_after_range(range);
 		sort_quick(tmp, src, range);
 	}
+	(void)original_tmp_top;
 }
 //debug code
 //recursive_top_side関数が走ったかデバッグ

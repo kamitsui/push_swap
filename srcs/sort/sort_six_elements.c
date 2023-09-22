@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 20:47:45 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/16 18:06:00 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/22 15:53:00 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	search_min_data(int *data, int size)
  *
  * @param stack
  */
-static void	move_min_data(t_stack *stack)
+static void	move_min_data_to_top(t_stack *stack)
 {
 	int	position_min;
 
@@ -87,7 +87,7 @@ void	sort_six_elements(t_stack *src, t_stack *tmp, int mode)
 {
 	while (src->top >= 3)
 	{
-		move_min_data(src);
+		move_min_data_to_top(src);
 		instruct_px(tmp, src);
 	}
 	if (is_sorted(src) == false)

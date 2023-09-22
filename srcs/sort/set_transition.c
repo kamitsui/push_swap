@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:51:57 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/21 20:52:28 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/22 14:21:41 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	set_transition(t_transition *transition,
 	else
 	{
 		transition->low = range.low + count.over;
-		transition->high = range.high - count.less + count.over;
+		//transition->high = range.high - count.less - count.min + count.over;
+		transition->high = src->top;// 実験　上の式でなくてもいいのでは？9/22
 	}
 }
 

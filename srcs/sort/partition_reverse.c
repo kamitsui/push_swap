@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/21 20:53:52 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:26:07 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,17 @@ int	g_flag_debug;//debug
 // データを仕分けるヘルパー関数
 // 小さいデータはsrc内でrotate、大きいデータはtmpへpush
 static void	move_data(t_stack *src, t_stack *tmp,
-		t_count *count, int pivot_data)
+		t_count *count, int pivot_data, int min_data)
 {
-	if (is_less_than(src->data[src->top], pivot_data) == true
+		ft_dprintf(g_fd_log, ">>in move_data min_data = %d  src->data[top] = %d\n", min_data,
+				src->data[src->top]);
+	if (src->data[src->top] == min_data)
+	{
+		instruct_px(tmp, src);
+		instruct_rx(tmp);
+		count->min++;
+	}
+	else if (is_less_than(src->data[src->top], pivot_data) == true
 			|| src->data[src->top] == pivot_data)
 	{
 		instruct_rx(src);
@@ -47,26 +55,26 @@ static void	move_data(t_stack *src, t_stack *tmp,
 //　pivot_data以上の値がない時・・・分割できないため終了
 //　逆順の場合・・・sort_reverseして終了
 //　pivot_dataが一番小さい時、rotateして終了（top側の分割）
-static int	handle_exception(t_stack *src, t_stack *tmp, t_range range)
-{
-	int	pivot_data;
-
-	if (g_flag_debug == 1)// debug
-		ft_dprintf(g_fd_log, ">> call partition_reverse function\n");
-	pivot_data = src->data[range.high];
-	if (is_sorted_range(src, range.low, range.high) == true)
-	{
-		sort_reverse(src, tmp, range.high - range.low);
-		return (1);
-	}
-	if (range.high - range.low == 2 && range.mode == MODE_REVERSE)
-	{
-		partition_three_elements(src, tmp, range);
-		//partition_small(srcs, tmp, range);
-		return (1);
-	}
-	return (0);
-}
+//static int	handle_exception(t_stack *src, t_stack *tmp, t_range range)
+//{
+//	int	pivot_data;
+//
+//	if (g_flag_debug == 1)// debug
+//		ft_dprintf(g_fd_log, ">> call partition_reverse function\n");
+//	pivot_data = src->data[range.high];
+//	if (is_sorted_range(src, range.low, range.high) == true)
+//	{
+//		sort_reverse(src, tmp, range.high - range.low);
+//		return (1);
+//	}
+//	if (range.high - range.low == 2 && range.mode == MODE_REVERSE)
+//	{
+//		partition_three_elements(src, tmp, range);
+//		//partition_small(srcs, tmp, range);
+//		return (1);
+//	}
+//	return (0);
+//}
 //debug code
 //partition関数に入った時の状態＋is_more_than...関数の結果
 //	if (g_flag_debug == 1)// debug
@@ -80,47 +88,45 @@ static int	handle_exception(t_stack *src, t_stack *tmp, t_range range)
 //			debug_data(g_fd_log, src, tmp);
 
 //static void	move_large_data(t_stack *src, t_stack *tmp, t_count count)
-static void	move_large_data(t_stack *src, t_count count)
-{
-	int	i;
+//static void	move_large_data(t_stack *src, t_count count)
+//{
+//	int	i;
+//
+//	i = 0;
+//	while (i++ < count.less)
+//		instruct_rrx(src);
+////	instruct_rrx(tmp);
+//}
 
-	i = 0;
-	while (i++ < count.less)
-		instruct_rrx(src);
-//	instruct_rrx(tmp);
-}
-
-void	partition_reverse(t_stack *src, t_stack *tmp, t_range range)
+void	partition_reverse(t_stack *src, t_stack *tmp, t_range range, t_count *count)
 {
 	int				pivot_data;
+	int				min_data;
 	int				i;
-	t_count			count;
 	t_transition	transition;
 	int				original_src_top;
 
 	original_src_top = src->top;
-	if (handle_exception(src, tmp, range) == 1)
-		return ;
+//	if (handle_exception(src, tmp, range) == 1)
+//		return ;
 	pivot_data = get_pivot_data(src, range);
-	//pivot_data = src->data[range.high];
-	count.over = 0;
-	count.less = 0;
-//	instruct_px(tmp, src);
-//	instruct_rx(tmp);
 	i = 0;
 	while (i < range.high - range.low + 1)
 	{
-		set_transition(&transition, count, range, src);
+		set_transition(&transition, *count, range, src);
+		min_data = get_min_data(src, transition.low, transition.high);
+		ft_dprintf(g_fd_log, ">> min_data = %d  src->data[top] = %d  pivot=%d\n", min_data,
+				src->data[src->top], pivot_data);
 		//if (is_more_than_stack_range(src,
 		if (is_more_than_stack_range(src,
 				transition.low, transition.high, pivot_data) == false)
 			break ;
-		move_data(src, tmp, &count, pivot_data);
+		move_data(src, tmp, count, pivot_data, min_data);
 		i++;
 	}
-	//move_large_data(src, tmp, count);
-	if (original_src_top - count.over != src->top)
-		move_large_data(src, count);
+// いらないのでは？？ 9/22
+//	if (original_src_top - count.over != src->top)
+//		move_large_data(src, count);
 }
 //デバッグ用のフラグ
 //	g_flag_debug = 1;

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:01:03 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/22 14:42:49 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:17:23 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,13 @@ void	sort_quick(t_stack *src, t_stack *tmp, t_range range);
 void	recursive_top_side(
 			t_stack *src, t_stack *tmp, t_range range, int original_tmp_top);
 void	recursive_bottom_side(
-			t_stack *src, t_stack *tmp, t_range range, int original_tmp_top);
-void	partition(t_stack *stack_a, t_stack *stack_b, t_range range);
-void	partition_reverse(t_stack *stack_a, t_stack *stack_b, t_range range);
+		t_stack *src, t_stack *tmp, t_range range, int original_tmp_top, t_count count);
+void	partition(t_stack *src, t_stack *tmp, t_range range, t_count *count);
+void	partition_reverse(t_stack *src, t_stack *tmp, t_range range, t_count *count);
 //void	end_process(t_stack *src, t_stack *tmp, int mode);
-void	end_process(t_stack *src, t_stack *tmp,
-		int original_tmp_top, int mode);
+//void	end_process(t_stack *src, t_stack *tmp,
+//		int original_tmp_top, int mode);
+void	end_process(t_stack *src, t_stack *tmp, t_range range, t_count count);
 
 // partition_small
 void	partition_three_elements(t_stack *src, t_stack *tmp, t_range range);
@@ -72,9 +73,10 @@ void	set_transition(t_transition *transition,
  */
 void	sort_insert(t_stack *stack_a, t_stack *stack_b);
 
-// get_xxx_data
+// call by function ( partition or partition_reverse )
 int	get_pivot_data(t_stack *stack, t_range range);
 int	get_min_data(t_stack *stack, int low, int high);
 int	*allocate_array(int	size);
+void	move_min_data(t_stack *stack_a, t_stack *stack_b, int count);
 
 #endif
