@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:55:13 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/22 19:17:32 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/23 21:07:24 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,29 +86,37 @@ void	sort_quick(t_stack *src, t_stack *tmp, t_range range)
 	if (range.low < range.high
 		|| is_sorted_range(src, range.low, range.high) == false)
 	{
-	debug_sort_quick_start(src, tmp, range);
-	if (range.mode == 0)
-		partition(src, tmp, range, &count);
-	else
-		partition_reverse(src, tmp, range, &count);
-	debug_after_partition(src, tmp, range);
-	// 9/22 改良
-	if (is_sorted_direction[range.mode](src, range.low, src->top) == false
-		|| is_sorted_direction[range.mode](tmp,
-			(original_tmp_top + count.min) * (range.mode == MODE_REVERSE), tmp->top)
-			== false)
-//	9/22以前
-//	if (is_sorted_direction[range.mode](src, 0, src->top) == false
-//		//|| is_sorted_direction[range.mode == MODE_NORMAL](tmp, 0, tmp->top)
-//		|| is_sorted_direction[range.mode == MODE_NORMAL](tmp, original_tmp_top, tmp->top)
-//		== false)
-	{
-		recursive_top_side(src, tmp, range, original_tmp_top);
-		debug_after_recursive_top_side(src, tmp, range);
-		recursive_bottom_side(src, tmp, range, original_tmp_top, count);
-		debug_after_recursive_bottom_side(src, tmp, range);
-		//exit(0);// debug
+		debug_sort_quick_start(src, tmp, range);
+		if (range.mode == 0)
+			partition(src, tmp, range, &count);
+		else
+			partition_reverse(src, tmp, range, &count);
+		debug_after_partition(src, tmp, range);
+		// 9/22 改良
+		if (is_sorted_direction[range.mode](src, range.low, src->top) == false
+			|| is_sorted_direction[range.mode](tmp,
+				(original_tmp_top + count.min) * (range.mode == MODE_REVERSE), tmp->top)
+				== false)
+	//	9/22以前
+	//	if (is_sorted_direction[range.mode](src, 0, src->top) == false
+	//		//|| is_sorted_direction[range.mode == MODE_NORMAL](tmp, 0, tmp->top)
+	//		|| is_sorted_direction[range.mode == MODE_NORMAL](tmp, original_tmp_top, tmp->top)
+	//		== false)
+		{
+			recursive_top_side(src, tmp, range, original_tmp_top);
+			debug_after_recursive_top_side(src, tmp, range);
+			recursive_bottom_side(src, tmp, range, original_tmp_top, count);
+			debug_after_recursive_bottom_side(src, tmp, range);
+			//exit(0);// debug
+		}
 	}
+	// 9/23 実験
+	else if (range.mode == MODE_NORMAL)
+	{
+		int	i;
+		i = 0;
+		while (i++ < range.high + 1 - range.low)
+			instruct_rx(src);
 	}
 	//end_process(src, tmp, range.mode);
 	//end_process(src, tmp, original_tmp_top, range.mode);

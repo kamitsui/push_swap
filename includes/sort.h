@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:01:03 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/22 19:17:23 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/23 18:08:35 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,9 @@ void	partition_three_elements(t_stack *src, t_stack *tmp, t_range range);
 
 void	sort_reverse(t_stack *stack_a, t_stack *stack_b, int size);
 void	set_transition(t_transition *transition,
-			t_count count, t_range range, t_stack *src);
+			t_count count, t_range range, t_stack *src, t_stack *tmp);
+//void	set_transition(t_transition *transition,
+//			t_count count, t_range range, t_stack *src);
 
 /**
  * @brief This sort function using the insertion sort algorithm
@@ -77,6 +79,6 @@ void	sort_insert(t_stack *stack_a, t_stack *stack_b);
 int	get_pivot_data(t_stack *stack, t_range range);
 int	get_min_data(t_stack *stack, int low, int high);
 int	*allocate_array(int	size);
-void	move_min_data(t_stack *stack_a, t_stack *stack_b, int count);
+void	move_min_data(t_stack *stack_a, t_stack *stack_b, t_count count);
 
 #endif

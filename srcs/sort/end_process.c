@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:15:48 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/22 19:59:00 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/23 21:07:34 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,16 @@ void	end_process(t_stack *src, t_stack *tmp, t_range range, t_count count)
 			instruct_px(tmp, src);
 			instruct_rx(tmp);
 		}
-		if (is_sorted_range(tmp, tmp->top - count.over, tmp->top) == true
-			&& count.over > 0)
-		{
-			i = 0;
-			ft_dprintf(g_fd_log, ">> tmp->top - count.over [%d]\n", tmp->top - count.over);
-			while (i++ < count.over)
-				instruct_rx(tmp);
-		}
+		(void)count;// 仮
+		// 9/23 無効化　実験　run2.sh
+		//if (is_sorted_range(tmp, tmp->top - count.over, tmp->top) == true
+		//	&& count.over > 0)
+		//{
+		//	i = 0;
+		//	ft_dprintf(g_fd_log, ">> tmp->top - count.over [%d]\n", tmp->top - count.over);
+		//	while (i++ < count.over)
+		//		instruct_rx(tmp);
+		//}
 // 9/22以前
 //				instruct_px(tmp, src);
 //		if (is_sorted_range(tmp, 0, tmp->top) == true)
@@ -82,6 +84,7 @@ void	end_process(t_stack *src, t_stack *tmp, t_range range, t_count count)
 		&& is_sorted_range(src, range.low, src->top))
 	{
 		debug_put_message(range.mode);//debug
+		// tmp側がreverse_sortedの場合、stack_aの末尾に移動する。
 		if (is_reverse_sorted_range(tmp, 0, tmp->top) == true)
 		{
 			i = 0;
@@ -93,6 +96,7 @@ void	end_process(t_stack *src, t_stack *tmp, t_range range, t_count count)
 			while (i-- > 0)
 				instruct_rx(src);
 		}
+		// tmp側がsortedの場合、stack_aの末尾に移動させる。
 		if (is_sorted_range(tmp, 0, tmp->top) == true)
 		{
 			while (is_empty(tmp) == false)
@@ -101,12 +105,16 @@ void	end_process(t_stack *src, t_stack *tmp, t_range range, t_count count)
 				instruct_rrx(src);
 			}
 		}
-		if (is_sorted_range(src, range.low, src->top) == true)
-		{
-			i = 0;
-			while (i++ < range.high - range.low + 1)
-				instruct_rx(src);
-		}
+		// bottom側のソート後のデータを、stack_aの末尾に移動　（不要では）
+		// 9/23 無効化 実験
+		//if (is_sorted_range(src, range.low, src->top) == true)
+		//if (is_sorted_range(src, src->top - count.over + 1, src->top) == true)
+		//{
+		//	i = 0;
+		//	//while (i++ < range.high - range.low + 1)
+		//	while (i++ < count.over)
+		//		instruct_rx(src);
+		//}
 	}
 	else
 		return ;

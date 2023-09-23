@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/22 17:30:46 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/23 21:15:18 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,17 @@ static void	move_data(t_stack *src, t_stack *tmp,
 {
 	if (src->data[src->top] == min_data)
 	{
-		//instruct_rx(src);
-		instruct_px(tmp, src);
-		instruct_rx(tmp);
+		if (count->over > 0)// 9/23 以前（一時避難する数）
+		{
+			instruct_px(tmp, src);
+			instruct_rx(tmp);
+		}
+		else
+		{
+			instruct_rx(src);// 9/23 検証
+		}
 		count->min++;
+		ft_dprintf(g_fd_log, ">> count->min++ [%d]\n", count->min);
 	}
 	else if (is_less_than(src->data[src->top], pivot_data) == true
 			|| src->data[src->top] == pivot_data)
@@ -44,6 +51,7 @@ static void	move_data(t_stack *src, t_stack *tmp,
 	{
 		instruct_rx(src);
 		count->over++;
+		ft_dprintf(g_fd_log, ">> count->over++ [%d]\n", count->over);
 	}
 }
 //		if (g_flag_debug == 1)// debug
@@ -67,6 +75,7 @@ static void	move_large_data(t_stack *src, t_count count)
 //		}
 		if (src->top / 2 < count.over)
 		{
+	ft_dprintf(g_fd_log, ">> here?  src->top - count.over = %d\n", src->top - count.over);
 			while (i < src->top - count.over)
 			{
 				instruct_rx(src);
@@ -75,8 +84,11 @@ static void	move_large_data(t_stack *src, t_count count)
 		}
 		else
 		{
+			ft_dprintf(g_fd_log, ">> i [%d] < count.over [%d]\n", i, count.over);
 			while (i < count.over)
 			{
+				ft_dprintf(g_fd_log, ">> move large data  src->data[0] = %d\n",
+					src->data[0]);
 				instruct_rrx(src);
 				i++;
 			}
@@ -123,6 +135,7 @@ void	partition(t_stack *src, t_stack *tmp, t_range range, t_count *count)
 {
 	int				pivot_data;
 	int				min_data;
+	int				min_data_tmp;
 	int				i;
 //	int				size;
 	t_transition	transition;
@@ -135,18 +148,37 @@ void	partition(t_stack *src, t_stack *tmp, t_range range, t_count *count)
 	i = 0;
 	while (i < range.high - range.low + 1)
 	{
-		set_transition(&transition, *count, range, src);
+		set_transition(&transition, *count, range, src, tmp);
+		ft_dprintf(g_fd_log, ">> after transition low = %d  high = %d\n",
+				transition.low, transition.high);
 		min_data = get_min_data(src, transition.low, transition.high);
-		ft_dprintf(g_fd_log, ">> min_data = %d  src->data[top] = %d\n", min_data,
-				src->data[src->top]);
+		if (count->less > 0)
+		{
+			min_data_tmp = get_min_data(tmp, tmp->top - count->less + 1, tmp->top);
+			if (min_data > min_data_tmp)
+				min_data = min_data_tmp;
+		}
+		ft_dprintf(g_fd_log, ">> min_data = %d  src->data[top] = %d  pivot= %d\n", min_data,
+				src->data[src->top], pivot_data);
+		ft_dprintf(g_fd_log, ">> is_less_than_stack ? = %d  low %d ~ high %d\n",
+				is_less_than_stack_range(src,
+				transition.low, transition.high, pivot_data),
+				transition.low, transition.high);
+		// 9/23 改良　pivot_data + 1
 		if (is_less_than_stack_range(src,
-				transition.low, transition.high, pivot_data) == false)
+				transition.low, transition.high, pivot_data + 1) == false
+			&& src->data[src->top] != pivot_data
+			&& src->data[src->top] != min_data)
+		{
+			count->over += range.high - range.low + 1 - i;// 9/23 実験
 			break ;
+		}
 		move_data(src, tmp, count, pivot_data, min_data);
 		i++;
 	}
 	move_large_data(src, *count);
-	move_min_data(src, tmp, count->min);
+	if (count->over > 0)// 9/23 修正案検証
+		move_min_data(src, tmp, *count);
 }
 //デバッグ用のフラグ
 //	g_flag_debug = 1;
