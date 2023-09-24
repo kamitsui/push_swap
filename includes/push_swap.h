@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:04:22 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/16 17:55:02 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/24 18:44:35 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_stack
 {
 	int		*data;
 	int		top;
+	int		size;
 	char	*name;
 }	t_stack;
 
@@ -107,6 +108,7 @@ int		pop(t_stack *stack);
  */
 int		peek(t_stack *stack);
 
-void	free_stack(t_stack *stack_a, t_stack *stack_b, size_t size);
+//void	free_stack(t_stack *stack_a, t_stack *stack_b, size_t size);
+void	free_stack(t_stack *stack_a, t_stack *stack_b);
 
 #endif

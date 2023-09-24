@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:09:53 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/23 18:43:02 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/24 18:27:02 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,14 @@ void	recursive_bottom_side(
 	else
 	{
 		//instruct_px(tmp, src);// 9/20　無効化
-		ft_dprintf(g_fd_log, ">> range.low = [%d] before\n", range.low);
+		if (g_flag_debug == DEBUG_ON)
+			ft_dprintf(g_fd_log, ">> range.low = [%d] before\n", range.low);
 		//range.low = range.high - count.min + 1;// 9/22 追加 movde_min_data追加のため
 		//range.low = range.high - (count.over) + 1;// 9/23 NG
 		//range.low = src->top - count.over;// 9/23 OK??
-		range.low = src->top - count.over + 1;// 9/23 OK??
-		ft_dprintf(g_fd_log, ">> range.low = [%d] after\n", range.low);
+		range.low = src->top - count.over + 1;// 9/23 count.overの補填バージョン （補填機能）
+		if (g_flag_debug == DEBUG_ON)
+			ft_dprintf(g_fd_log, ">> range.low = [%d] after\n", range.low);
 		range.high = src->top;
 		sort_quick(src, tmp, range);
 		//while (tmp->top != original_tmp_top)// 不要

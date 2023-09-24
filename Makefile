@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/22 13:15:24 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/24 18:39:59 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = push_swap
 NAME_B = checker
 
 # Libraries
+LIBFT_DIR = libft
 LIB_PRINTF_DIR = ft_printf
 LIB_PRINTF = $(LIB_PRINTF_DIR)/libftprintf.a
 
@@ -70,6 +71,7 @@ SRCS = \
 	   get_pivot_data.c \
 	   get_min_data.c \
 	   allocate_array.c \
+	   move_min_data.c \
 	   \
 	   is_less_than.c \
 	   is_more_than.c \
@@ -130,16 +132,19 @@ DEPS_B = $(addprefix $(DEP_DIR)/, $(SRCS_B:.c=.d))
 # Compile
 CC = cc
 CF = -Wall -Wextra -Werror
-LDF = -g -fsanitize=address
+LD_CF = -g -fsanitize=address
 INC_CF = -I$(INC_DIR)
 DEP_CF = -MMD -MP -MF $(@:$(OBJ_DIR)/%.o=$(DEP_DIR)/%.d)
+ifdef WITH_ASAN
+CF += $(LD_CF)
+endif
 
 # Rules for building object files
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(DEP_DIR)
 	$(CC) $(CF) $(INC_CF) $(DEP_CF) -c $< -o $@
-#	$(CC) $(CF) $(INC_CF) $(DEP_CF) -c $< -o $@ $(LDF)
+#	$(CC) $(CF) $(INC_CF) $(DEP_CF) -c $< -o $@ $(LD_CF)
 
 # Rules for building dependency files
 $(DEP_DIR)/%.d: %.c
@@ -151,7 +156,6 @@ all: $(NAME)
 # Target
 $(NAME): $(LIB_PRINTF) $(DEPS) $(OBJS)
 	$(CC) $(CF) $(OBJS) $(LIB_PRINTF) -o $(NAME)
-#	$(CC) $(CF) $(OBJS) $(LIB_PRINTF) -o $(NAME) $(LDF)
 
 # Library target
 $(LIB_PRINTF): $(LIBFT)
@@ -165,7 +169,6 @@ bonus: all $(NAME_B)
 # Checker
 $(NAME_B): $(LIB_PRINTF) $(DEPS) $(OBJS_B)
 	$(CC) $(CF) $(OBJS_B) $(LIB_PRINTF) -o $@
-#	$(CC) $(CF) $(OBJS_B) $(LIB_PRINTF) -o $@ $(LDF)
 
 # Clean target
 clean:
@@ -173,12 +176,21 @@ clean:
 
 # Clean and remove target
 fclean: clean
+	make fclean -C $(LIBFT_DIR)
+	make fclean -C $(LIB_PRINTF_DIR)
 	rm -f $(NAME) $(NAME_B)
 
 # Rebuild target
 re: fclean all
 
+# Address Sanitizer ON
+asan: fclean
+	make asan -C $(LIBFT_DIR)
+	make asan -C $(LIB_PRINTF_DIR)
+	make $(NAME) WITH_ASAN=1
+	make bonus WITH_ASAN=1
+
 # Enable dependency file
 -include $(DEPS)
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re bonus asan

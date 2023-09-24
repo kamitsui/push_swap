@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 14:39:52 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/07 18:54:28 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/24 18:16:04 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,16 +95,18 @@ vpath %.c $(SRCS_DIR)
 # Compiler
 CC = cc
 CF = -Wall -Wextra -Werror
-LDF = -g -fsanitize=address
+LD_CF = -g -fsanitize=address
 INC_CF = -I$(INC_DIR)
 DEP_CF = -MMD -MP -MF $(@:$(OBJ_DIR)/%.o=$(DEP_DIR)/%.d)
+ifdef WITH_ASAN
+CF += $(LD_CF)
+endif
 
 # Rules for building object files
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(DEP_DIR)
 	$(CC) $(CF) $(INC_CF) $(DEP_CF) -c $< -o $@
-#	$(CC) $(CF) $(INC_CF) $(DEP_CF) -c $< -o $@ $(LDF)
 
 $(DEP_DIR)/%.d: %.c
 	@mkdir -p $(DEP_DIR)
@@ -133,6 +135,10 @@ fclean: clean
 # Rebuild target
 re: fclean all
 
+# Address Sanitizer ON
+asan: fclean
+	make $(NAME) WITH_ASAN=1
+
 -include $(DEPS)
 
-.PHONY: all bonus clean fclean re
+.PHONY: all bonus clean fclean re asan

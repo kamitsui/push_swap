@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:08:59 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/22 13:07:37 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/24 16:16:57 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,16 @@ int	g_flag_debug;
 int	get_pivot_data(t_stack *stack, t_range range)
 {
 	int	size;
-	int	arr_stack[MAX_SIZE];
+//	int	arr_stack[MAX_SIZE];
 	int	*arr;
 	int	pivot_data;
 
 	size = range.high - range.low + 1;
 	//arr = init_array(stack, range, &arr_stack);
-	if (size > MAX_SIZE)
+//	if (size > MAX_SIZE)
 		arr = allocate_array(size);
-	else
-		arr = &arr_stack[0];
+//	else
+//		arr = &arr_stack[0];
 	ft_memcpy(arr, &stack->data[range.low], size * sizeof(int));
 	ft_qsort(arr, 0, size - 1);
 //	debug_array(arr, size - 1);
@@ -78,14 +78,14 @@ int	get_pivot_data(t_stack *stack, t_range range)
 		long mid1 = arr[(size - 1) / 2];
 		long mid2 = arr[size / 2];
 		pivot_data = (int)((mid1 + mid2) / 2);
-		if (size > MAX_SIZE)
+//		if (size > MAX_SIZE)
 			free(arr);
 		return (pivot_data);
 	}
 	else
 	{
 		pivot_data = arr[size/2];
-		if (size > MAX_SIZE)
+//		if (size > MAX_SIZE)
 			free(arr);
 		//return ((int)arr[size / 2]);
 		return (pivot_data);

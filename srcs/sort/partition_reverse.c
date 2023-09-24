@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/23 18:08:16 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/24 16:17:00 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ int	g_flag_debug;//debug
 static void	move_data(t_stack *src, t_stack *tmp,
 		t_count *count, int pivot_data, int min_data)
 {
-		ft_dprintf(g_fd_log, ">>in move_data min_data = %d  src->data[top] = %d\n", min_data,
-				src->data[src->top]);
+//	if (g_flag_debug == DEBUG_ON)
+//		ft_dprintf(g_fd_log,
+//			">>in move_data min_data = %d  src->data[top] = %d\n", min_data,
+//			src->data[src->top]);
 	if (src->data[src->top] == min_data)
 	{
 		instruct_px(tmp, src);
@@ -102,7 +104,7 @@ void	partition_reverse(t_stack *src, t_stack *tmp, t_range range, t_count *count
 {
 	int				pivot_data;
 	int				min_data;
-	int				min_data_tmp;
+	int				min_data_less;
 	int				i;
 	t_transition	transition;
 	int				original_src_top;
@@ -116,14 +118,25 @@ void	partition_reverse(t_stack *src, t_stack *tmp, t_range range, t_count *count
 	{
 		set_transition(&transition, *count, range, src, tmp);
 		min_data = get_min_data(src, transition.low, transition.high);
-		if (count->less > 0)
+		if (count->less > 0 || count->over > 0)// 9/24 改良
 		{
-			min_data_tmp = get_min_data(src, 0, transition.low - 1);
-			if (min_data > min_data_tmp)
-				min_data = min_data_tmp;
+			if (count->less > 0)
+				min_data_less = get_min_data(src, 0, transition.low - 1);
+			else
+				min_data_less = get_min_data(tmp, tmp->top + 1 - count->over, tmp->top);
+			if (min_data > min_data_less)
+				min_data = min_data_less;
 		}
-		ft_dprintf(g_fd_log, ">> min_data = %d  src->data[top] = %d  pivot= %d\n", min_data,
-				src->data[src->top], pivot_data);
+//		if (count->less > 0)
+//		{
+//			min_data_tmp = get_min_data(src, 0, transition.low - 1);
+//			if (min_data > min_data_tmp)
+//				min_data = min_data_tmp;
+//		}
+//		if (g_flag_debug == DEBUG_ON)
+//			ft_dprintf(g_fd_log,
+//				">> min_data = %d  src->data[top] = %d  pivot= %d\n", min_data,
+//				src->data[src->top], pivot_data);
 		//if (is_more_than_stack_range(src,
 		if (is_more_than_stack_range(src,
 				transition.low, transition.high, pivot_data) == false)

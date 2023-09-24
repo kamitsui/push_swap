@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 12:46:13 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/06 11:42:40 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/24 18:45:10 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ int	checker(t_stack *stack_a, t_stack *stack_b)
 		return (0);
 	}
 	ft_printf("KO\n");
+	free_stack(stack_a, stack_b);
 	return (1);
 }

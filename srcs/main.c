@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/21 20:45:15 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/24 18:45:47 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ int	main(int argc, char *argv[])
 {
 	t_stack	stack_a;
 	t_stack	stack_b;
-	int		data_a[MAX_SIZE];
-	int		data_b[MAX_SIZE];
+//	int		data_a[MAX_SIZE];
+//	int		data_b[MAX_SIZE];
 	size_t	size;
 
 //----- debug code ----------
 	g_fd_log = open_log("debug.log", O_TRUNC);
-	g_flag_debug = DEBUG_ON;
-	//g_flag_debug = DEBUG_OFF;
+	//g_flag_debug = DEBUG_ON;
+	g_flag_debug = DEBUG_OFF;
 //---------------------------
 
 	if (argc < 2)
@@ -55,14 +55,17 @@ int	main(int argc, char *argv[])
 	init_stack(&stack_a, (char *)"a");
 	init_stack(&stack_b, (char *)"b");
 	size = count_elements(&argv[1]);
-	if (size > MAX_SIZE)
+//	if (size > MAX_SIZE)
 		allocate_data(&stack_a, &stack_b, size);
-	else
-	{
-		stack_a.data = &data_a[0];
-		stack_b.data = &data_b[0];
-	}
+//	else
+//	{
+//		stack_a.data = &data_a[0];
+//		stack_b.data = &data_b[0];
+//	}
 	set_data(&stack_a, &argv[1], size);
+	// 9/24 追加 is_fullのために
+	stack_a.size = stack_a.top;
+	stack_b.size = stack_a.size;;
 
 //----- debug code ----------
 	if (g_flag_debug == DEBUG_ON)
@@ -72,13 +75,12 @@ int	main(int argc, char *argv[])
 	if (is_sorted(&stack_a) == false)
 		sort(&stack_a, &stack_b, size);
 
-	ft_dprintf(g_fd_log, "in main func\n");
 //----- debug code ----------
 	if (g_flag_debug == DEBUG_ON)
 		debug_data(g_fd_log, &stack_a, &stack_b);
 //---------------------------
 
-	free_stack(&stack_a, &stack_b, size);
+	free_stack(&stack_a, &stack_b);
 
 //----- debug code ----------
 	if (g_flag_debug == DEBUG_ON)

@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/11 20:51:49 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/19 23:00:36 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/24 17:54:52 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,9 +61,12 @@ LIB = libft.a
 # Compiler
 CC = cc
 CF = -Wall -Werror -Wextra
-LDF = -g -fsanitize=address
+LD_CF = -g -fsanitize=address
 INC_CF = -I$(INC_DIR)
 DEP_CF = -MMD -MP -MF $(@:$(OBJ_DIR)/%.o=$(DEP_DIR)/%.d)
+ifdef WITH_ASAN
+CF += $(LD_CF)
+endif
 
 # Rules for building object files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(DEP_DIR)/%.d
@@ -89,9 +92,13 @@ clean:
 fclean: clean
 	rm -f $(LIB)
 
+# Address Sanitizer ON
+asan: fclean
+	make $(NAME) WITH_ASAN=1
+
 # Rebould target
 re: fclean all
 
 -include $(DEPS)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re asan
