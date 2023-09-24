@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/24 16:17:00 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/24 20:18:38 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 #include <stdbool.h>
 
 //デバッグ用
-#include "debug.h"// for debug
-#include "ft_printf.h"// debug
-int	g_fd_log;// debug
-int	g_flag_debug;//debug
+//#include "debug.h"// for debug
+//#include "ft_printf.h"// debug
+//int	g_fd_log;// debug
+//int	g_flag_debug;//debug
 
 // データを仕分けるヘルパー関数
 // 小さいデータはsrc内でrotate、大きいデータはtmpへpush

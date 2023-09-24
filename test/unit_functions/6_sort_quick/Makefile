@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 13:40:27 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/24 18:11:14 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/24 21:37:12 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS = \
 	   count_elements.c \
 	   allocate_data.c \
 	   set_data.c \
+	   init_count.c \
 	   \
 	   instruct_push.c \
 	   instruct_rotate.c \

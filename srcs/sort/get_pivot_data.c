@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 20:08:59 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/24 16:16:57 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/24 21:35:47 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 #include <stdlib.h>
 
 // debug
-#include "debug.h"
-#include "ft_printf.h"
-
-int	g_fd_log;
-int	g_flag_debug;
+//#include "debug.h"
+//#include "ft_printf.h"
+//
+//int	g_fd_log;
+//int	g_flag_debug;
 
 
 // デバッグ用の関数
@@ -40,20 +40,20 @@ int	g_flag_debug;
 //		ft_dprintf(g_fd_log, "\n");
 //}
 
-//int	get_median(int arr[], int size)
-//{
-//	int	mid1;
-//	int	mid2;
-//
-//	if (size % 2 == 0)
-//	{
-//		mid1 = arr[(size - 1) / 2];
-//		mid2 = arr[size / 2];
-//		return ((double)(mid1 + mid2) / 2.0);
-//	}
-//	else
-//		return ((double)arr[size / 2]);
-//}
+static int	get_median(int arr[], int size)
+{
+	long	mid1;
+	long	mid2;
+
+	if (size % 2 == 0)
+	{
+		mid1 = arr[(size - 1) / 2];
+		mid2 = arr[size / 2];
+		return ((int)((mid1 + mid2) / 2));
+	}
+	else
+		return (arr[size/2]);
+}
 
 // Function to find the median value from an array of integers
 int	get_pivot_data(t_stack *stack, t_range range)
@@ -72,24 +72,27 @@ int	get_pivot_data(t_stack *stack, t_range range)
 	ft_memcpy(arr, &stack->data[range.low], size * sizeof(int));
 	ft_qsort(arr, 0, size - 1);
 //	debug_array(arr, size - 1);
-	// return (get_median(arr, size));
-	if (size % 2 == 0)
-	{
-		long mid1 = arr[(size - 1) / 2];
-		long mid2 = arr[size / 2];
-		pivot_data = (int)((mid1 + mid2) / 2);
-//		if (size > MAX_SIZE)
-			free(arr);
-		return (pivot_data);
-	}
-	else
-	{
-		pivot_data = arr[size/2];
-//		if (size > MAX_SIZE)
-			free(arr);
-		//return ((int)arr[size / 2]);
-		return (pivot_data);
-	}
+	pivot_data = get_median(arr, size);
+//	if (size > MAX_SIZE)
+	free(arr);
+	return (pivot_data);
+//	if (size % 2 == 0)
+//	{
+//		long mid1 = arr[(size - 1) / 2];
+//		long mid2 = arr[size / 2];
+//		pivot_data = (int)((mid1 + mid2) / 2);
+////		if (size > MAX_SIZE)
+//			free(arr);
+//		return (pivot_data);
+//	}
+//	else
+//	{
+//		pivot_data = arr[size/2];
+////		if (size > MAX_SIZE)
+//			free(arr);
+//		//return ((int)arr[size / 2]);
+//		return (pivot_data);
+//	}
 }
 //debug code
 // ソート前の配列デバッグ

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:07:32 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/24 18:29:17 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/24 21:36:38 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	main(int argc, char *argv[])
 //	int		data_b[BUFF_SIZE];
 	size_t	size;
 	t_range	range;
+	t_count	count;
+
 	g_fd_log = open_log("debug.log", O_TRUNC);
 	//g_flag_debug = DEBUG_ON;
 	g_flag_debug = DEBUG_OFF;
@@ -59,7 +61,8 @@ int	main(int argc, char *argv[])
 	range.low = 0;
 	range.high = stack_a.top;
 	range.mode = MODE_NORMAL;
-	sort_quick(&stack_a, &stack_b, range);
+	init_count(&count);
+	sort_quick(&stack_a, &stack_b, range, count);
 	if (g_flag_debug == DEBUG_ON)
 	{
 		ft_dprintf(g_fd_log, "--- after ---\n");
@@ -68,7 +71,7 @@ int	main(int argc, char *argv[])
 			">> is_sorted(stack_a)? [%d]  is_empty(stack_b)? [%d]\n",
 			is_sorted(&stack_a), is_empty(&stack_b));
 	}
-	free_stack(&stack_a, &stack_b, size);
+	free_stack(&stack_a, &stack_b);
 	close(g_fd_log);
 	(void)argc;
 	return (0);

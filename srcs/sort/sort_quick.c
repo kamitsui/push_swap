@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:55:13 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/24 16:50:29 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/24 21:24:39 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 #include <stdbool.h>
 
 // for debug
-#include "debug.h"
-#include "ft_printf.h"
-
-int	g_fd_log;
-int	g_flag_debug;
+//#include "debug.h"
+//#include "ft_printf.h"
+//
+//int	g_fd_log;
+//int	g_flag_debug;
 
 // debug function
 //static void	debug_after_recursive_top_side(
@@ -68,21 +68,15 @@ int	g_flag_debug;
  * @param tmp ソートの際に避難させるスタック
  * @param range ソート範囲（srcスタックの要素番号）
  */
-void	sort_quick(t_stack *src, t_stack *tmp, t_range range)
+//void	sort_quick(t_stack *src, t_stack *tmp, t_range range)
+void	sort_quick(t_stack *src, t_stack *tmp, t_range range, t_count count)
 {
-	int								original_tmp_top;
-	t_count							count;
+	//t_count	count;// rangeに含めるか 再帰の引数に含めるか　要検討
+	int		i;
 
-	count.over = 0;
-	count.less = 0;
-	count.min = 0;
-	//ft_printf(">> call sort_quick\n");// debug
-//	if (range.low >= range.high
-//		|| is_sorted_direction[range.mode](src, range.low, range.high) == true)
-//		return ;
-	original_tmp_top = tmp->top * (is_empty(tmp) == false);
-//	if (g_flag_debug == DEBUG_ON)
-//		ft_dprintf(g_fd_log, "original_tmp_top [%d]\n", original_tmp_top);//debug
+//	count.over = 0;
+//	count.less = 0;
+//	count.min = 0;
 	if (range.low < range.high
 		|| is_sorted_range(src, range.low, range.high) == false)
 	{
@@ -92,39 +86,22 @@ void	sort_quick(t_stack *src, t_stack *tmp, t_range range)
 		else
 			partition_reverse(src, tmp, range, &count);
 //		debug_after_partition(src, tmp, range);
-		// ?? 未検証
-		//if (is_sorted_direction[range.mode](src, src->top + 1 - count.over, src->top) == false
-		// 9/22 改良 9/23 無効化
-//		if (is_sorted_direction[range.mode](src, range.low, src->top) == false
-//			|| is_sorted_direction[range.mode](tmp,
-//				(original_tmp_top + count.min) * (range.mode == MODE_REVERSE), tmp->top)
-//				== false)
-	//	9/22以前
-	//	if (is_sorted_direction[range.mode](src, 0, src->top) == false
-	//		//|| is_sorted_direction[range.mode == MODE_NORMAL](tmp, 0, tmp->top)
-	//		|| is_sorted_direction[range.mode == MODE_NORMAL](tmp, original_tmp_top, tmp->top)
-	//		== false)
-//		{
-			recursive_top_side(src, tmp, range, original_tmp_top);
-//			debug_after_recursive_top_side(src, tmp, range);
-			recursive_bottom_side(src, tmp, range, original_tmp_top, count);
-//			debug_after_recursive_bottom_side(src, tmp, range);
-			//exit(0);// debug
-//		}
+		recursive_top_side(src, tmp, range, count);
+//		debug_after_recursive_top_side(src, tmp, range);
+		//recursive_bottom_side(src, tmp, range, count);
+		recursive_bottom_side(src, tmp, range, count);
+//		debug_after_recursive_bottom_side(src, tmp, range);
 	}
-	// 9/23 実験
 	else if (range.mode == MODE_NORMAL)
 	{
-		int	i;
 		i = 0;
 		while (i++ < range.high + 1 - range.low)
 			instruct_rx(src);
 	}
-	//end_process(src, tmp, range.mode);
-	//end_process(src, tmp, original_tmp_top, range.mode);
-	end_process(src, tmp, range, count);
+	end_process(src, tmp, range);
 //	debug_sort_quick_end(src, tmp, range);
 }
+
 //この関数で使う debug functions
 //sort_quick関数の開始状況をデバッグ　（１回分のソート開始状況がわかる）
 //	debug_sort_quick_start(src, tmp, range);

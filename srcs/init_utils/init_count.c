@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   init_count.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 17:19:20 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/24 21:16:44 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/09/24 21:15:28 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/09/24 21:15:42 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "sort.h"
 
-void	sort(t_stack *stack_a, t_stack *stack_b, size_t size)
+void	init_count(t_count *count)
 {
-	t_range	range;
-	t_count	count;
-
-	if (size < 7)
-		sort_small(stack_a, stack_b, size, MODE_NORMAL);
-	else
-	{
-		range.low = 0;
-		range.high = stack_a->top;
-		range.mode = MODE_NORMAL;
-		init_count(&count);
-		sort_quick(stack_a, stack_b, range, count);
-	}
+	count->less = 0;
+	count->over = 0;
+	count->min = 0;
 }
+
