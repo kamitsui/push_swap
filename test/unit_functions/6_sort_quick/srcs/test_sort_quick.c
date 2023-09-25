@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:07:32 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/25 15:48:27 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/25 18:24:46 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	main(int argc, char *argv[])
 		return (0);
 	range.low = 0;
 	range.high = stack_a.top;
-	range.mode = MODE_NORMAL;
+	range.mode = BOTTOM_SIDE;
 	init_count(&count);
 	sort_quick(&stack_a, &stack_b, range, count);
 	if (g_flag_debug == DEBUG_ON)

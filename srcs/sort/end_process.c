@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:15:48 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/24 21:28:36 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/25 18:19:15 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void	end_process(t_stack *src, t_stack *tmp, t_range range)
 	int	i;
 
 	if ((is_sorted_range(src, 0, src->top) == true
-			&& is_empty(tmp) == true && range.mode == MODE_NORMAL)
+			&& is_empty(tmp) == true && range.mode == BOTTOM_SIDE)
 			|| (is_sorted_range(tmp, 0, tmp->top) == true
-			&& is_empty(src) == true && range.mode == MODE_REVERSE))
+			&& is_empty(src) == true && range.mode == TOP_SIDE))
 		return ;
-	if (range.mode == MODE_REVERSE
+	if (range.mode == TOP_SIDE
 		&& is_sorted_range(src, 0, src->top))
 	{
 //		debug_put_message(range.mode);//debug
@@ -51,7 +51,7 @@ void	end_process(t_stack *src, t_stack *tmp, t_range range)
 			instruct_rx(tmp);
 		}
 	}
-	else if (range.mode == MODE_NORMAL
+	else if (range.mode == BOTTOM_SIDE
 		&& is_sorted_range(src, range.low, src->top))
 	{
 //		debug_put_message(range.mode);//debug

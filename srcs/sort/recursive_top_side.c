@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:24:03 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/24 21:14:50 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/25 18:21:23 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 void	recursive_top_side(t_stack *src, t_stack *tmp, t_range range, t_count count)
 {
 //	debug_top_side(range);
-	if (range.mode == MODE_REVERSE)
+	if (range.mode == TOP_SIDE)
 	{
 //		debug_before_range(range);
 		range.low = 0;
@@ -47,7 +47,7 @@ void	recursive_top_side(t_stack *src, t_stack *tmp, t_range range, t_count count
 //		debug_before_range(range);
 		range.low = 0;
 		range.high = tmp->top;
-		range.mode = MODE_REVERSE;
+		range.mode = TOP_SIDE;
 		init_count(&count);
 //		debug_after_range(range);
 		sort_quick(tmp, src, range, count);
