@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/24 20:18:38 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/25 17:25:04 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,42 +16,8 @@
 #include <stdbool.h>
 
 //デバッグ用
-//#include "debug.h"// for debug
-//#include "ft_printf.h"// debug
-//int	g_fd_log;// debug
-//int	g_flag_debug;//debug
-
-// データを仕分けるヘルパー関数
-// 小さいデータはsrc内でrotate、大きいデータはtmpへpush
-static void	move_data(t_stack *src, t_stack *tmp,
-		t_count *count, int pivot_data, int min_data)
-{
-//	if (g_flag_debug == DEBUG_ON)
-//		ft_dprintf(g_fd_log,
-//			">>in move_data min_data = %d  src->data[top] = %d\n", min_data,
-//			src->data[src->top]);
-	if (src->data[src->top] == min_data)
-	{
-		instruct_px(tmp, src);
-		instruct_rx(tmp);
-		count->min++;
-	}
-	else if (is_less_than(src->data[src->top], pivot_data) == true
-			|| src->data[src->top] == pivot_data)
-	{
-		instruct_rx(src);
-		count->less++;
-	}
-	else
-	{
-		instruct_px(tmp, src);
-		count->over++;
-	}
-}
-//		if (g_flag_debug == 1)// debug
-//			ft_dprintf(g_fd_log, "count->less++ -> [%d]\n", count->less);
-//		if (g_flag_debug == 1)// debug
-//			ft_dprintf(g_fd_log, "count->over++ -> [%d]\n", count->over);
+#include "debug.h"// for debug
+#include "ft_printf.h"// debug
 
 //例外処理
 //　pivot_data以上の値がない時・・・分割できないため終了
@@ -109,6 +75,8 @@ void	partition_reverse(t_stack *src, t_stack *tmp, t_range range, t_count *count
 	t_transition	transition;
 	int				original_src_top;
 
+	if (g_flag_debug == 1)// debug
+		ft_dprintf(g_fd_log, ">> call partition_reverse function\n");
 	original_src_top = src->top;
 //	if (handle_exception(src, tmp, range) == 1)
 //		return ;
@@ -133,15 +101,17 @@ void	partition_reverse(t_stack *src, t_stack *tmp, t_range range, t_count *count
 //			if (min_data > min_data_tmp)
 //				min_data = min_data_tmp;
 //		}
-//		if (g_flag_debug == DEBUG_ON)
-//			ft_dprintf(g_fd_log,
-//				">> min_data = %d  src->data[top] = %d  pivot= %d\n", min_data,
-//				src->data[src->top], pivot_data);
-		//if (is_more_than_stack_range(src,
+		if (g_flag_debug == DEBUG_ON)
+			ft_dprintf(g_fd_log,
+				">> min_data = %d  src->data[top] = %d  pivot= %d\n", min_data,
+				src->data[src->top], pivot_data);
 		if (is_more_than_stack_range(src,
-				transition.low, transition.high, pivot_data) == false)
+				transition.low, transition.high, pivot_data) == false
+			&& src->data[src->top] != pivot_data
+			&& src->data[src->top] != min_data)
 			break ;
-		move_data(src, tmp, count, pivot_data, min_data);
+		//move_data_top_side(src, tmp, count, pivot_data, min_data);
+		move_data_bottom_side(src, tmp, count, pivot_data, min_data);
 		i++;
 	}
 // いらないのでは？？ 9/22

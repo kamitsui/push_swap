@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:01:03 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/24 21:24:06 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/25 17:15:49 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,14 @@ void	sort_quick(t_stack *src, t_stack *tmp, t_range range, t_count count);
 void	recursive_top_side(t_stack *src, t_stack *tmp, t_range range, t_count count);
 void	recursive_bottom_side(t_stack *src, t_stack *tmp,
 		t_range range, t_count count);
+
+// partition functions
 void	partition(t_stack *src, t_stack *tmp, t_range range, t_count *count);
+void	move_data_bottom_side(t_stack *src, t_stack *tmp,
+		t_count *count, int pivot_data, int min_data);
 void	partition_reverse(t_stack *src, t_stack *tmp, t_range range, t_count *count);
+void	move_data_top_side(t_stack *src, t_stack *tmp,
+		t_count *count, int pivot_data, int min_data);
 void	end_process(t_stack *src, t_stack *tmp, t_range range);
 
 // partition_small

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/24 20:18:00 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/25 17:25:14 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,50 +16,8 @@
 #include <stdbool.h>
 
 //デバッグ用
-//#include "debug.h"// for debug
-//#include "ft_printf.h"// debug
-//
-//int	g_fd_log;// debug
-//int	g_flag_debug;//debug
-
-// データを仕分けるヘルパー関数
-// 小さいデータはtmpへpush、大きいデータはsrc内でrotate
-static void	move_data(t_stack *src, t_stack *tmp,
-		t_count *count, int pivot_data, int min_data)
-{
-	if (src->data[src->top] == min_data)
-	{
-		if (count->over > 0)// 9/23 以前（一時避難する数）
-		{
-			instruct_px(tmp, src);
-			instruct_rx(tmp);
-		}
-		else
-		{
-			instruct_rx(src);// 9/23 検証
-		}
-		count->min++;
-//		if (g_flag_debug == DEBUG_ON)
-//			ft_dprintf(g_fd_log, ">> count->min++ [%d]\n", count->min);
-	}
-	else if (is_less_than(src->data[src->top], pivot_data) == true
-			|| src->data[src->top] == pivot_data)
-	{
-		instruct_px(tmp, src);
-		count->less++;
-	}
-	else
-	{
-		instruct_rx(src);
-		count->over++;
-//		if (g_flag_debug == DEBUG_ON)
-//			ft_dprintf(g_fd_log, ">> count->over++ [%d]\n", count->over);
-	}
-}
-//		if (g_flag_debug == 1)// debug
-//			ft_dprintf(g_fd_log, "count->less++  [%d]\n", count->less);
-//		if (g_flag_debug == 1)// debug
-//			ft_dprintf(g_fd_log, "count->over++  [%d]\n", count->over);
+#include "debug.h"
+#include "ft_printf.h"
 
 // 大きい値を元に戻す作業 (stack_a のTOPに戻す）
 static void	move_large_data(t_stack *src, t_count count)
@@ -192,7 +150,8 @@ void	partition(t_stack *src, t_stack *tmp, t_range range, t_count *count)
 			//count->over += range.high - range.low + 1 - i;// 9/23 NGかも
 			break ;
 		}
-		move_data(src, tmp, count, pivot_data, min_data);
+		//move_data_bottom_side(src, tmp, count, pivot_data, min_data);
+		move_data_top_side(src, tmp, count, pivot_data, min_data);
 		i++;
 	}
 	move_large_data(src, *count);

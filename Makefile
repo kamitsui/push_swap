@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/24 21:19:46 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/25 17:14:15 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC_DIR = \
 		  srcs/is_utils \
 		  srcs/instruct \
 		  srcs/sort \
+		  srcs/sort/partition_utils \
 		  srcs/debug \
 		  srcs/checker \
 		  srcs/checker/is_instruction
@@ -72,6 +73,7 @@ SRCS = \
 	   get_pivot_data.c \
 	   get_min_data.c \
 	   allocate_array.c \
+	   move_data.c \
 	   move_min_data.c \
 	   \
 	   is_less_than.c \
@@ -133,12 +135,20 @@ DEPS_B = $(addprefix $(DEP_DIR)/, $(SRCS_B:.c=.d))
 # Compile
 CC = cc
 CF = -Wall -Wextra -Werror
+STACK_CF = -g -fstack-usage
 LD_CF = -g -fsanitize=address
 INC_CF = -I$(INC_DIR)
 DEP_CF = -MMD -MP -MF $(@:$(OBJ_DIR)/%.o=$(DEP_DIR)/%.d)
+
+# Option flag ( Address sanitizer )
 ifdef WITH_ASAN
 CF += $(LD_CF)
 endif
+
+# Option flag ( Stack Overflow )
+#ifdef WITH_STACK
+#CF += $(STACK_CF)
+#endif
 
 # Rules for building object files
 $(OBJ_DIR)/%.o: %.c
@@ -191,7 +201,14 @@ asan: fclean
 	make $(NAME) WITH_ASAN=1
 	make bonus WITH_ASAN=1
 
+# Stack Analyzer ON
+#stack: fclean
+#	make -C $(LIBFT_DIR)
+#	make -C $(LIB_PRINTF_DIR)
+#	make $(NAME) WITH_STACK=1
+#	make bonus WITH_STACK=1
+
 # Enable dependency file
 -include $(DEPS)
 
-.PHONY: all clean fclean re bonus asan
+.PHONY: all clean fclean re bonus asan #stack

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 17:52:19 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/15 18:56:26 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/25 17:02:44 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 #include "ft_printf.h"
 #include "debug.h"
 
-// disable when review
-int	g_fd_log;
-int	g_flag_debug;
-
+//sort_quick関数の開始状況をデバッグ
 void	debug_sort_quick_start(t_stack *src, t_stack *tmp, t_range range)
 {
 	if (g_flag_debug == DEBUG_ON)
@@ -30,6 +27,7 @@ void	debug_sort_quick_start(t_stack *src, t_stack *tmp, t_range range)
 	}
 }
 
+//sort_quick関数の終了状況をデバッグ
 void	debug_sort_quick_end(t_stack *src, t_stack *tmp, t_range range)
 {
 	if (g_flag_debug == DEBUG_ON)
@@ -39,5 +37,44 @@ void	debug_sort_quick_end(t_stack *src, t_stack *tmp, t_range range)
 \x9	\x9	\x9	src->top[%d] tmp->top[%d]\n",
 			range.low, range.high, src->top, tmp->top);
 		debug_data(g_fd_log, src, tmp);
+	}
+}
+
+//partition関数で分割された後の状態をデバッグ
+void	debug_after_partition(t_stack *src, t_stack *tmp, t_range range)
+{
+	if (g_flag_debug == DEBUG_ON)
+	{
+		ft_dprintf(g_fd_log, ">> after partition func\n");
+		debug_data(g_fd_log, src, tmp);
+		debug_range(range);
+	}
+}
+
+//top側の再帰ソートが終わった後の状態をデバッグ
+void	debug_after_recursive_top_side(
+		t_stack *src, t_stack *tmp, t_range range)
+{
+	if (g_flag_debug == DEBUG_ON)
+	{
+		ft_dprintf(g_fd_log,
+			"---- end recursive_top_side ---- \
+\x9	\x9	\x9	range low[%d] ~ high[%d] ... \
+\x9	\x9	\x9	src->top[%d] tmp->top[%d] mode[%d]\n",
+			range.low, range.high, src->top, tmp->top, range.mode);
+	}
+}
+
+//bottom側の再帰ソートが終わった後の状態をデバッグ
+void	debug_after_recursive_bottom_side(
+		t_stack *src, t_stack *tmp, t_range range)
+{
+	if (g_flag_debug == DEBUG_ON)
+	{
+		ft_dprintf(g_fd_log,
+			"---- end recursive_bottom_side ---- \
+\x9	\x9	\x9	range low[%d] ~ high[%d] ... \
+\x9	\x9	\x9	src->top[%d] tmp->top[%d] mode[%d]\n",
+			range.low, range.high, src->top, tmp->top, range.mode);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/24 18:45:47 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/25 16:42:21 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char *argv[])
 
 //----- debug code ----------
 	g_fd_log = open_log("debug.log", O_TRUNC);
-	//g_flag_debug = DEBUG_ON;
+	g_flag_debug = DEBUG_ON;
 	g_flag_debug = DEBUG_OFF;
 //---------------------------
 

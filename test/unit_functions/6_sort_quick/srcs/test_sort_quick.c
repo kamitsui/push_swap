@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:07:32 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/24 21:36:38 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/25 15:48:27 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	main(int argc, char *argv[])
 	t_count	count;
 
 	g_fd_log = open_log("debug.log", O_TRUNC);
-	//g_flag_debug = DEBUG_ON;
-	g_flag_debug = DEBUG_OFF;
+	g_flag_debug = DEBUG_ON;
+	//g_flag_debug = DEBUG_OFF;
 
 	init_stack(&stack_a, (char *)"a");
 	init_stack(&stack_b, (char *)"b");

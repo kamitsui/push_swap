@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 13:40:27 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/24 21:37:12 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/25 17:17:03 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,15 +43,18 @@ SRCS = \
 	   sort_three_elements.c \
 	   sort_six_elements.c \
 	   sort_insert.c \
+	   \
 	   sort_quick.c \
 	   recursive_top_side.c \
 	   recursive_bottom_side.c \
 	   end_process.c \
 	   partition.c \
 	   partition_reverse.c \
+	   \
 	   partition_small.c \
 	   sort_reverse.c \
 	   move_min_data.c \
+	   move_data.c \
 	   \
 	   set_transition.c \
 	   get_pivot_data.c \
@@ -84,6 +87,7 @@ SRCS_DIR = \
 		   $(PROJ_DIR)/srcs \
 		   $(PROJ_DIR)/srcs/init_utils \
 		   $(PROJ_DIR)/srcs/sort \
+		   $(PROJ_DIR)/srcs/sort/partition_utils \
 		   $(PROJ_DIR)/srcs/is_utils \
 		   $(PROJ_DIR)/srcs/instruct \
 		   $(PROJ_DIR)/srcs/debug \
