@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 12:55:13 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/25 20:16:16 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/25 22:21:10 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,6 @@ void	sort_quick(t_stack *src, t_stack *tmp, t_range range, t_count count)
 		|| is_sorted_range(src, range.low, range.high) == false)
 	{
 		partition(src, tmp, range, &count);
-//		if (range.mode == 0)
-//			partition(src, tmp, range, &count);
-//		else
-//			partition_top_side(src, tmp, range, &count);
 		recursive_top_side(src, tmp, range, count);
 		recursive_bottom_side(src, tmp, range, count);
 	}

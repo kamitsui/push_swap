@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 13:40:27 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/25 18:34:25 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/25 21:42:17 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,8 @@ SRCS = \
 	   recursive_bottom_side.c \
 	   end_process.c \
 	   partition.c \
-	   partition_reverse.c \
+	   partition_top_side.c \
+	   partition_bottom_side.c \
 	   \
 	   partition_small.c \
 	   sort_reverse.c \
