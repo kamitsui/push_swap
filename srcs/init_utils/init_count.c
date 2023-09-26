@@ -6,11 +6,11 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 21:15:28 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/24 21:15:42 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 16:14:12 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sort.h"
+#include "quick_sort.h"
 
 void	init_count(t_count *count)
 {
@@ -18,4 +18,3 @@ void	init_count(t_count *count)
 	count->over = 0;
 	count->min = 0;
 }
-

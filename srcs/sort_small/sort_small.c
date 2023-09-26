@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_two_elements.c                                :+:      :+:    :+:   */
+/*   sort_small.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 20:50:09 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/16 17:59:28 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/09/04 17:10:44 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/09/26 17:05:43 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "instruct.h"
+#include "sort.h"
 
-void	sort_two_elements(t_stack *stack, int mode)
+void	sort_small(t_stack *src, t_stack *tmp, size_t size)
 {
-	static t_f_is_compare_than	is_compare_direction[2] = {
-		is_less_than, is_more_than};
-
-	if (is_compare_direction[mode](
-			stack->data[0], stack->data[stack->top]) == true)
-		instruct_sx(stack);
+	if (size <= 2)
+		sort_two_elements(src);
+	else if (size <= 3)
+		sort_three_elements(src);
+	else
+		sort_six_elements(src, tmp);
 }

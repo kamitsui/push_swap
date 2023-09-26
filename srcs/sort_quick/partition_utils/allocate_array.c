@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   partition.c                                        :+:      :+:    :+:   */
+/*   allocate_array.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/25 20:21:21 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/09/22 13:07:53 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/09/26 16:52:32 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include "sort.h"
+#include "error.h"
+#include <stdlib.h>
 
-void	partition(t_stack *src, t_stack *tmp, t_range range, t_count *count)
+int	*allocate_array(int size)
 {
-	if (range.mode == BOTTOM_SIDE)
-		partition_bottom_side(src, tmp, range, count);
-	else
-		partition_top_side(src, tmp, range, count);
+	int	*array_pointer;
+
+	array_pointer = (int *)malloc(sizeof(int) * size);
+	if (array_pointer == NULL)
+		handle_error(ERR_MALLOC);
+	return (array_pointer);
 }

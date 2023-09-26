@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 16:04:22 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/24 18:44:35 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:07:27 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@
  */
 typedef struct s_stack
 {
-	int		*data;
-	int		top;
-	int		size;
-	char	*name;
+	int			*data;
+	int			top;
+	int			size;
+	const char	*name;
 }	t_stack;
 
 /**
@@ -80,12 +80,6 @@ bool	is_less_than(int a, int b);
 bool	is_more_than(int a, int b);
 
 /**
- * @brief is_less_than関数とis_more_than関数を
- * 関数ポインタとして扱うために定義
- */
-typedef bool	(*t_f_is_compare_than)(int, int);
-
-/**
  * @brief Check if the array's data in the range on stack is less than value
  */
 bool	is_less_than_stack_range(t_stack *stack,
@@ -108,7 +102,6 @@ int		pop(t_stack *stack);
  */
 int		peek(t_stack *stack);
 
-//void	free_stack(t_stack *stack_a, t_stack *stack_b, size_t size);
 void	free_stack(t_stack *stack_a, t_stack *stack_b);
 
 #endif

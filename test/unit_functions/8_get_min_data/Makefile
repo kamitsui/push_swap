@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 13:40:27 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/22 13:27:47 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/26 17:36:09 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS = \
 	   free_stack.c \
 	   \
 	   init_stack.c \
+	   init_count.c \
 	   count_elements.c \
 	   allocate_data.c \
 	   set_data.c \
@@ -54,7 +55,7 @@ PROJ_DIR = ../../..
 SRCS_DIR = \
 		   $(PROJ_DIR)/srcs \
 		   $(PROJ_DIR)/srcs/init_utils \
-		   $(PROJ_DIR)/srcs/sort \
+		   $(PROJ_DIR)/srcs/sort_quick/partition_utils \
 		   $(PROJ_DIR)/srcs/is_utils \
 		   $(PROJ_DIR)/srcs/instruct \
 		   $(PROJ_DIR)/srcs/debug \
@@ -120,9 +121,20 @@ re: fclean all
 
 # Run test
 run:
-	./run.sh
+	make run1
+	make run2
+	make run3
+	make run4
+run1:
+	./run1.sh
+run2:
+	./run2.sh
+run3:
+	./run3.sh
+run4:
+	./run4.sh
 
 # Enable dependency file
 -include $(DEPS)
 
-.PHONY: debug all clean fclean re run
+.PHONY: debug all clean fclean re run run1 run2 run3 run4

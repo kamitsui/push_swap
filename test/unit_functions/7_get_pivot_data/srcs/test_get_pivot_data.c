@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:07:32 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/20 20:47:27 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:28:02 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ int	main(int argc, char *argv[])
 	int		data_b[BUFF_SIZE];
 	size_t	size;
 	t_range	range;
+	t_count	count;
 	g_fd_log = open_log("debug.log", O_TRUNC);
 	g_flag_debug = DEBUG_ON;
 
-	init_stack(&stack_a, (char *)"a");
-	init_stack(&stack_b, (char *)"b");
 	size = count_elements(&argv[1]);
-	if (size > BUFF_SIZE)
+	init_stack(&stack_a, &stack_b, size);
+	if (size > MAX_SIZE)
 		allocate_data(&stack_a, &stack_b, size);
 	else
 	{
@@ -52,14 +52,16 @@ int	main(int argc, char *argv[])
 		return (0);
 	range.low = 0;
 	range.high = stack_a.top;
-	range.mode = MODE_NORMAL;
-	sort_quick(&stack_a, &stack_b, range);
+	range.mode = BOTTOM_SIDE;
+	init_count(&count);
+	sort_quick(&stack_a, &stack_b, range, count);
 	ft_dprintf(g_fd_log, "--- after ---\n");
 	debug_data(g_fd_log, &stack_a, &stack_b);
 	ft_dprintf(g_fd_log,
 		">> is_sorted(stack_a)? [%d]  is_empty(stack_b)? [%d]\n",
 		is_sorted(&stack_a), is_empty(&stack_b));
-	free_stack(&stack_a, &stack_b, size);
+	if (size > MAX_SIZE)
+		free_stack(&stack_a, &stack_b);
 	close(g_fd_log);
 	(void)argc;
 	return (0);

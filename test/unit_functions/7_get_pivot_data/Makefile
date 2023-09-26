@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 13:40:27 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/20 20:24:16 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/26 17:26:25 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS = \
 	   count_elements.c \
 	   allocate_data.c \
 	   set_data.c \
+	   init_count.c \
 	   \
 	   instruct_push.c \
 	   instruct_rotate.c \
@@ -41,17 +42,21 @@ SRCS = \
 	   sort_two_elements.c \
 	   sort_three_elements.c \
 	   sort_six_elements.c \
-	   sort_insert.c \
 	   sort_quick.c \
 	   recursive_top_side.c \
 	   recursive_bottom_side.c \
 	   end_process.c \
 	   partition.c \
-	   partition_reverse.c \
-	   partition_small.c \
-	   sort_reverse.c \
+	   partition_top_side.c \
+	   partition_bottom_side.c \
 	   \
 	   get_pivot_data.c \
+	   get_min_data.c \
+	   move_data.c \
+	   move_large_data.c \
+	   move_min_data.c \
+	   set_transition.c \
+	   allocate_array.c \
 	   \
 	   is_less_than.c \
 	   is_more_than.c \
@@ -67,6 +72,7 @@ SRCS = \
 	   open_log.c \
 	   debug_range.c \
 	   debug_sort_quick.c \
+	   debug_move_data.c \
 	   \
 	   error.c
 
@@ -77,7 +83,9 @@ PROJ_DIR = ../../..
 SRCS_DIR = \
 		   $(PROJ_DIR)/srcs \
 		   $(PROJ_DIR)/srcs/init_utils \
-		   $(PROJ_DIR)/srcs/sort \
+		   $(PROJ_DIR)/srcs/sort_small \
+		   $(PROJ_DIR)/srcs/sort_quick \
+		   $(PROJ_DIR)/srcs/sort_quick/partition_utils \
 		   $(PROJ_DIR)/srcs/is_utils \
 		   $(PROJ_DIR)/srcs/instruct \
 		   $(PROJ_DIR)/srcs/debug \
@@ -143,9 +151,17 @@ re: fclean all
 
 # Run test
 run:
-	./run.sh
+	make run1
+	make run2
+	make run3
+run1:
+	./run1.sh
+run2:
+	./run2.sh
+run3:
+	./run3.sh
 
 # Enable dependency file
 -include $(DEPS)
 
-.PHONY: debug all clean fclean re run
+.PHONY: debug all clean fclean re run run1 run2 run3

@@ -6,13 +6,12 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:57:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/25 21:51:27 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 14:37:50 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "instruct.h"
-#include "sort.h"
+#include "quick_sort.h"
 #include <stdbool.h>
 
 // for debug

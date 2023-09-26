@@ -6,17 +6,16 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:30:49 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/25 18:56:48 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 14:42:44 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "sort.h"
+#include "quick_sort.h"
 #include "instruct.h"
 
 // for debug
 #include "debug.h"
-#include "ft_printf.h"
 
 // 大きい値を元に戻す作業 (stack_a のTOPに戻す） bottom側のみ
 void	move_large_data(t_stack *src, t_count count)
@@ -47,4 +46,4 @@ void	move_large_data(t_stack *src, t_count count)
 // debug code
 //			debug_number_of_ra(src, count);
 //			debug_number_of_rra(count);
-//				debug_move_data(src);
+//				debug_move_large_data(src);

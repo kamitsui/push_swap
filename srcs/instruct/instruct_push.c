@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 09:19:05 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/15 20:01:27 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 16:49:58 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@
 // for debug
 #include "debug.h"
 
-int	g_fd_log;
-int	g_flag_debug;
-
 /**
  * @brief execute ( pa | pb ) & output ( "pa\n" | "pb\n" )
  *
@@ -34,9 +31,6 @@ void	instruct_px(t_stack *dst, t_stack *src)
 {
 	execute_px(dst, src);
 	ft_printf("p%s\n", dst->name);
-	if (g_flag_debug == DEBUG_ON)
-		ft_dprintf(g_fd_log, "p%s\n", dst->name);
 }
 //debug code
-//	if (g_flag_debug == DEBUG_ON)// debug
-//		ft_dprintf(g_fd_log, "p%s\n", dst->name);// debug
+//	debug_instruct_px(dst->name);

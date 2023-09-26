@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/25 16:42:21 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 13:55:00 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 #include "ft_printf.h"
 
 //デバッグ用
-#include "debug.h"
-#include <fcntl.h>
-int	g_fd_log;
-int	g_flag_debug;
+//#include "debug.h"
+//#include <fcntl.h>
+//int	g_fd_log;
+//int	g_flag_debug;
 
 /**
  * @brief main function of push swap (this program to sort integer values)
@@ -40,58 +40,31 @@ int	main(int argc, char *argv[])
 {
 	t_stack	stack_a;
 	t_stack	stack_b;
-//	int		data_a[MAX_SIZE];
-//	int		data_b[MAX_SIZE];
+	int		data_a[MAX_SIZE];
+	int		data_b[MAX_SIZE];
 	size_t	size;
 
-//----- debug code ----------
-	g_fd_log = open_log("debug.log", O_TRUNC);
-	g_flag_debug = DEBUG_ON;
-	g_flag_debug = DEBUG_OFF;
-//---------------------------
-
 	if (argc < 2)
-		return (1);
-	init_stack(&stack_a, (char *)"a");
-	init_stack(&stack_b, (char *)"b");
+		return (EXIT_FAILURE);
 	size = count_elements(&argv[1]);
-//	if (size > MAX_SIZE)
+	init_stack(&stack_a, &stack_b, size);
+	if (size > MAX_SIZE)
 		allocate_data(&stack_a, &stack_b, size);
-//	else
-//	{
-//		stack_a.data = &data_a[0];
-//		stack_b.data = &data_b[0];
-//	}
+	else
+	{
+		stack_a.data = &data_a[0];
+		stack_b.data = &data_b[0];
+	}
 	set_data(&stack_a, &argv[1], size);
-	// 9/24 追加 is_fullのために
-	stack_a.size = stack_a.top;
-	stack_b.size = stack_a.size;;
-
-//----- debug code ----------
-	if (g_flag_debug == DEBUG_ON)
-		debug_data(g_fd_log, &stack_a, &stack_b);
-//---------------------------
-
 	if (is_sorted(&stack_a) == false)
 		sort(&stack_a, &stack_b, size);
-
-//----- debug code ----------
-	if (g_flag_debug == DEBUG_ON)
-		debug_data(g_fd_log, &stack_a, &stack_b);
-//---------------------------
-
-	free_stack(&stack_a, &stack_b);
-
-//----- debug code ----------
-	if (g_flag_debug == DEBUG_ON)
-		close (g_fd_log);
-//---------------------------
-
-	return (0);
+	if (size > MAX_SIZE)
+		free_stack(&stack_a, &stack_b);
+	return (EXIT_SUCCESS);
 }
 //debug code
-//リークのチェック
 
+//リークのチェック
 //----- debug code ----------
 //	system("leaks push_swap");// for debug
 //---------------------------
@@ -101,19 +74,17 @@ int	main(int argc, char *argv[])
 ////----- debug code ----------
 //	g_fd_log = open_log("debug.log", O_TRUNC);
 //	g_flag_debug = DEBUG_ON;
+////	g_flag_debug = DEBUG_OFF;
 ////---------------------------
-//
+
 // スタックの状態出力
-//
 ////----- debug code ----------
 //	if (g_flag_debug == DEBUG_ON)
 //		debug_data(g_fd_log, &stack_a, &stack_b);
 ////---------------------------
-//
+
 // fd_logのリソースを解放
-//
 ////----- debug code ----------
 //	if (g_flag_debug == DEBUG_ON)
 //		close (g_fd_log);
 ////---------------------------
-//

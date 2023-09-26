@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 12:53:05 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/15 20:38:04 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 16:06:00 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ enum	e_instruction
 	INST_ERROR
 };
 
-int					checker(t_stack *stack_a, t_stack *stack_b);
+int					checker(t_stack *stack_a, t_stack *stack_b, int size);
 
 /**
  * @brief search type from instruction string

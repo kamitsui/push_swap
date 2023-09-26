@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:53:08 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/25 18:53:45 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 16:12:12 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ void	debug_number_of_rra(t_count count)
 		ft_dprintf(g_fd_log,
 			">> number of rra ... count.over [%d]\n", count.over);
 }
+
 // move するデータをデバッグ
-void	debug_move_data(t_stack *src)
+void	debug_move_large_data(t_stack *src)
 {
 	if (g_flag_debug == DEBUG_ON)
 		ft_dprintf(g_fd_log,

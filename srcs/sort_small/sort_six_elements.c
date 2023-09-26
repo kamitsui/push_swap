@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 20:47:45 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/22 15:53:00 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 16:59:51 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void	move_min_data_to_top(t_stack *stack)
  * @param src is unsorted.
  * @param tmp is working stack
  */
-void	sort_six_elements(t_stack *src, t_stack *tmp, int mode)
+void	sort_six_elements(t_stack *src, t_stack *tmp)
 {
 	while (src->top >= 3)
 	{
@@ -91,7 +91,7 @@ void	sort_six_elements(t_stack *src, t_stack *tmp, int mode)
 		instruct_px(tmp, src);
 	}
 	if (is_sorted(src) == false)
-		sort_three_elements(src, mode);
+		sort_three_elements(src);
 	while (is_empty(tmp) == false)
 		instruct_px(src, tmp);
 }

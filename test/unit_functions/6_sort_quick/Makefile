@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 13:40:27 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/25 21:42:17 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/26 16:49:04 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,6 @@ SRCS = \
 	   sort_two_elements.c \
 	   sort_three_elements.c \
 	   sort_six_elements.c \
-	   sort_insert.c \
 	   \
 	   sort_quick.c \
 	   recursive_top_side.c \
@@ -52,8 +51,6 @@ SRCS = \
 	   partition_top_side.c \
 	   partition_bottom_side.c \
 	   \
-	   partition_small.c \
-	   sort_reverse.c \
 	   move_data.c \
 	   move_min_data.c \
 	   move_large_data.c \
@@ -77,7 +74,13 @@ SRCS = \
 	   open_log.c \
 	   debug_range.c \
 	   debug_sort_quick.c \
+	   debug_end_process.c \
+	   debug_get_pivot_data.c \
+	   debug_move_data.c \
+	   debug_move_large_data.c \
 	   debug_array.c \
+	   debug_instruct_push_and_swap.c \
+	   debug_instruct_rotate.c \
 	   \
 	   error.c
 
@@ -88,8 +91,9 @@ PROJ_DIR = ../../..
 SRCS_DIR = \
 		   $(PROJ_DIR)/srcs \
 		   $(PROJ_DIR)/srcs/init_utils \
-		   $(PROJ_DIR)/srcs/sort \
-		   $(PROJ_DIR)/srcs/sort/partition_utils \
+		   $(PROJ_DIR)/srcs/sort_small \
+		   $(PROJ_DIR)/srcs/sort_quick \
+		   $(PROJ_DIR)/srcs/sort_quick/partition_utils \
 		   $(PROJ_DIR)/srcs/is_utils \
 		   $(PROJ_DIR)/srcs/instruct \
 		   $(PROJ_DIR)/srcs/debug \

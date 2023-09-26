@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:07:32 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/25 18:24:46 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 13:43:54 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,29 +28,28 @@ int	main(int argc, char *argv[])
 {
 	t_stack	stack_a;
 	t_stack	stack_b;
-//	int		data_a[BUFF_SIZE];
-//	int		data_b[BUFF_SIZE];
+	int		data_a[MAX_SIZE];
+	int		data_b[MAX_SIZE];
 	size_t	size;
 	t_range	range;
 	t_count	count;
 
+	if (argc < 2)
+		return (1);
 	g_fd_log = open_log("debug.log", O_TRUNC);
 	g_flag_debug = DEBUG_ON;
 	//g_flag_debug = DEBUG_OFF;
 
-	init_stack(&stack_a, (char *)"a");
-	init_stack(&stack_b, (char *)"b");
 	size = count_elements(&argv[1]);
-//	if (size > MAX_SIZE)
+	init_stack(&stack_a, &stack_b, size);
+	if (size > MAX_SIZE)
 		allocate_data(&stack_a, &stack_b, size);
-//	else
-//	{
-//		stack_a.data = &data_a[0];
-//		stack_b.data = &data_b[0];
-//	}
+	else
+	{
+		stack_a.data = &data_a[0];
+		stack_b.data = &data_b[0];
+	}
 	set_data(&stack_a, &argv[1], size);
-	stack_a.size = stack_a.top;
-	stack_b.size = stack_a.size;
 	if (g_flag_debug == DEBUG_ON)
 	{
 		ft_dprintf(g_fd_log, "--- before ---\n");
@@ -71,8 +70,8 @@ int	main(int argc, char *argv[])
 			">> is_sorted(stack_a)? [%d]  is_empty(stack_b)? [%d]\n",
 			is_sorted(&stack_a), is_empty(&stack_b));
 	}
-	free_stack(&stack_a, &stack_b);
+	if (size > MAX_SIZE)
+		free_stack(&stack_a, &stack_b);
 	close(g_fd_log);
-	(void)argc;
 	return (0);
 }

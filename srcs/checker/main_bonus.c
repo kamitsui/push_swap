@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/24 18:43:28 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 16:07:37 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,24 +38,21 @@ int	main(int argc, char *argv[])
 {
 	t_stack	stack_a;
 	t_stack	stack_b;
-//	int		data_a[MAX_SIZE];
-//	int		data_b[MAX_SIZE];
+	int		data_a[MAX_SIZE];
+	int		data_b[MAX_SIZE];
 	size_t	size;
 
 	if (argc < 2)
 		return (1);
-	init_stack(&stack_a, (char *)"a");
-	init_stack(&stack_b, (char *)"b");
 	size = count_elements(&argv[1]);
-//	if (size > MAX_SIZE)
+	init_stack(&stack_a, &stack_b, size);
+	if (size > MAX_SIZE)
 		allocate_data(&stack_a, &stack_b, size);
-//	else
-//	{
-//		stack_a.data = &data_a[0];
-//		stack_b.data = &data_b[0];
-//	}
+	else
+	{
+		stack_a.data = &data_a[0];
+		stack_b.data = &data_b[0];
+	}
 	set_data(&stack_a, &argv[1], size);
-	stack_a.size = stack_a.top;
-	stack_b.size = stack_a.size;;
-	return (checker(&stack_a, &stack_b));
+	return (checker(&stack_a, &stack_b, size));
 }

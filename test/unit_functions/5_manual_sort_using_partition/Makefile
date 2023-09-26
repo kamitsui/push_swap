@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 13:40:27 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/06 14:59:11 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/26 17:50:53 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS = \
 	   free_stack.c \
 	   \
 	   init_stack.c \
+	   init_count.c \
 	   count_elements.c \
 	   allocate_data.c \
 	   set_data.c \
@@ -36,21 +37,27 @@ SRCS = \
 	   \
 	   operation.c \
 	   \
-	   sort.c \
-	   sort_small.c \
-	   sort_two_elements.c \
-	   sort_three_elements.c \
-	   sort_six_elements.c \
-	   sort_insert.c \
-	   sort_quick.c \
 	   partition.c \
+	   partition_top_side.c \
+	   partition_bottom_side.c \
+	   \
+	   get_min_data.c \
+	   get_pivot_data.c \
+	   allocate_array.c \
+	   move_data.c \
+	   move_large_data.c \
+	   move_min_data.c \
+	   set_transition.c \
 	   \
 	   is_less_than.c \
+	   is_less_than_stack_range.c \
+	   is_more_than_stack_range.c \
 	   is_sorted.c \
 	   is_empty.c \
 	   is_full.c \
 	   \
 	   debug_data.c \
+	   debug_move_data.c \
 	   \
 	   error.c
 
@@ -61,7 +68,8 @@ PROJ_DIR = ../../..
 SRCS_DIR = \
 		   $(PROJ_DIR)/srcs \
 		   $(PROJ_DIR)/srcs/init_utils \
-		   $(PROJ_DIR)/srcs/sort \
+		   $(PROJ_DIR)/srcs/sort_quick \
+		   $(PROJ_DIR)/srcs/sort_quick/partition_utils \
 		   $(PROJ_DIR)/srcs/is_utils \
 		   $(PROJ_DIR)/srcs/instruct \
 		   $(PROJ_DIR)/srcs/debug \

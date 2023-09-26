@@ -6,12 +6,14 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 17:19:20 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/25 18:23:18 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:06:05 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "init.h"
 #include "sort.h"
+#include "quick_sort.h"
 
 void	sort(t_stack *stack_a, t_stack *stack_b, size_t size)
 {
@@ -19,7 +21,7 @@ void	sort(t_stack *stack_a, t_stack *stack_b, size_t size)
 	t_count	count;
 
 	if (size < 7)
-		sort_small(stack_a, stack_b, size, BOTTOM_SIDE);
+		sort_small(stack_a, stack_b, size);
 	else
 	{
 		range.low = 0;

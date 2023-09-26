@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:10:41 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/07 17:04:37 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:53:15 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ int	main(int argc, char *argv[])
 		ft_printf("Error: Not enough arguments.\n");
 		return (1);
 	}
-	init_stack(&stack_a, (char *)"a");
-	init_stack(&stack_b, (char *)"b");
 	size = count_elements(&argv[1]);
+	init_stack(&stack_a, &stack_b, size);
 	allocate_data(&stack_a, &stack_b, size);
 	set_data(&stack_a, &argv[1], size);
 	debug_data(STDOUT_FILENO, &stack_a, &stack_b);

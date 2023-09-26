@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 12:07:32 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/22 14:43:37 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:35:14 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ int	main(int argc, char *argv[])
 	int		data_b[BUFF_SIZE];
 	size_t	size;
 	t_range	range;
+	t_count	count;
 	g_fd_log = open_log("debug.log", O_TRUNC);
 	g_fd_log = STDOUT_FILENO;
 	g_flag_debug = DEBUG_ON;
 
-	init_stack(&stack_a, (char *)"a");
-	init_stack(&stack_b, (char *)"b");
 	size = count_elements(&argv[1]);
-	if (size > BUFF_SIZE)
+	init_stack(&stack_a, &stack_b, size);
+	if (size > MAX_SIZE)
 		allocate_data(&stack_a, &stack_b, size);
 	else
 	{
@@ -56,12 +56,16 @@ int	main(int argc, char *argv[])
 		return (0);
 	range.low = 0;
 	range.high = stack_a.top;
-	range.mode = MODE_NORMAL;
+	range.mode = BOTTOM_SIDE;
+	range.transition_low = 0;
+	range.transition_high = stack_a.top;
 	int	min_data;
-	min_data = get_min_data(&stack_a, range.low, range.high);
+	init_count(&count);
+	min_data = get_min_data(&stack_a, &stack_b, range, count);
 	if (g_flag_debug == DEBUG_ON)
 		ft_dprintf(g_fd_log, ">> min_data [%d]\n", min_data);
-	free_stack(&stack_a, &stack_b, size);
+	if (size > MAX_SIZE)
+		free_stack(&stack_a, &stack_b);
 	close(g_fd_log);
 	(void)argc;
 	return (0);

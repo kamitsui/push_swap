@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   allocate_array.c                                   :+:      :+:    :+:   */
+/*   debug_end_process.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 13:07:53 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/22 13:08:32 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/09/26 11:01:10 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/09/26 11:24:16 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
-#include <stdlib.h>
+#include "debug.h"
+#include "ft_printf.h"
 
-int	*allocate_array(int	size)
+// end_processがtop側,bottom側のどちらから呼ばれたかをデバッグする
+void	debug_end_process_start(int mode)
 {
-	int	*array_pointer;
-
-	array_pointer = (int *)malloc(sizeof(int) * size);
-	if (array_pointer == NULL)
-		handle_error(ERR_MALLOC);
-	return (array_pointer);
+	if (g_flag_debug == DEBUG_ON)
+		ft_dprintf(g_fd_log,
+			">> move sorted data ... from mode[%d]  bottom[%d] top[%d]\n",
+			mode, BOTTOM_SIDE, TOP_SIDE);
 }

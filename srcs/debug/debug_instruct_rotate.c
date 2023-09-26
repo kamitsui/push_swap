@@ -1,49 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug_array.c                                      :+:      :+:    :+:   */
+/*   debug_instruct_rotate.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/22 13:13:50 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/26 13:10:21 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/09/26 16:41:01 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/09/26 16:41:12 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "debug.h"
 #include "ft_printf.h"
+#include "debug.h"
 
-// デバッグ用の関数
-void	debug_array(int arr[], int size)
+void	debug_instruct_rx(const char *name)
 {
-	int	i;
-
 	if (g_flag_debug == DEBUG_ON)
-	{
-		i = 0;
-		while (i < size)
-		{
-			ft_dprintf(g_fd_log, "arr[%d] = %d\n", i, arr[i]);
-			i++;
-		}
-		ft_dprintf(g_fd_log, "\n");
-	}
+		ft_dprintf(g_fd_log, "r%s\n", name);
 }
 
-void	debug_array_before(int arr[], int size)
+void	debug_instruct_rr(void)
 {
 	if (g_flag_debug == DEBUG_ON)
-	{
-		ft_dprintf(g_fd_log, "---- before ----\n");
-		debug_array(arr, size);
-	}
+		ft_dprintf(g_fd_log, "rr\n");
 }
 
-void	debug_array_after(int arr[], int size)
+void	debug_instruct_rrx(const char *name)
 {
 	if (g_flag_debug == DEBUG_ON)
-	{
-		ft_dprintf(g_fd_log, "---- after ----\n");
-		debug_array(arr, size);
-	}
+		ft_dprintf(g_fd_log, "rr%s\n", name);
+}
+
+void	debug_instruct_rrr(void)
+{
+	if (g_flag_debug == DEBUG_ON)
+		ft_dprintf(g_fd_log, "rrr\n");
 }

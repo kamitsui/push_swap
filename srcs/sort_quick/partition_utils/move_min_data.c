@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.h                                             :+:      :+:    :+:   */
+/*   move_min_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/28 16:01:03 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/26 17:05:50 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/09/22 14:25:27 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/09/26 13:56:55 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/**
- * @file sort.h
- * @brief Define sort functions
- */
-#ifndef SORT_H
-# define SORT_H
+#include "push_swap.h"
+#include "instruct.h"
+#include "quick_sort.h"
 
-# include "push_swap.h"
+// Only call by partition.c
+void	move_min_data(t_stack *stack_a, t_stack *stack_b, t_count count)
+{
+	int	i;
+	int	size;
 
-void	sort(t_stack *stack_a, t_stack *stack_b, size_t size);
-
-void	sort_small(t_stack *src, t_stack *tmp, size_t size);
-void	sort_two_elements(t_stack *stack);
-void	sort_three_elements(t_stack *stack);
-void	sort_six_elements(t_stack *src, t_stack *tmp);
-
-#endif
+	size = stack_b->top + 1 - count.less;
+	i = 0;
+	while (i++ < size)
+		instruct_rrx(stack_b);
+	i = 0;
+	while (i++ < size)
+	{
+		instruct_px(stack_a, stack_b);
+		instruct_rx(stack_a);
+	}
+}

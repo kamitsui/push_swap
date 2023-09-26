@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:04:07 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/25 21:49:07 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 16:13:38 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 //partition関数の開始状況をデバッグ
 void	debug_partition_start(int mode)
 {
-	if (g_flag_debug == 1)// debug
+	if (g_flag_debug == 1)
 		ft_dprintf(g_fd_log, ">> call partition function ... mode [%d]\
 \x9	\x9	\x9	 ... bottom[%d] top[%d]\n", mode, BOTTOM_SIDE, TOP_SIDE);
 }
@@ -44,16 +44,16 @@ void	debug_current_data(t_stack *src, t_range range)
 		{
 			ft_dprintf(g_fd_log,
 				">> is_more_than_stack ? = %d  low %d ~ high %d\n",
-				is_more_than_stack_range(src,
-				range.transition_low, range.transition_high, range.pivot_data),
+				is_more_than_stack_range(src, range.transition_low,
+					range.transition_high, range.pivot_data),
 				range.transition_low, range.transition_high);
 		}
 		else
 		{
 			ft_dprintf(g_fd_log,
 				">> is_less_than_stack ? = %d  low %d ~ high %d\n",
-				is_less_than_stack_range(src,
-				range.transition_low, range.transition_high, range.pivot_data),
+				is_less_than_stack_range(src, range.transition_low,
+					range.transition_high, range.pivot_data),
 				range.transition_low, range.transition_high);
 		}
 	}

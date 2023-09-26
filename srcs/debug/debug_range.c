@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 18:26:24 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/25 22:00:29 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 14:15:22 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,14 @@ void	debug_after_range(t_range range)
 void	debug_recursive(t_range range)
 {
 	if (g_flag_debug == DEBUG_ON)
-		ft_dprintf(g_fd_log,
-			">> call recursive sort_quick func ... from mode [%d]\n",
-			range.mode);
+	{
+		if (range.mode == TOP_SIDE)
+			ft_dprintf(g_fd_log,
+				">> call recursive sort_quick func ... top side mode[%d]\n",
+				range.mode);
+		else
+			ft_dprintf(g_fd_log,
+				">> call recursive sort_quick func ... bottom side mode[%d]\n",
+				range.mode);
+	}
 }

@@ -6,7 +6,7 @@
 #    By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/01 16:07:25 by kamitsui          #+#    #+#              #
-#    Updated: 2023/09/25 21:52:52 by kamitsui         ###   ########.fr        #
+#    Updated: 2023/09/26 16:48:45 by kamitsui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,9 @@ SRC_DIR = \
 		  srcs/init_utils \
 		  srcs/is_utils \
 		  srcs/instruct \
-		  srcs/sort \
-		  srcs/sort/partition_utils \
+		  srcs/sort_small \
+		  srcs/sort_quick \
+		  srcs/sort_quick/partition_utils \
 		  srcs/debug \
 		  srcs/checker \
 		  srcs/checker/is_instruction
@@ -59,7 +60,6 @@ SRCS = \
 	   sort_two_elements.c \
 	   sort_three_elements.c \
 	   sort_six_elements.c \
-	   sort_insert.c \
 	   sort_quick.c \
 	   recursive_top_side.c \
 	   recursive_bottom_side.c \
@@ -67,7 +67,6 @@ SRCS = \
 	   partition.c \
 	   partition_top_side.c \
 	   partition_bottom_side.c \
-	   sort_reverse.c \
 	   \
 	   set_transition.c \
 	   get_pivot_data.c \
@@ -95,9 +94,14 @@ SRCS = \
 	   open_log.c \
 	   debug_sort_quick.c \
 	   debug_range.c \
-	   debug_move_large_data.c \
 	   debug_partition.c \
-	   debug_array.c
+	   debug_end_process.c \
+	   debug_get_pivot_data.c \
+	   debug_move_large_data.c \
+	   debug_move_data.c \
+	   debug_array.c \
+	   debug_instruct_push_and_swap.c \
+	   debug_instruct_rotate.c
 SRCS_B = \
 		 main_bonus.c \
 		 \

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:50:30 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/16 20:40:00 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 16:23:38 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@
 // for debug
 #include "debug.h"
 
-int	g_fd_log;
-int	g_flag_debug;
-
 /**
  * @brief execute ( sa | sb ) & output ( "sa\\n" | "sb\\n" )
  *
@@ -33,12 +30,9 @@ void	instruct_sx(t_stack *target)
 {
 	execute_sx(target);
 	ft_printf("s%s\n", target->name);
-	if (g_flag_debug == DEBUG_ON)// debug
-		ft_dprintf(g_fd_log, "s%s\n", target->name);// debug
 }
 //debug code
-//	if (g_flag_debug == DEBUG_ON)// debug
-//		ft_dprintf(g_fd_log, "s%s\n", target->name);// debug
+//	debug_instruct_sx(target->name);
 
 /**
  * @brief execute ss & output "ss\n"
@@ -52,5 +46,4 @@ void	instruct_ss(t_stack *stack_a, t_stack *stack_b)
 	ft_printf("ss\n");
 }
 //debug code
-//	if (g_flag_debug == DEBUG_ON)
-//		ft_dprintf(g_fd_log, "ss\n");
+//	debug_instruct_ss();

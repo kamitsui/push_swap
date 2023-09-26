@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_small.c                                       :+:      :+:    :+:   */
+/*   debug_instruct_push_and_swap.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 17:10:44 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/16 18:05:25 by kamitsui         ###   ########.fr       */
+/*   Created: 2023/09/26 16:19:02 by kamitsui          #+#    #+#             */
+/*   Updated: 2023/09/26 16:48:31 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include "sort.h"
+#include "ft_printf.h"
+#include "debug.h"
 
-void	sort_small(t_stack *src, t_stack *tmp, size_t size, int mode)
+void	debug_instruct_px(const char *name)
 {
-	if (size <= 2)
-		sort_two_elements(src, mode);
-	else if (size <= 3)
-		sort_three_elements(src, mode);
-	else
-		sort_six_elements(src, tmp, mode);
+	if (g_flag_debug == DEBUG_ON)
+		ft_dprintf(g_fd_log, "p%s\n", name);
+}
+
+void	debug_instruct_sx(const char *name)
+{
+	if (g_flag_debug == DEBUG_ON)
+		ft_dprintf(g_fd_log, "s%s\n", name);
+}
+
+void	debug_instruct_ss(void)
+{
+	if (g_flag_debug == DEBUG_ON)
+		ft_dprintf(g_fd_log, "ss\n");
 }
