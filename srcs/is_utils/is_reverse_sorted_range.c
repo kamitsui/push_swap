@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 13:28:10 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/16 17:10:00 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 20:25:11 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@
 //// for debug
 //#include "debug.h"
 //#include "ft_printf.h"
-//
-//int	g_fd_log;
-//int	g_flag_debug;
 
 /**
  * @brief スタックの整数がすでに降順か否か調べる関数(範囲指定バージョン)

@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 22:36:20 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/26 16:47:32 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 20:39:24 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # define DEBUG_OFF	0
 # define DEBUG_ON	1
 
-int	g_fd_log;
-int	g_flag_debug;
+//int	g_fd_log;
+//int	g_flag_debug;
 
 void	debug_data(int debug_fd, t_stack *left, t_stack *right);
 void	repeat_push(t_stack *dst, t_stack *src, int num);

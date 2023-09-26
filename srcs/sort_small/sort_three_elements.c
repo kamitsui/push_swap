@@ -6,17 +6,12 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 20:49:12 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/26 16:58:02 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 20:26:33 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "instruct.h"
-
-// for debug
-#include "ft_printf.h"
-#include <unistd.h>
-#include "debug.h"
 
 static void	rotable_sort_three_elements(t_stack *stack)
 {

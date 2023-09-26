@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 14:04:48 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/04 15:39:28 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 20:20:11 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ void	execute_rrx(t_stack *stack)
 	int	i;
 
 	if (is_empty(stack))
-	{
-		ft_printf(MSG_ERR_REVERSE_ROTATE);
-		return ;
-	}
+		handle_error(ERR_REVERSE_ROTATE);
 	temp = stack->data[0];
 	i = 0;
 	while (i < stack->top)

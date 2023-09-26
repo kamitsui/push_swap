@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 18:22:01 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/31 18:36:09 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 19:21:17 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
  * @brief execute ( pa | pb )
  */
 #include "push_swap.h"
-#include "ft_printf.h"
 
 /**
  * @brief execute instruction ( pa | pb )

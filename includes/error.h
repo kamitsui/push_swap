@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 13:26:56 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/06 17:25:30 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 20:21:11 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@
  * @brief ERR_PEEK is error number for peekh failure (only test code)
  */
 # define ERR_PEEK	5
+
+# define ERR_SWAP			6
+# define ERR_ROTATE			7
+# define ERR_REVERSE_ROTATE	8
 
 /**
  * @brief MSG_ERR is output when the below error is detected.

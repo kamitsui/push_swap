@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 17:37:09 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/26 11:44:23 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 19:30:01 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@
  */
 static void	error_message(int error_code)
 {
-	static char	*msg[6] = {NULL, MSG_ERR, MSG_ERR_MALLOC, MSG_ERR_POP,
-		MSG_ERR_PUSH, MSG_ERR_PEEK};
+	static char	*msg[9] = {NULL, MSG_ERR, MSG_ERR_MALLOC, MSG_ERR_POP,
+		MSG_ERR_PUSH, MSG_ERR_PEEK, MSG_ERR_SWAP, MSG_ERR_ROTATE,
+		MSG_ERR_REVERSE_ROTATE};
 
 	ft_dprintf(STDERR_FILENO, msg[error_code]);
 }

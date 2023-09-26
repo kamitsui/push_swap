@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:30:03 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/08/31 18:39:05 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 20:20:47 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ void	execute_sx(t_stack *stack)
 	int	temp;
 
 	if (stack->top < 1)
-	{
-		ft_printf(MSG_ERR_SWAP);
-		return ;
-	}
+		handle_error(ERR_SWAP);
 	temp = stack->data[stack->top];
 	stack->data[stack->top] = stack->data[stack->top - 1];
 	stack->data[stack->top - 1] = temp;

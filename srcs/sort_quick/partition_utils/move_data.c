@@ -6,7 +6,7 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 17:07:47 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/26 16:56:06 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 20:29:56 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void	move_data_top_side(
 	{
 		instruct_rx(src);
 		count->less++;
-		debug_count_less(count->less);
 	}
 	else
 	{

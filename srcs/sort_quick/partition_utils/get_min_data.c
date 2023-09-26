@@ -6,14 +6,16 @@
 /*   By: kamitsui <kamitsui@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:07:08 by kamitsui          #+#    #+#             */
-/*   Updated: 2023/09/26 16:53:45 by kamitsui         ###   ########.fr       */
+/*   Updated: 2023/09/26 20:29:18 by kamitsui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
-#include "debug.h"
 #include <stdlib.h>
+
+// for debug
+#include "debug.h"
 
 // Function to find the median value from an array of integers
 //static int	get_min_data_range(t_stack *stack, int low, int high)
